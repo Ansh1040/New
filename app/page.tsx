@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { StudySession, StudyState, TestResult } from "@/lib/study-state";
 import { PWProgress } from "@/components/pw-progress";
 import { ThemeToggle } from "@/components/theme-control";
+import { StudyCountdowns } from "@/components/study-countdowns";
 
 const blankState: StudyState = { subjects: [], sessions: [], tests: [], updatedAt: "" };
 
@@ -25,6 +26,20 @@ export default function Home() {
       .catch((cause: unknown) => setError(cause instanceof Error ? cause.message : "Could not open your tracker."))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (saving || loading) return;
+    const controller = new AbortController();
+    const refresh = async () => {
+      try {
+        const response = await fetch("/api/state", {cache: "no-store", signal: controller.signal});
+        if (response.ok) { const next = await response.json() as StudyState; if (!controller.signal.aborted) setState(next); }
+      } catch {}
+    };
+    const timer = window.setInterval(() => void refresh(), 60000);
+    window.addEventListener("focus", refresh);
+    return () => { controller.abort(); window.clearInterval(timer); window.removeEventListener("focus", refresh); };
+  }, [saving, loading]);
 
   const tracked = useMemo(() => state.subjects.filter((item) => item.progress !== null), [state.subjects]);
   const average = tracked.length
@@ -117,6 +132,8 @@ export default function Home() {
 
         {error && <div role="alert" className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>}
         {notice && <div role="status" className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">{notice}</div>}
+
+        <StudyCountdowns />
 
         <section aria-label="Study summary" className="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <SummaryCard label="Average PW progress" value={`${average}%`} detail={`${tracked.length} subjects with a visible percentage`} accent="teal" />

@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {sealToken,openToken} from '../lib/sealed-token.ts';
+const secret=btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32))));
+const token='github_pat_test_only';
+const sealed=await sealToken(token,'user-a',secret);
+assert.equal(await openToken(sealed,'user-a',secret),token);
+assert.ok(!sealed.includes(token));
+assert.notEqual(await sealToken(token,'user-a',secret),sealed);
+await assert.rejects(openToken(sealed,'user-b',secret));
+const tampered=JSON.parse(sealed);tampered.data=(tampered.data[0]==='A'?'B':'A')+tampered.data.slice(1);
+await assert.rejects(openToken(JSON.stringify(tampered),'user-a',secret));
+console.log('Encrypted-token roundtrip, random IV, user binding, and tamper checks passed.');

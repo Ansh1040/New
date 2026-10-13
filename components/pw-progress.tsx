@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { StudyState } from "@/lib/study-state";
 import { testSummary, type PWSnapshot } from "@/lib/test-progress";
+import { GitHubConnection } from "@/components/github-connection";
 
 const button = "rounded-lg border border-[var(--desk-border-strong)] px-4 py-2 text-sm font-semibold text-[color:var(--desk-link)] hover:bg-[var(--desk-hover)] disabled:opacity-50";
 
@@ -24,7 +25,7 @@ export function PWProgress({state, onState, busy}: {state:StudyState; onState:(s
   const [connected, setConnected] = useState(false);
   const [connectionNotice, setConnectionNotice] = useState(false);
   const [setupOpen, setSetupOpen] = useState(false);
-  const [auto, setAuto] = useState(false);
+  const [githubConnected, setGithubConnected] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -48,7 +49,7 @@ export function PWProgress({state, onState, busy}: {state:StudyState; onState:(s
     setError("");
     setConnectionNotice(false);
     try { await bridge("ping"); setConnected(true); setConnectionNotice(true); setMessage("PW extension connected. Open your signed-in PW batch in this browser, then click Sync from PW."); }
-    catch { setConnected(false); setAuto(false); setError("PW extension not detected. Install it in Chrome, Brave or Edge and open both sites in the same profile. In Codex, sign in to PW and ask the assistant to sync your tracker."); }
+    catch { setConnected(false); setError("PW extension not detected. Install it in Chrome, Brave or Edge and open both sites in the same profile. In Codex, sign in to PW and ask the assistant to sync your tracker."); }
   }
 
   const importSnapshots = useCallback(async (snapshots: unknown) => {
@@ -62,16 +63,20 @@ export function PWProgress({state, onState, busy}: {state:StudyState; onState:(s
   const sync = useCallback(async () => {
     if (lock.current || busy) return;
     lock.current = true; setSyncing(true); setError(""); setMessage("");
-    try { const result = await bridge("sync", state.pw?.batchId); await importSnapshots(result.snapshots); setConnected(true); }
-    catch (cause) { setError(cause instanceof Error ? cause.message : "PW sync failed."); setAuto(false); }
+    let imported = false;
+    try {
+      const result = await bridge("sync", state.pw?.batchId);
+      await importSnapshots(result.snapshots); imported = true; setConnected(true);
+      if (githubConnected) {
+        const response = await fetch("/api/github-publish", {method:"POST"});
+        const publication = await response.json();
+        if (!response.ok) throw new Error(publication.error ?? "GitHub publishing failed.");
+        setMessage(publication.changed ? "PW synced and tracker refreshed. Your updated progress was committed to GitHub; the shared page will update after its build completes." : "PW synced and tracker refreshed. Your shared snapshot is already current.");
+      } else setMessage("PW synced and tracker refreshed. Connect GitHub below to publish updates to your shared page.");
+    }
+    catch (cause) { setError((imported ? "Your tracker was updated, but sharing failed. " : "") + (cause instanceof Error ? cause.message : "PW sync failed.")); }
     finally {lock.current = false; setSyncing(false);}
-  }, [busy, state.pw?.batchId, importSnapshots]);
-
-  useEffect(() => {
-    if (!auto || !connected) return;
-    const timer = window.setInterval(() => {void sync();}, 60000);
-    return () => clearInterval(timer);
-  }, [auto, connected, sync]);
+  }, [busy, state.pw?.batchId, importSnapshots, githubConnected]);
 
   async function manualImport() {
     if (lock.current || busy) return;
@@ -91,12 +96,13 @@ export function PWProgress({state, onState, busy}: {state:StudyState; onState:(s
     </div>}
     <div className="flex flex-wrap items-start justify-between gap-4">
       <div><p className="text-xs font-bold uppercase tracking-widest text-[color:var(--desk-accent)]">Practice roadmap</p><h2 id="pw-tests-heading" className="mt-1 text-2xl font-bold">Test completion</h2><p className="mt-2 text-sm text-[color:var(--desk-muted)]">Your imported PW tests, grouped by subject.</p></div>
-      <div className="flex flex-wrap gap-2"><button type="button" className={button} disabled={syncing || busy} onClick={() => void checkExtension()}>Check extension connection</button><button onClick={() => {if (connected) void sync(); else {setSetupOpen(true); setMessage("The sync button needs the PW browser extension. In Codex, open and sign in to PW, then ask the assistant to sync your tracker.");}}} disabled={syncing || busy} className="rounded-lg bg-[var(--desk-button)] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">{syncing ? "Syncing…" : connected ? "Sync from PW" : "Set up PW sync"}</button><button className={button} disabled={syncing || busy} onClick={async () => {setError("");try {const r=await fetch("/api/state",{cache:"no-store"});const body=await r.json() as StudyState & { error?: string };if(!r.ok)throw new Error(body.error);onState(body);setMessage("Saved tracker data refreshed. PW was not read.");}catch{setError("Could not refresh saved data.");}}}>Refresh saved data</button></div>
+      <div className="flex flex-wrap gap-2"><button type="button" className={button} disabled={syncing || busy} onClick={() => void checkExtension()}>Check extension connection</button><button onClick={() => {if (connected) void sync(); else {setSetupOpen(true); setMessage("The sync button needs the PW browser extension. In Codex, open and sign in to PW, then ask the assistant to sync your tracker.");}}} disabled={syncing || busy} className="rounded-lg bg-[var(--desk-button)] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">{syncing ? "Syncing…" : connected ? (githubConnected ? "Sync, refresh & publish" : "Sync & refresh") : "Set up PW sync"}</button><button className={button} disabled={syncing || busy} onClick={async () => {setError("");try {const r=await fetch("/api/state",{cache:"no-store"});const body=await r.json() as StudyState & { error?: string };if(!r.ok)throw new Error(body.error);onState(body);setMessage("Saved tracker data refreshed. PW was not read.");}catch{setError("Could not refresh saved data.");}}}>Refresh saved data</button></div>
     </div>
     <div className="mt-5 grid gap-5 lg:grid-cols-[1.1fr_1fr]">
       <div className="rounded-xl bg-[var(--desk-teal-bg)] p-5"><p className="text-sm text-[color:var(--desk-link)]">Completed / available imported tests</p><p className="mt-1 text-4xl font-bold tabular-nums">{summary.completed}<span className="text-xl font-medium text-[color:var(--desk-muted)]"> / {summary.available}</span></p><ProgressBar value={summary.percent} label="Total test completion"/><p className="mt-2 text-sm text-[color:var(--desk-link)]">{summary.percent}% completed · {summary.upcoming} upcoming · {summary.total} imported</p></div>
-      <div className="text-sm leading-6 text-[color:var(--desk-muted)]"><p className="font-semibold text-[color:var(--desk-foreground)]">{connected ? "PW browser extension connected" : "Set up PW browser sync"}</p><p>Open PW and this tracker in the same Chrome, Brave, or Edge profile. Select <strong>All Tests</strong> in PW and load the full list. Keep All Classes open in another tab to update subject percentages too.</p><label className="mt-3 flex items-start gap-2"><input type="checkbox" checked={auto} disabled={!connected} onChange={e=>{setAuto(e.target.checked);if(e.target.checked)void sync();}} className="mt-1.5"/>Auto-sync every minute while this tracker is open</label><p className="mt-1 text-xs">Reads loaded PW cards. Refresh PW after completing a test. Upcoming tests are excluded from the completion percentage.</p></div>
+      <div className="text-sm leading-6 text-[color:var(--desk-muted)]"><p className="font-semibold text-[color:var(--desk-foreground)]">{connected ? "PW browser extension connected" : "Set up PW browser sync"}</p><p>Open PW and this tracker in the same Chrome, Brave, or Edge profile. Select <strong>All Tests</strong> in PW and load the full list. Keep All Classes open in another tab to update subject percentages too.</p><p className="mt-3 font-semibold">Manual updates — click Sync &amp; refresh after studying.</p><p className="mt-1 text-xs">Keep PW signed in with All Classes and All Tests open. After connecting GitHub, the same button publishes your updated snapshot. Upcoming tests are excluded from completion.</p></div>
     </div>
+    <GitHubConnection onConnected={setGithubConnected} busy={syncing || busy}/>
     {error && <p role="alert" className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-800">{error}</p>}
     {message && <p role="status" className="mt-4 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">{message}</p>}
     <details open={setupOpen} onToggle={event => setSetupOpen(event.currentTarget.open)} className="mt-4 rounded-lg border border-[var(--desk-border-soft)] p-3 text-sm"><summary className="cursor-pointer font-semibold text-[color:var(--desk-link)]">Sync setup and import options</summary><ol className="mt-3 list-decimal space-y-1 pl-5 leading-6 text-[color:var(--desk-muted)]"><li><a href="/pw-sync-extension.zip" download className="font-semibold text-[color:var(--desk-button)] underline">Download the PW sync extension</a> and extract the ZIP.</li><li>Open your browser’s Extensions page, enable Developer mode, choose Load unpacked, and select the extracted folder.</li><li>Reload this tracker. Open your signed-in PW batch’s All Tests and All Classes pages, then click Sync from PW.</li></ol><button type="button" className={`${button} mt-3`} onClick={() => void checkExtension()}>Check extension connection</button><p className="mt-3 text-xs text-[color:var(--desk-muted)]">The extension reads only progress and test cards. It does not collect passwords, cookies, videos or test answers. It cannot run in the Codex in-app browser. Here, ask the assistant to update from your open PW page.</p><details className="mt-3"><summary className="cursor-pointer">Import an assistant-captured snapshot</summary><label className="mt-2 block text-xs">PW snapshot JSON<textarea value={importText} onChange={e=>setImportText(e.target.value)} className="mt-1 block h-24 w-full rounded-lg border p-2 font-mono text-xs" maxLength={500000}/></label><button className={`${button} mt-2`} onClick={()=>void manualImport()} disabled={!importText.trim() || syncing || busy}>Import snapshot</button></details></details>

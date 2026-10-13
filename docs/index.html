@@ -9,13 +9,22 @@ themeButton.onclick=()=>{const value=document.documentElement.dataset.theme==='d
 function el(tag,text,className){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e}
 function stat(label,value,detail){const c=el('section',undefined,'card');c.append(el('div',label,'muted'),el('div',value,'stat'),el('small',detail));return c}
 function card(name,percent,label,detail){const c=el('section',undefined,'card');const row=el('div',undefined,'row');row.append(el('h3',name),el('span',label,'percent'));c.append(row);const bar=el('div',undefined,'track');bar.setAttribute('role','progressbar');bar.setAttribute('aria-label',name+' progress');bar.setAttribute('aria-valuemin','0');bar.setAttribute('aria-valuemax','100');if(percent!==null)bar.setAttribute('aria-valuenow',String(percent));else bar.setAttribute('aria-valuetext','Not recorded');const fill=el('div',undefined,'fill');fill.style.width=(percent||0)+'%';bar.append(fill);c.append(bar,el('small',detail));return c}
-fetch('./progress.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{
+const countdownGrid=el('div',undefined,'grid');countdownGrid.style.marginBottom='24px';document.getElementById('summary').before(countdownGrid);
+const deadlines=[{title:'Course completion',date:'1 January 2027',target:'2027-01-01T00:00:00+05:30',detail:'Course completion with daily revision and DPP practice.'},{title:'Final paper',date:'1 February 2027',target:'2027-02-01T00:00:00+05:30',detail:'Your target paper date.'}];
+const countdownViews=deadlines.map(d=>{const c=el('section',undefined,'card');const timer=el('div',undefined,'stat');timer.setAttribute('role','timer');timer.setAttribute('aria-label',d.title+' countdown');c.append(el('h3',d.title),el('p',d.date+' · IST','percent'),timer,el('p',d.detail,'muted'));countdownGrid.append(c);return {d,timer}});
+function updateCountdowns(){countdownViews.forEach(({d,timer})=>{const t=Math.max(0,Math.ceil((Date.parse(d.target)-Date.now())/1000));timer.style.fontSize='24px';timer.textContent=t?Math.floor(t/86400)+'d '+String(Math.floor(t%86400/3600)).padStart(2,'0')+'h '+String(Math.floor(t%3600/60)).padStart(2,'0')+'m '+String(t%60).padStart(2,'0')+'s':'Target date reached.'})}
+updateCountdowns();setInterval(updateCountdowns,1000);
+let lastSnapshot='';
+function refreshSnapshot(){return fetch('./progress.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{
+const signature=JSON.stringify(data);if(signature===lastSnapshot)return;lastSnapshot=signature;
+['summary','subjects','tests'].forEach(id=>document.getElementById(id).replaceChildren());
 const recorded=data.subjects.filter(s=>s.progress!==null);const avg=recorded.length?Math.round(recorded.reduce((a,s)=>a+s.progress,0)/recorded.length):0;
 const format=v=>new Date(v).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Kolkata'})+' IST';
 document.getElementById('updated').textContent='Snapshot updated '+format(data.updatedAt);
 document.getElementById('summary').append(stat('Average subject progress',avg+'%',recorded.length+' subjects with recorded percentages'),stat('Tests completed',data.tests.completed+' / '+data.tests.available,data.tests.percent+'% completed · '+data.tests.upcoming+' upcoming'),stat('Subjects tracked',String(data.subjects.length),'CS GATE preparation'));
 data.subjects.forEach(s=>document.getElementById('subjects').append(card(s.name,s.progress,s.progress===null?'—':s.progress+'%',s.progress===null?'Not recorded':s.progress===100?'Completed':s.progress===0?'Not started':'In progress')));
 data.tests.groups.forEach(g=>document.getElementById('tests').append(card(g.subject,g.available?Math.round(g.completed/g.available*100):0,g.completed+' / '+g.available,'Tests completed'+(g.upcoming?' · '+g.upcoming+' upcoming':''))));
-document.getElementById('note').textContent='Read-only snapshot. PW captured '+format(data.pwCapturedAt)+'. Test counts cover imported cards. Changes in the private tracker appear here after a new snapshot is published.';
-}).catch(()=>{document.getElementById('updated').textContent='The snapshot could not be loaded. Please refresh this page.'});
+document.getElementById('note').textContent='Read-only progress. PW captured '+(data.pwCapturedAt?format(data.pwCapturedAt):'not yet')+'. Publish updates manually with Sync, refresh & publish in the tracker. This page checks for published updates every minute. Test counts cover imported cards.';
+}).catch(()=>{if(!lastSnapshot)document.getElementById('updated').textContent='The snapshot could not be loaded. Please refresh this page.'});}
+refreshSnapshot();setInterval(refreshSnapshot,60000);window.addEventListener('focus',refreshSnapshot);
 </script></body></html>
