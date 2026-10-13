@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-13T11:09:43.837Z",
-  "pwCapturedAt": "2026-10-13T11:09:42.295Z",
+  "updatedAt": "2026-10-13T12:27:58.876Z",
+  "pwCapturedAt": "2026-10-13T12:27:56.813Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -150,7 +150,7 @@
     ]
   },
   "dpp": {
-    "capturedAt": "2026-10-13T10:09:20.347Z",
+    "capturedAt": "2026-10-13T12:27:56.813Z",
     "completed": 1,
     "available": 66,
     "percent": 2,
@@ -373,7 +373,7 @@
     ],
     "sessions": [],
     "tests": [],
-    "updatedAt": "2026-10-13T11:09:43.837Z",
+    "updatedAt": "2026-10-13T12:27:58.876Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
@@ -606,10 +606,10 @@
           "status": "not-started"
         }
       ],
-      "capturedAt": "2026-10-13T11:09:42.295Z",
+      "capturedAt": "2026-10-13T12:27:56.813Z",
       "dpp": {
         "batchId": "6a6db276dcb67d138689a93d",
-        "capturedAt": "2026-10-13T11:09:42.295Z",
+        "capturedAt": "2026-10-13T12:27:56.813Z",
         "chapters": [
           {
             "id": "dpp-chapter:theory%20of%20computation:dfa",
