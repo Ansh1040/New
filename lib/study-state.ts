@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import type { PWTest } from "./test-progress";
 
 export type Subject = { name: string; progress: number | null };
 export type StudySession = {
@@ -11,6 +12,7 @@ export type StudySession = {
 export type TestResult = {
   id: string;
   name: string;
+  subject?: string;
   score: number;
   outOf: number;
   date: string;
@@ -19,6 +21,7 @@ export type StudyState = {
   subjects: Subject[];
   sessions: StudySession[];
   tests: TestResult[];
+  pw?: { batchId: string; tests: PWTest[]; lastSyncedAt: string; capturedAt: string };
   updatedAt: string;
 };
 
@@ -55,6 +58,7 @@ export function initialState(): StudyState {
 }
 
 export async function getStudyState(userId: string): Promise<StudyState> {
+  if (!env.DB) throw new Error("The study database is unavailable.");
   const row = await env.DB.prepare(
     "SELECT state FROM study_state WHERE user_id = ?",
   )
@@ -70,12 +74,15 @@ export async function getStudyState(userId: string): Promise<StudyState> {
 }
 
 export async function saveStudyState(userId: string, state: StudyState) {
-  state.updatedAt = new Date().toISOString();
-  await env.DB.prepare(
-    "INSERT INTO study_state (user_id, state, updated_at) VALUES (?, ?, ?) ON CONFLICT(user_id) DO UPDATE SET state = excluded.state, updated_at = excluded.updated_at",
+  if (!env.DB) throw new Error("The study database is unavailable.");
+  const previousVersion = state.updatedAt;
+  state.updatedAt = new Date(Math.max(Date.now(), (Date.parse(previousVersion) || 0) + 1)).toISOString();
+  const result = await env.DB.prepare(
+    "INSERT INTO study_state (user_id, state, updated_at) VALUES (?, ?, ?) ON CONFLICT(user_id) DO UPDATE SET state = excluded.state, updated_at = excluded.updated_at WHERE json_extract(study_state.state, '$.updatedAt') = ?",
   )
-    .bind(userId, JSON.stringify(state), Date.now())
+    .bind(userId, JSON.stringify(state), Date.now(), previousVersion)
     .run();
+  if (!result.meta.changes) throw new Error("Your tracker changed in another tab. Refresh saved data and try again.");
   return state;
 }
 

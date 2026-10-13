@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "PW to GATE Companion",
+  "version": "1.0.0",
+  "description": "Sync the progress and test cards loaded in your PW tabs to your private GATE Companion.",
+  "permissions": ["scripting"],
+  "host_permissions": ["https://www.pw.live/*"],
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [{
+    "matches": ["https://cs-gate-study-tracker.magicnova16.chatgpt.site/*"],
+    "js": ["bridge.js"], "run_at": "document_idle"
+  }]
+}

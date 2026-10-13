@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { StudySession, StudyState, TestResult } from "@/lib/study-state";
+import { PWProgress } from "@/components/pw-progress";
 
 const blankState: StudyState = { subjects: [], sessions: [], tests: [], updatedAt: "" };
 
@@ -16,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     fetch("/api/state")
       .then(async (response) => {
-        const body = await response.json();
+        const body = await response.json() as StudyState & { error?: string };
         if (!response.ok) throw new Error(body.error ?? "Could not open your tracker.");
         setState(body);
       })
@@ -29,7 +30,7 @@ export default function Home() {
     ? Math.round(tracked.reduce((total, item) => total + (item.progress ?? 0), 0) / tracked.length)
     : 0;
   const studyMinutes = state.sessions.reduce((total, session) => total + session.minutes, 0);
-  const today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
   const todayMinutes = state.sessions.filter((session) => session.date === today).reduce((total, session) => total + session.minutes, 0);
 
   async function save(next: StudyState, message: string) {
@@ -41,13 +42,15 @@ export default function Home() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(next),
       });
-      const body = await response.json();
+      const body = await response.json() as StudyState & { error?: string };
       if (!response.ok) throw new Error(body.error ?? "Could not save your update.");
       setState(body);
       setNotice(message);
       window.setTimeout(() => setNotice(""), 2600);
+      return true;
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Could not save your update.");
+      return false;
     } finally {
       setSaving(false);
     }
@@ -71,24 +74,26 @@ export default function Home() {
 
   async function addSession(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const element = event.currentTarget;
+    const form = new FormData(element);
     const session: StudySession = {
       id: crypto.randomUUID(), subject: String(form.get("subject")),
       minutes: Number(form.get("minutes")), topic: String(form.get("topic") ?? ""), date: today,
     };
-    await save({ ...state, sessions: [session, ...state.sessions].slice(0, 200) }, "Study session logged");
-    event.currentTarget.reset();
+    if (await save({ ...state, sessions: [session, ...state.sessions].slice(0, 200) }, "Study session logged")) element.reset();
   }
 
   async function addTest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const element = event.currentTarget;
+    const form = new FormData(element);
     const test: TestResult = {
       id: crypto.randomUUID(), name: String(form.get("name")), score: Number(form.get("score")),
-      outOf: Number(form.get("outOf")), date: today,
+      outOf: Number(form.get("outOf")), date: today, subject: String(form.get("subject")),
     };
-    await save({ ...state, tests: [test, ...state.tests].slice(0, 200) }, "Test result saved");
-    event.currentTarget.reset();
+    if (test.score > test.outOf) {setError("Score cannot exceed maximum marks."); return;}
+    if (state.tests.length >= 1000) {setError("The tracker supports 1,000 saved scores."); return;}
+    if (await save({ ...state, tests: [test, ...state.tests] }, "Test result saved")) element.reset();
   }
 
   return (
@@ -116,8 +121,10 @@ export default function Home() {
           <SummaryCard label="Average PW progress" value={`${average}%`} detail={`${tracked.length} subjects with a visible percentage`} accent="teal" />
           <SummaryCard label="Study time today" value={`${Math.floor(todayMinutes / 60)}h ${todayMinutes % 60}m`} detail="From your logged sessions" accent="blue" />
           <SummaryCard label="Total study time" value={`${Math.floor(studyMinutes / 60)}h ${studyMinutes % 60}m`} detail={`${state.sessions.length} sessions recorded`} accent="amber" />
-          <SummaryCard label="Practice tests" value={String(state.tests.length)} detail={state.tests.length ? `Latest: ${state.tests[0].name}` : "Log your first score"} accent="violet" />
+          <SummaryCard label="Recorded test scores" value={String(state.tests.length)} detail={state.tests.length ? `Latest: ${state.tests[0].name}` : "Log your first score"} accent="violet" />
         </section>
+
+        {!loading && <PWProgress state={state} onState={setState} busy={saving} />}
 
         <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1.7fr)_minmax(310px,0.8fr)]">
           <section className="rounded-2xl border border-[#dce6e2] bg-white p-5 shadow-sm sm:p-6">
@@ -150,7 +157,7 @@ export default function Home() {
               <input value={newSubject} onChange={(event) => setNewSubject(event.target.value)} placeholder="Add another subject" aria-label="New subject name" className="min-w-0 flex-1 rounded-lg border border-[#dce6e2] px-3 py-2.5 text-sm outline-none focus:border-[#13836c]" />
               <button disabled={saving || !newSubject.trim()} className="rounded-lg border border-[#c7d9d2] px-4 py-2.5 text-sm font-semibold text-[#35695d] hover:bg-[#f4faf7] disabled:opacity-50">Add subject</button>
             </form>
-            <p className="mt-4 text-xs leading-5 text-[#87948f]">PW says completion depends on lecture and DPP progress. This tracker stores the percentage you enter; it does not connect to your PW login.</p>
+            <p className="mt-4 text-xs leading-5 text-[#87948f]">PW completion depends on lectures and DPPs. Update a percentage manually or use Sync from PW with All Classes open in your browser.</p>
           </section>
 
           <div className="space-y-6">
@@ -170,14 +177,15 @@ export default function Home() {
             <section className="rounded-2xl border border-[#dce6e2] bg-white p-5 shadow-sm">
               <div className="mb-4"><h2 className="text-lg font-bold">Practice test scores</h2><p className="mt-1 text-sm text-[#72827d]">Record marks and see your recent attempts.</p></div>
               <form onSubmit={addTest} className="space-y-3">
+                <label className="block text-xs font-medium text-[#60716a]">Test subject<select name="subject" required className="mt-1 block w-full rounded-lg border border-[#dce6e2] bg-white px-3 py-2.5 text-sm text-[#172422]"><option>Full syllabus mock</option>{state.subjects.map(subject=><option key={subject.name}>{subject.name}</option>)}</select></label>
                 <label className="block text-xs font-medium text-[#60716a]">Test name<input name="name" required placeholder="Weekly test 01" className="mt-1 block w-full rounded-lg border border-[#dce6e2] px-3 py-2.5 text-sm" /></label>
                 <div className="grid grid-cols-2 gap-3">
-                  <label className="text-xs font-medium text-[#60716a]">Score<input name="score" type="number" min="0" step="0.01" required className="mt-1 block w-full rounded-lg border border-[#dce6e2] px-3 py-2.5 text-sm" /></label>
+                  <label className="text-xs font-medium text-[#60716a]">Score<input name="score" type="number" step="0.01" required className="mt-1 block w-full rounded-lg border border-[#dce6e2] px-3 py-2.5 text-sm" /></label>
                   <label className="text-xs font-medium text-[#60716a]">Out of<input name="outOf" type="number" min="0.01" step="0.01" required className="mt-1 block w-full rounded-lg border border-[#dce6e2] px-3 py-2.5 text-sm" /></label>
                 </div>
                 <button disabled={saving} className="w-full rounded-lg border border-[#c7d9d2] px-4 py-2.5 text-sm font-semibold text-[#35695d] hover:bg-[#f4faf7] disabled:opacity-50">Save score</button>
               </form>
-              <div className="mt-5 space-y-2 border-t border-[#edf1ef] pt-4">{state.tests.length ? state.tests.slice(0, 4).map((test) => <div key={test.id} className="flex items-center justify-between gap-3 text-sm"><span className="truncate font-medium">{test.name}</span><span className="shrink-0 rounded-full bg-[#f5f2e9] px-2.5 py-1 text-xs font-bold text-[#866626]">{test.score}/{test.outOf}</span></div>) : <p className="text-sm text-[#87948f]">No test scores yet.</p>}</div>
+              <div className="mt-5 space-y-2 border-t border-[#edf1ef] pt-4">{state.tests.length ? state.tests.slice(0, 4).map((test) => <div key={test.id} className="flex items-center justify-between gap-3 text-sm"><span className="min-w-0"><span className="block truncate font-medium">{test.name}</span><span className="block text-xs text-[#72827d]">{test.subject ?? "Unassigned"}</span></span><span className="shrink-0 rounded-full bg-[#f5f2e9] px-2.5 py-1 text-xs font-bold text-[#866626]">{test.score}/{test.outOf}</span></div>) : <p className="text-sm text-[#87948f]">No test scores yet.</p>}</div>
             </section>
           </div>
         </div>
@@ -196,3 +204,5 @@ function SummaryCard({ label, value, detail, accent }: { label: string; value: s
   };
   return <article className="rounded-2xl border border-[#dce6e2] bg-white p-5 shadow-sm"><div className={`mb-4 grid h-9 w-9 place-items-center rounded-lg text-sm font-black ${colors[accent]}`}>✦</div><p className="text-sm font-medium text-[#72827d]">{label}</p><p className="mt-1 text-2xl font-bold tracking-tight">{value}</p><p className="mt-2 text-xs text-[#87948f]">{detail}</p></article>;
 }
+
+

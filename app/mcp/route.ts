@@ -6,10 +6,17 @@ import {
   type StudyState,
   type TestResult,
 } from "@/lib/study-state";
+import { applyPWSnapshot } from "@/lib/pw-import";
+import { testSummary } from "@/lib/test-progress";
 
 export const dynamic = "force-dynamic";
 
 const tools = [
+  {
+    name: "import_pw_snapshot",
+    description: "Import a snapshot of progress and test statuses actually observed in the user's signed-in PW batch page. Read the page using browser tools first; never invent statuses. This tool saves the supplied snapshot and does not itself fetch PW. Only loaded cards are covered; missing tests are retained.",
+    inputSchema: {type:"object", properties:{snapshot:{type:"object", properties:{batchId:{type:"string"},capturedAt:{type:"string",description:"ISO capture timestamp"},subjects:{type:"array",items:{type:"object",properties:{name:{type:"string"},progress:{type:["number","null"]}},required:["name","progress"],additionalProperties:false}},tests:{type:"array",items:{type:"object",properties:{name:{type:"string"},subject:{type:"string"},attempts:{type:"integer",minimum:0},status:{type:"string",enum:["completed","not-started","in-progress","upcoming","unknown"]}},required:["name","subject","attempts","status"],additionalProperties:false}}},required:["batchId","capturedAt","subjects","tests"],additionalProperties:false}},required:["snapshot"],additionalProperties:false},
+  },
   {
     name: "get_study_progress",
     description: "Read the user's private CS GATE subject progress, study sessions, and test results.",
@@ -50,7 +57,8 @@ const tools = [
       type: "object",
       properties: {
         name: { type: "string" },
-        score: { type: "number", minimum: 0 },
+        subject: { type: "string", description: "Subject for this test, or Full syllabus mock." },
+        score: { type: "number" },
         outOf: { type: "number", exclusiveMinimum: 0 },
         date: { type: "string", description: "Optional ISO date; defaults to today." },
       },
@@ -61,7 +69,7 @@ const tools = [
 ];
 
 type RpcRequest = { jsonrpc?: string; id?: string | number | null; method?: string; params?: Record<string, unknown> };
-const today = () => new Date().toISOString().slice(0, 10);
+const today = () => new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
 const textResult = (value: unknown) => ({ content: [{ type: "text", text: JSON.stringify(value) }] });
 
 export async function POST(request: Request) {
@@ -83,7 +91,12 @@ export async function POST(request: Request) {
     const args = (rpc.params?.arguments ?? {}) as Record<string, unknown>;
     let state: StudyState = await getStudyState(userId);
 
-    if (name === "get_study_progress") return respond(textResult(state));
+    if (name === "get_study_progress") return respond(textResult({...state, pwTestSummary:testSummary(state.pw?.tests ?? [])}));
+    if (name === "import_pw_snapshot") {
+      state = applyPWSnapshot(state, args.snapshot);
+      await saveStudyState(userId,state);
+      return respond(textResult({imported:true,summary:testSummary(state.pw?.tests ?? []),capturedAt:state.pw?.capturedAt}));
+    }
 
     if (name === "update_subject_progress") {
       const subject = String(args.subject ?? "").trim();
@@ -118,14 +131,14 @@ export async function POST(request: Request) {
       const testName = String(args.name ?? "").trim();
       const score = Number(args.score);
       const outOf = Number(args.outOf);
-      if (!testName || !Number.isFinite(score) || !Number.isFinite(outOf) || score < 0 || outOf <= 0 || score > outOf) {
-        return respond(null, { code: -32602, message: "Provide a test name and a score between 0 and the maximum score." });
+      if (!testName || !Number.isFinite(score) || !Number.isFinite(outOf) || outOf <= 0 || score > outOf) {
+        return respond(null, { code: -32602, message: "Provide a test name, positive maximum marks and a score no greater than the maximum." });
       }
       const test: TestResult = {
-        id: crypto.randomUUID(), name: testName, score, outOf, date: String(args.date ?? today()),
+        id: crypto.randomUUID(), name: testName, subject:String(args.subject ?? "Unassigned"), score, outOf, date: String(args.date ?? today()),
       };
+      if (state.tests.length >= 1000) return respond(null,{code:-32602,message:"The tracker supports 1,000 saved scores."});
       state.tests.unshift(test);
-      state.tests = state.tests.slice(0, 200);
       await saveStudyState(userId, state);
       return respond(textResult({ saved: true, test }));
     }
