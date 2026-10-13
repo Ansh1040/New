@@ -117,7 +117,8 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--desk-page)] text-[color:var(--desk-foreground)]">
+    <main className="tracker-landscape min-h-screen text-[color:var(--desk-foreground)]">
+      <div aria-hidden="true" className="tracker-leaf-background" />
       <header className="border-b border-[var(--desk-border)] bg-[var(--desk-surface)]">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-8">
           <div className="flex items-center gap-3">

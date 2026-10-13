@@ -197,6 +197,13 @@ body {
 }
 
 body {background:var(--desk-page);color:var(--desk-foreground);}
+.tracker-landscape {position:relative;isolation:isolate;overflow:hidden;background:transparent;}
+.tracker-leaf-background {position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:#dbe8d0;}
+.tracker-leaf-background::before {content:"";position:absolute;left:50%;top:50%;width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(-90deg);background:url('/leafy-background.jpg') center/cover no-repeat;}
+.tracker-leaf-background::after {content:"";position:absolute;inset:0;background:linear-gradient(rgba(227,240,216,.22),rgba(227,240,216,.42));}
+:root[data-theme="dark"] .tracker-leaf-background::after {background:linear-gradient(rgba(5,24,16,.76),rgba(5,24,16,.88));}
+:root:not([data-theme="dark"]) .tracker-landscape {--desk-surface:rgba(249,252,243,.94);--desk-page:#dbe8d0;}
+:root[data-theme="dark"] .tracker-landscape {--desk-surface:rgba(23,36,32,.94);}
 input:not([type="checkbox"]), textarea, select {background-color:var(--desk-surface);color:var(--desk-foreground);}
 input::placeholder, textarea::placeholder {color:var(--desk-subtle);opacity:1;}
 :root[data-theme="dark"] .bg-red-50 {background-color:#42252a;}
