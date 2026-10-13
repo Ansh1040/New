@@ -5,10 +5,12 @@ import type { StudySession, StudyState, TestResult } from "@/lib/study-state";
 import { PWProgress } from "@/components/pw-progress";
 import { ThemeToggle } from "@/components/theme-control";
 import { StudyCountdowns } from "@/components/study-countdowns";
+import { useTaskNotifications } from "@/components/task-notifications";
 
 const blankState: StudyState = { subjects: [], sessions: [], tests: [], updatedAt: "" };
 
 export default function Home() {
+  const notify = useTaskNotifications();
   const [state, setState] = useState<StudyState>(blankState);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -62,10 +64,12 @@ export default function Home() {
       if (!response.ok) throw new Error(body.error ?? "Could not save your update.");
       setState(body);
       setNotice(message);
+      notify(message, "Your tracker update has been saved.");
       window.setTimeout(() => setNotice(""), 2600);
       return true;
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Could not save your update.");
+      notify("Update could not be saved", cause instanceof Error ? cause.message : "Please try again.", "error");
       return false;
     } finally {
       setSaving(false);

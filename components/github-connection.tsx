@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useTaskNotifications } from "@/components/task-notifications";
 
-export function GitHubConnection({onConnected,busy}:{onConnected:(value:boolean)=>void;busy:boolean}) {
+export function GitHubConnection({onConnected,busy,onPublish,publishing}:{onConnected:(value:boolean)=>void;busy:boolean;onPublish:()=>void;publishing:boolean}) {
+  const notify=useTaskNotifications();
   const [connected,setConnected]=useState(false);
   const [configured,setConfigured]=useState(false);
   const [loading,setLoading]=useState(true);
@@ -21,14 +23,8 @@ export function GitHubConnection({onConnected,busy}:{onConnected:(value:boolean)
       const response=await fetch("/api/github-connection",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token})});
       const data=await response.json();if(!response.ok)throw new Error(data.error);
       setToken("");setConnected(true);onConnected(true);setMessage("GitHub connected securely. Sync & refresh will now publish your updated progress.");
-    }catch(e){setError(e instanceof Error?e.message:"GitHub connection failed.");}finally{setWorking(false);}
-  }
-  async function publish(){
-    setWorking(true);setError("");setMessage("");
-    try{
-      const response=await fetch("/api/github-publish",{method:"POST"});const data=await response.json();if(!response.ok)throw new Error(data.error);
-      setMessage(data.changed?"Saved progress committed to GitHub. The shared page will update after GitHub Pages finishes building.":"Your shared snapshot is already current.");
-    }catch(e){setError(e instanceof Error?e.message:"GitHub publishing failed.");}finally{setWorking(false);}
+      notify("GitHub connected","One-click progress publishing is ready.");
+    }catch(e){const detail=e instanceof Error?e.message:"GitHub connection failed.";setError(detail);notify("GitHub connection failed",detail,"error");}finally{setWorking(false);}
   }
   return <details className="mt-4 rounded-xl border border-[var(--desk-border-soft)] p-4" open={!loading&&!connected}>
     <summary className="cursor-pointer text-sm font-semibold">GitHub sharing — {loading?"checking connection…":connected?"connected":"connect for one-click publishing"}</summary>
@@ -40,7 +36,7 @@ export function GitHubConnection({onConnected,busy}:{onConnected:(value:boolean)
       <p className="text-xs text-[color:var(--desk-subtle)]">Sent over HTTPS to your signed-in tracker and stored encrypted on the server. It is never included in the public page or source code.</p>
       {!loading&&!configured&&<p role="alert" className="text-sm text-red-600">Secure connection setup is not available yet.</p>}
     </form>}
-    {connected && <div className="mt-3 flex flex-wrap gap-2"><button type="button" onClick={()=>void publish()} className={button} disabled={working||busy}>{working?"Publishing…":"Publish saved progress"}</button><button type="button" className={button} disabled={working||busy} onClick={async()=>{setWorking(true);setError("");try{const r=await fetch("/api/github-connection",{method:"DELETE"});if(!r.ok)throw new Error("Could not disconnect GitHub.");setConnected(false);onConnected(false);setMessage("GitHub disconnected. You can revoke the token in GitHub settings.");}catch(e){setError(e instanceof Error?e.message:"Could not disconnect.");}finally{setWorking(false);}}}>Disconnect GitHub</button></div>}
+    {connected && <div className="mt-3 flex flex-wrap gap-2"><button type="button" onClick={onPublish} className={button} disabled={working||busy}>{publishing?"Publishing…":"Publish saved progress"}</button><button type="button" className={button} disabled={working||busy} onClick={async()=>{setWorking(true);setError("");try{const r=await fetch("/api/github-connection",{method:"DELETE"});if(!r.ok)throw new Error("Could not disconnect GitHub.");setConnected(false);onConnected(false);setMessage("GitHub disconnected. You can revoke the token in GitHub settings.");notify("GitHub disconnected","The saved connection was removed.");}catch(e){setError(e instanceof Error?e.message:"Could not disconnect.");}finally{setWorking(false);}}}>Disconnect GitHub</button></div>}
     {message&&<p role="status" className="mt-3 text-sm text-[color:var(--desk-link)]">{message}</p>}
     {error&&<p role="alert" className="mt-3 text-sm text-red-600">{error}</p>}
   </details>;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TrackerTheme } from "@/components/theme-control";
+import { TaskNotifications } from "@/components/task-notifications";
 
 export const metadata: Metadata = {
   title: "CS GATE Study Tracker",
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased"><TrackerTheme>{children}</TrackerTheme></body>
+      <body className="antialiased"><TrackerTheme><TaskNotifications>{children}</TaskNotifications></TrackerTheme></body>
     </html>
   );
 }
