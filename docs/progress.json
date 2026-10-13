@@ -1,0 +1,152 @@
+{
+  "title": "Ansh’s CS GATE progress",
+  "updatedAt": "2026-10-13T06:58:26.153Z",
+  "pwCapturedAt": "2026-10-13T06:58:24.861Z",
+  "subjects": [
+    {
+      "name": "Theory of Computation",
+      "progress": 36
+    },
+    {
+      "name": "Database Management System",
+      "progress": 26
+    },
+    {
+      "name": "Operating Systems",
+      "progress": 11
+    },
+    {
+      "name": "Compiler Design",
+      "progress": 0
+    },
+    {
+      "name": "General Aptitude",
+      "progress": 0
+    },
+    {
+      "name": "Data Structure & Programming",
+      "progress": 0
+    },
+    {
+      "name": "C Programming",
+      "progress": 0
+    },
+    {
+      "name": "Computer Networks",
+      "progress": 0
+    },
+    {
+      "name": "Digital Logic",
+      "progress": 0
+    },
+    {
+      "name": "Verbal Aptitude",
+      "progress": 0
+    },
+    {
+      "name": "Discrete Mathematics",
+      "progress": null
+    },
+    {
+      "name": "Algorithms",
+      "progress": null
+    },
+    {
+      "name": "Probability and Statistics",
+      "progress": null
+    },
+    {
+      "name": "Linear Algebra",
+      "progress": 0
+    },
+    {
+      "name": "Computer Organization and Architecture",
+      "progress": 0
+    },
+    {
+      "name": "Calculus and Optimization",
+      "progress": 0
+    },
+    {
+      "name": "Fundamental of C Language",
+      "progress": 0
+    },
+    {
+      "name": "Basics of Computer System",
+      "progress": 0
+    },
+    {
+      "name": "Foundation of Engineering Math",
+      "progress": 0
+    }
+  ],
+  "tests": {
+    "completed": 0,
+    "upcoming": 2,
+    "available": 36,
+    "total": 38,
+    "percent": 0,
+    "groups": [
+      {
+        "subject": "C Programming",
+        "completed": 0,
+        "available": 5,
+        "upcoming": 0
+      },
+      {
+        "subject": "Computer Organization and Architecture",
+        "completed": 0,
+        "available": 7,
+        "upcoming": 0
+      },
+      {
+        "subject": "Database Management System",
+        "completed": 0,
+        "available": 4,
+        "upcoming": 0
+      },
+      {
+        "subject": "Digital Logic",
+        "completed": 0,
+        "available": 4,
+        "upcoming": 0
+      },
+      {
+        "subject": "Full syllabus mock",
+        "completed": 0,
+        "available": 5,
+        "upcoming": 0
+      },
+      {
+        "subject": "General Aptitude",
+        "completed": 0,
+        "available": 1,
+        "upcoming": 2
+      },
+      {
+        "subject": "Linear Algebra",
+        "completed": 0,
+        "available": 1,
+        "upcoming": 0
+      },
+      {
+        "subject": "Operating Systems",
+        "completed": 0,
+        "available": 3,
+        "upcoming": 0
+      },
+      {
+        "subject": "Theory of Computation",
+        "completed": 0,
+        "available": 5,
+        "upcoming": 0
+      },
+      {
+        "subject": "Verbal Aptitude",
+        "completed": 0,
+        "available": 1,
+        "upcoming": 0
+      }
+    ]
+  }
+}
