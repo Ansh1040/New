@@ -19,6 +19,8 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(m
 `;
 document.head.append(designStyle);
 const ambient=document.createElement('div');ambient.className='ambient';ambient.setAttribute('aria-hidden','true');document.body.prepend(ambient);
+const knightArt=document.createElement('div');knightArt.className='knight-art';ambient.prepend(knightArt);
+const rotationStyle=document.createElement('style');rotationStyle.textContent='.ambient,html[data-theme=light] .ambient{background-image:none}.knight-art{position:absolute;left:50%;top:50%;width:100vh;height:100vw;background:linear-gradient(rgba(4,22,14,.65),rgba(4,22,14,.86)),url("./assets/green-knight.jpg") center/cover no-repeat;transform:translate(-50%,-50%) rotate(-90deg)}html[data-theme=light] .knight-art{background-image:linear-gradient(rgba(245,249,237,.73),rgba(245,249,237,.88)),url("./assets/green-knight.jpg")}';document.head.append(rotationStyle);
 document.querySelector('h1').innerHTML='Ansh’s <span>CS GATE</span> progress';
 const tagline=el('p','A little progress, every day.','muted tagline');document.querySelector('h1').after(tagline);
 const badge=el('span','Shared study dashboard','shared-badge');tagline.after(badge);
