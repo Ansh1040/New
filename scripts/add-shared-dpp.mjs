@@ -1,0 +1,10 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import ts from 'typescript';
+const code = ts.transpileModule(readFileSync('lib/shared-dpp.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+const module = {exports:{}};
+new Function('module','exports',code)(module,module.exports);
+const catalog = JSON.parse(readFileSync('lib/dpp-catalog-data.json','utf8'));
+const progress = JSON.parse(readFileSync('docs/progress.json','utf8'));
+progress.dpp = module.exports.sharedDPP(catalog.snapshot,catalog.subjects);
+writeFileSync('docs/progress.json',JSON.stringify(progress,null,2)+'\n');
+console.log(`Shared DPP snapshot: ${progress.dpp.completed}/${progress.dpp.available}, ${progress.dpp.pdfs} PDFs, ${progress.dpp.videos} videos, ${progress.dpp.groups.length} subjects.`);

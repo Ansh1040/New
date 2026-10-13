@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "PW to GATE Companion",
-  "version": "1.0.1",
-  "description": "Sync the progress and test cards loaded in your PW tabs to your private GATE Companion.",
+  "version": "1.0.2",
+  "description": "Sync subject progress, tests and DPP cards loaded in your PW tabs to your private GATE Companion.",
   "permissions": ["scripting"],
   "host_permissions": [
     "https://www.pw.live/*",

@@ -5,9 +5,11 @@
 3. Select **Load unpacked** and select the extracted folder containing manifest.json.
 4. Open the tracker and PW in that same browser/profile. Reload the tracker after installing.
 5. In PW open your batch's **All Tests**, select the **All Tests** tab, and clear attempt filters. Scroll to load all cards if necessary. Keep another tab on **All Classes** to sync subject percentages too.
-6. Click **Sync from PW** on the tracker. Optionally enable **Auto-sync every minute while this tracker is open**.
+6. Click **Sync & refresh** on the tracker (or **Sync, refresh & publish** when GitHub is connected).
 
-The extension reads loaded card titles, subject percentages, attempt counts and statuses from PW's rendered page. It sends those fields to the exact private tracker origin through its open tab. It cannot read credentials or request PW cookies. It never starts a test, submits answers, plays lectures, changes PW data, or navigates your tabs.
+For DPP updates, keep the subject's **Chapters** overview open to capture lecture and DPP quiz counters. Open a chapter's **DPPs**, **DPP PDFs** or **DPP Videos** tab to capture its loaded resource titles, release labels and quiz status. Each open tab contributes a partial capture; repeat sync after opening additional tabs or when PW releases new DPPs. The extension reads up to ten matching PW tabs per sync.
+
+The extension reads loaded card titles, subject percentages, attempt counts, chapter counters and statuses from PW's rendered page. DPP PDFs and videos are resource listings, not completed quizzes. A quiz's **View Analysis** action indicates completion; **Attempt** indicates pending. A missing chapter counter remains unknown. It sends those fields to the exact private tracker origin through its open tab. It cannot read credentials or request PW cookies. It never starts a test, submits answers, plays lectures, opens PDFs, changes PW data, or navigates your tabs.
 
 Only loaded cards are captured. A filtered or partially loaded list is not a complete course inventory. Previously imported tests are retained, and repeated imports update matching names instead of duplicating them. Completed counts use PW's positive attempt count unless the card says Resume/In progress. Upcoming cards are excluded from the available-test denominator. Marks remain manually recorded.
 

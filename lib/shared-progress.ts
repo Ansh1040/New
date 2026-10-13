@@ -1,5 +1,7 @@
 import type { StudyState } from "./study-state";
 import { testSummary } from "./test-progress";
+import { sharedDPP } from "./shared-dpp";
+import { dppCatalog, dppCatalogSubjects, DPP_BATCH_ID } from "./dpp-catalog";
 
 export function sharedProgress(state: StudyState) {
   const tests = state.pw?.tests ?? [];
@@ -7,5 +9,7 @@ export function sharedProgress(state: StudyState) {
     const summary = testSummary(tests.filter(test => test.subject === subject));
     return {subject,completed:summary.completed,available:summary.available,upcoming:summary.upcoming};
   });
-  return {title:"Ansh’s CS GATE progress",updatedAt:state.updatedAt,pwCapturedAt:state.pw?.capturedAt ?? null,subjects:state.subjects.map(({name,progress})=>({name,progress})),tests:{...testSummary(tests),groups}};
+  const snapshot = state.pw?.dpp ?? (!state.pw || state.pw.batchId === DPP_BATCH_ID ? dppCatalog : undefined);
+  return {title:"Ansh’s CS GATE progress",updatedAt:state.updatedAt,pwCapturedAt:state.pw?.capturedAt ?? null,subjects:state.subjects.map(({name,progress})=>({name,progress})),tests:{...testSummary(tests),groups},
+    ...(snapshot ? { dpp: sharedDPP(snapshot, snapshot.batchId === DPP_BATCH_ID ? dppCatalogSubjects : []) } : {})};
 }

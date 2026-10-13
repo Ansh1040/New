@@ -1,3 +1,5 @@
+import type { DPPSnapshot } from "./dpp-progress";
+
 export type PWTest = {
   name: string;
   subject: string;
@@ -9,6 +11,7 @@ export type PWSnapshot = {
   capturedAt: string;
   subjects: { name: string; progress: number | null }[];
   tests: PWTest[];
+  dpp?: DPPSnapshot;
 };
 
 export function testSummary(tests: PWTest[]) {

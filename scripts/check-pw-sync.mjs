@@ -11,7 +11,10 @@ function load(file, overrides={}) {
   return module.exports;
 }
 const progress=load("lib/test-progress.ts");
-const importer=load("lib/pw-import.ts",{"./test-progress":progress});
+const dpp=load("lib/dpp-progress.ts");
+const dppImport=load("lib/dpp-import.ts");
+const catalog=load("lib/dpp-catalog.ts",{"./dpp-progress":dpp,"./dpp-catalog-data.json":{default:JSON.parse(fs.readFileSync("lib/dpp-catalog-data.json","utf8"))}});
+const importer=load("lib/pw-import.ts",{"./test-progress":progress,"./dpp-progress":dpp,"./dpp-import":dppImport,"./dpp-catalog":catalog});
 const test=(name,status,attempts=0)=>({name,subject:"Operating Systems",status,attempts});
 assert.deepEqual(progress.testSummary([test("A","completed",1),test("B","not-started"),test("C","upcoming")]),{completed:1,available:2,upcoming:1,total:3,percent:50});
 const old=[test("A","completed",1),test("B","not-started")];

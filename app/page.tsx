@@ -6,6 +6,8 @@ import { PWProgress } from "@/components/pw-progress";
 import { ThemeToggle } from "@/components/theme-control";
 import { StudyCountdowns } from "@/components/study-countdowns";
 import { useTaskNotifications } from "@/components/task-notifications";
+import { DPPProgress } from "@/components/dpp-progress";
+import { dppCatalog, dppCatalogSubjects, DPP_BATCH_ID } from "@/lib/dpp-catalog";
 
 const blankState: StudyState = { subjects: [], sessions: [], tests: [], updatedAt: "" };
 
@@ -148,6 +150,10 @@ export default function Home() {
         </section>
 
         {!loading && <PWProgress state={state} onState={setState} busy={saving} />}
+
+        {!loading && (!state.pw || state.pw.batchId === DPP_BATCH_ID || state.pw.dpp) && (
+          <DPPProgress snapshot={state.pw?.dpp ?? dppCatalog} subjects={state.pw?.batchId && state.pw.batchId !== DPP_BATCH_ID ? undefined : dppCatalogSubjects} />
+        )}
 
         <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1.7fr)_minmax(310px,0.8fr)]">
           <section className="rounded-2xl border border-[var(--desk-border)] bg-[var(--desk-surface)] p-5 shadow-sm sm:p-6">

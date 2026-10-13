@@ -1,5 +1,6 @@
 import { env } from "cloudflare:workers";
 import type { PWTest } from "./test-progress";
+import type { DPPSnapshot } from "./dpp-progress";
 
 export type Subject = { name: string; progress: number | null };
 export type StudySession = {
@@ -21,7 +22,7 @@ export type StudyState = {
   subjects: Subject[];
   sessions: StudySession[];
   tests: TestResult[];
-  pw?: { batchId: string; tests: PWTest[]; lastSyncedAt: string; capturedAt: string };
+  pw?: { batchId: string; tests: PWTest[]; lastSyncedAt: string; capturedAt: string; dpp?: DPPSnapshot };
   updatedAt: string;
 };
 

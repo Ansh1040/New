@@ -148,5 +148,148 @@
         "upcoming": 0
       }
     ]
+  },
+  "dpp": {
+    "capturedAt": "2026-10-13T10:09:20.347Z",
+    "completed": 1,
+    "available": 66,
+    "percent": 2,
+    "pdfs": 139,
+    "videos": 68,
+    "groups": [
+      {
+        "subject": "Theory of Computation",
+        "completed": 1,
+        "available": 5,
+        "pdfs": 9,
+        "videos": 4
+      },
+      {
+        "subject": "Database Management System",
+        "completed": 0,
+        "available": 3,
+        "pdfs": 6,
+        "videos": 3
+      },
+      {
+        "subject": "Compiler Design",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      },
+      {
+        "subject": "Operating Systems",
+        "completed": 0,
+        "available": 3,
+        "pdfs": 6,
+        "videos": 3
+      },
+      {
+        "subject": "General Aptitude",
+        "completed": 0,
+        "available": 16,
+        "pdfs": 30,
+        "videos": 14
+      },
+      {
+        "subject": "Data Structure & Programming",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      },
+      {
+        "subject": "Discrete Mathematics",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      },
+      {
+        "subject": "Algorithms",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      },
+      {
+        "subject": "Probability and Statistics",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      },
+      {
+        "subject": "C Programming",
+        "completed": 0,
+        "available": 13,
+        "pdfs": 26,
+        "videos": 13
+      },
+      {
+        "subject": "Computer Organization and Architecture",
+        "completed": 0,
+        "available": 10,
+        "pdfs": 20,
+        "videos": 10
+      },
+      {
+        "subject": "Calculus and Optimization",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 4,
+        "videos": 2
+      },
+      {
+        "subject": "Computer Networks",
+        "completed": 0,
+        "available": 10,
+        "pdfs": 20,
+        "videos": 10
+      },
+      {
+        "subject": "Linear Algebra",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 6,
+        "videos": 3
+      },
+      {
+        "subject": "Digital Logic",
+        "completed": 0,
+        "available": 3,
+        "pdfs": 6,
+        "videos": 3
+      },
+      {
+        "subject": "Verbal Aptitude",
+        "completed": 0,
+        "available": 3,
+        "pdfs": 6,
+        "videos": 3
+      },
+      {
+        "subject": "Fundamental of C Language",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      },
+      {
+        "subject": "Basics of Computer System",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      },
+      {
+        "subject": "Foundation of Engineering Math",
+        "completed": 0,
+        "available": 0,
+        "pdfs": 0,
+        "videos": 0
+      }
+    ]
   }
 }

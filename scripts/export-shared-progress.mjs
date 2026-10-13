@@ -1,5 +1,6 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
+import { sharedDPP } from '../lib/shared-dpp.ts';
 const input=process.argv[2];
 if(!input) throw new Error('Usage: node scripts/export-shared-progress.mjs <saved-tracker-state.json>');
 const state=JSON.parse(readFileSync(input,'utf8'));
@@ -17,6 +18,9 @@ const groups=[...new Set(tests.map(t=>t.subject))].sort().map(subject=>{
  return {subject,completed:ts.filter(t=>t.status==='completed').length,available:ts.filter(t=>t.status!=='upcoming').length,upcoming:ts.filter(t=>t.status==='upcoming').length};
 });
 const snapshot={title:'Ansh’s CS GATE progress',updatedAt:state.updatedAt,pwCapturedAt:state.pw.capturedAt,subjects,tests:{completed,upcoming,available,total:tests.length,percent:available?Math.round(completed/available*100):0,groups}};
+const catalog=JSON.parse(readFileSync(fileURLToPath(new URL('../lib/dpp-catalog-data.json',import.meta.url)),'utf8'));
+const dpp=state.pw.dpp ?? (state.pw.batchId===catalog.snapshot.batchId ? catalog.snapshot : undefined);
+if(dpp) snapshot.dpp=sharedDPP(dpp,dpp.batchId===catalog.snapshot.batchId ? catalog.subjects : []);
 const target=fileURLToPath(new URL('../docs/progress.json',import.meta.url));
 let current;
 try{current=JSON.parse(readFileSync(target,'utf8'));}catch{}
