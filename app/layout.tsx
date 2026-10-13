@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { TrackerTheme } from "@/components/theme-control";
 
 export const metadata: Metadata = {
   title: "CS GATE Study Tracker",
@@ -16,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased"><TrackerTheme>{children}</TrackerTheme></body>
     </html>
   );
 }
