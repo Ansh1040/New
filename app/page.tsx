@@ -138,12 +138,17 @@ export default function Home() {
                   <details key={subject.name} className="group rounded-xl border border-[#e6ece9] px-4 py-3 open:border-[#b9d9cd] open:bg-[#fbfefd]">
                     <summary className="flex cursor-pointer list-none items-center gap-4">
                       <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#f0f5f3] text-xs font-bold text-[#4b776b]">{subject.name.split(/\s+/).slice(0, 2).map((word) => word[0]).join("").slice(0, 2)}</span>
-                      <span className="min-w-0 flex-1 truncate text-sm font-semibold">{subject.name}</span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-semibold">{subject.name}</span>
+                        <span role="progressbar" aria-label={`${subject.name} study progress`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={subject.progress ?? undefined} aria-valuetext={subject.progress === null ? "Not recorded" : `${subject.progress}% completed`} className={`mt-2 block h-2.5 overflow-hidden rounded-full ${subject.progress === null ? "border border-dashed border-[#cad5cf] bg-[#f5f7f6]" : "bg-[#e8eeeb]"}`}>
+                          {subject.progress !== null && <span className="block h-full rounded-full bg-[#12a17d] transition-all" style={{width:`${subject.progress}%`}}/>}
+                        </span>
+                        <span className="mt-1 block text-xs font-normal text-[#72827d]">{subject.progress === null ? "Not recorded" : subject.progress === 100 ? "Completed" : subject.progress === 0 ? "Not started" : "In progress"}</span>
+                      </span>
                       <span className="w-12 text-right text-sm font-bold tabular-nums text-[#304c44]">{subject.progress === null ? "—" : `${subject.progress}%`}</span>
                       <span aria-hidden="true" className="text-[#8a9a94] transition group-open:rotate-90">›</span>
                     </summary>
                     <div className="ml-[52px] mt-3">
-                      {subject.progress !== null && <div className="mb-3 h-2 overflow-hidden rounded-full bg-[#e8eeeb]"><div className="h-full rounded-full bg-[#12a17d] transition-all" style={{ width: `${subject.progress}%` }} /></div>}
                       <form onSubmit={(event) => updateProgress(event, subject.name)} className="flex flex-wrap items-end gap-3">
                         <label className="text-xs font-medium text-[#60716a]">PW completion %<input name="progress" type="number" min="0" max="100" step="1" defaultValue={subject.progress ?? ""} required className="mt-1 block w-28 rounded-lg border border-[#dce6e2] px-3 py-2 text-sm text-[#172422] outline-none focus:border-[#13836c] focus:ring-2 focus:ring-[#13836c]/15" /></label>
                         <button disabled={saving} className="rounded-lg bg-[#087b64] px-4 py-2 text-sm font-semibold text-white hover:bg-[#066650] disabled:opacity-60">Save</button>
