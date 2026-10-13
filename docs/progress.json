@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-13T08:02:24.043Z",
-  "pwCapturedAt": "2026-10-13T07:57:50.606Z",
+  "updatedAt": "2026-10-13T08:03:37.095Z",
+  "pwCapturedAt": "2026-10-13T08:03:35.742Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -13,7 +13,7 @@
     },
     {
       "name": "Operating Systems",
-      "progress": 55
+      "progress": 11
     },
     {
       "name": "Compiler Design",
