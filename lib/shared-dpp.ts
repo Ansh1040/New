@@ -1,18 +1,19 @@
 import type { DPPSnapshot } from "./dpp-progress";
 
 export function sharedDPP(snapshot: DPPSnapshot, subjects: string[] = []) {
+  const key = (subject: string, chapter: string) => [subject, chapter].map(value => value.trim().replace(/\s+/g, " ").toLowerCase()).join("|");
   const resources = [...new Map(snapshot.resources.map(item => [item.id, item])).values()];
   const chapters = [...new Map(snapshot.chapters.map(item => [item.id, item])).values()];
   const names = [...new Set([...subjects, ...chapters.map(item => item.subject), ...resources.map(item => item.subject)])];
   const groups = names.map(subject => {
     const subjectResources = resources.filter(item => item.subject === subject);
     const subjectChapters = chapters.filter(item => item.subject === subject);
-    const chapterNames = [...new Set([...subjectChapters.map(item => item.name), ...subjectResources.map(item => item.chapter)])];
+    const chapterNames = [...new Set([...subjectChapters.map(item => key(subject, item.name)), ...subjectResources.map(item => key(subject, item.chapter))])];
     let completed = 0;
     let available = 0;
     for (const name of chapterNames) {
-      const quizzes = subjectResources.filter(item => item.chapter === name && item.type === "quiz");
-      const counters = subjectChapters.filter(item => item.name === name);
+      const quizzes = subjectResources.filter(item => key(subject, item.chapter) === name && item.type === "quiz");
+      const counters = subjectChapters.filter(item => key(subject, item.name) === name);
       const total = Math.max(quizzes.length, ...counters.map(item => item.quizTotal ?? 0));
       available += total;
       completed += Math.min(total, Math.max(quizzes.filter(item => item.status === "completed").length, ...counters.map(item => item.quizCompleted ?? 0)));

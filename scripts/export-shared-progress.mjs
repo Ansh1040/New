@@ -21,6 +21,7 @@ const snapshot={title:'Ansh’s CS GATE progress',updatedAt:state.updatedAt,pwCa
 const catalog=JSON.parse(readFileSync(fileURLToPath(new URL('../lib/dpp-catalog-data.json',import.meta.url)),'utf8'));
 const dpp=state.pw.dpp ?? (state.pw.batchId===catalog.snapshot.batchId ? catalog.snapshot : undefined);
 if(dpp) snapshot.dpp=sharedDPP(dpp,dpp.batchId===catalog.snapshot.batchId ? catalog.subjects : []);
+snapshot.dashboard={subjects:state.subjects,sessions:state.sessions||[],tests:state.tests||[],updatedAt:state.updatedAt,pw:{batchId:state.pw.batchId,tests:state.pw.tests,capturedAt:state.pw.capturedAt,...(dpp?{dpp}:{})}};
 const target=fileURLToPath(new URL('../docs/progress.json',import.meta.url));
 let current;
 try{current=JSON.parse(readFileSync(target,'utf8'));}catch{}

@@ -46,6 +46,8 @@ export async function publishGithub(userId: string, state: StudyState) {
   if (Date.parse(previous.updatedAt) > Date.parse(state.updatedAt)) throw new Error("A newer snapshot is already shared. Refresh the tracker and try again.");
   if (JSON.stringify(previous) === JSON.stringify(snapshot)) return {url:pageURL,changed:false,updatedAt:state.updatedAt};
   const bytes = new TextEncoder().encode(JSON.stringify(snapshot,null,2)+"\n");
-  const result = await github(token,"PUT",{message:"Update shared CS GATE progress",branch:"main",sha:current.sha,content:btoa(String.fromCharCode(...bytes))});
+  let binary = "";
+  for (let start = 0; start < bytes.length; start += 8192) binary += String.fromCharCode(...bytes.subarray(start, start + 8192));
+  const result = await github(token,"PUT",{message:"Update shared CS GATE progress",branch:"main",sha:current.sha,content:btoa(binary)});
   return {url:pageURL,changed:true,commit:result.commit?.sha,updatedAt:state.updatedAt};
 }
