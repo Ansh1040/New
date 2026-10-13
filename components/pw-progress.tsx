@@ -22,6 +22,7 @@ function bridge(action: "ping" | "sync", batchId?: string): Promise<{ready?:bool
 
 export function PWProgress({state, onState, busy}: {state:StudyState; onState:(state:StudyState)=>void; busy:boolean}) {
   const [connected, setConnected] = useState(false);
+  const [connectionNotice, setConnectionNotice] = useState(false);
   const [setupOpen, setSetupOpen] = useState(false);
   const [auto, setAuto] = useState(false);
   const [syncing, setSyncing] = useState(false);
@@ -37,9 +38,16 @@ export function PWProgress({state, onState, busy}: {state:StudyState; onState:(s
 
   useEffect(() => { void bridge("ping").then(() => setConnected(true)).catch(() => {}); }, []);
 
+  useEffect(() => {
+    if (!connectionNotice) return;
+    const timer = window.setTimeout(() => setConnectionNotice(false), 6000);
+    return () => window.clearTimeout(timer);
+  }, [connectionNotice]);
+
   async function checkExtension() {
     setError("");
-    try { await bridge("ping"); setConnected(true); setMessage("PW extension connected. Open your signed-in PW batch in this browser, then click Sync from PW."); }
+    setConnectionNotice(false);
+    try { await bridge("ping"); setConnected(true); setConnectionNotice(true); setMessage("PW extension connected. Open your signed-in PW batch in this browser, then click Sync from PW."); }
     catch { setConnected(false); setAuto(false); setError("PW extension not detected. Install it in Chrome, Brave or Edge and open both sites in the same profile. In Codex, sign in to PW and ask the assistant to sync your tracker."); }
   }
 
@@ -76,6 +84,11 @@ export function PWProgress({state, onState, busy}: {state:StudyState; onState:(s
   const visible = tests.filter(t => (filter === "All subjects" || t.subject === filter) && (status === "all" || t.status === status));
 
   return <section className="mb-8 rounded-2xl border border-[var(--desk-border)] bg-[var(--desk-surface)] p-5 shadow-sm sm:p-6" aria-labelledby="pw-tests-heading">
+    {connectionNotice && <div role="status" aria-live="polite" className="fixed bottom-6 right-4 z-50 flex max-w-sm items-start gap-3 rounded-xl border border-[var(--desk-border-strong)] bg-[var(--desk-surface)] p-4 shadow-xl sm:right-6">
+      <span aria-hidden="true" className="text-xl text-[color:var(--desk-progress)]">✓</span>
+      <div><p className="font-semibold text-[color:var(--desk-foreground)]">PW extension connected</p><p className="mt-1 text-sm text-[color:var(--desk-muted)]">Ready to update your progress. Click Sync from PW to import it.</p></div>
+      <button type="button" aria-label="Dismiss connection notification" onClick={() => setConnectionNotice(false)} className="rounded px-1 text-lg text-[color:var(--desk-muted)]">×</button>
+    </div>}
     <div className="flex flex-wrap items-start justify-between gap-4">
       <div><p className="text-xs font-bold uppercase tracking-widest text-[color:var(--desk-accent)]">Practice roadmap</p><h2 id="pw-tests-heading" className="mt-1 text-2xl font-bold">Test completion</h2><p className="mt-2 text-sm text-[color:var(--desk-muted)]">Your imported PW tests, grouped by subject.</p></div>
       <div className="flex flex-wrap gap-2"><button onClick={() => {if (connected) void sync(); else {setSetupOpen(true); setMessage("The sync button needs the PW browser extension. In Codex, open and sign in to PW, then ask the assistant to sync your tracker.");}}} disabled={syncing || busy} className="rounded-lg bg-[var(--desk-button)] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">{syncing ? "Syncing…" : connected ? "Sync from PW" : "Set up PW sync"}</button><button className={button} disabled={syncing || busy} onClick={async () => {setError("");try {const r=await fetch("/api/state",{cache:"no-store"});const body=await r.json() as StudyState & { error?: string };if(!r.ok)throw new Error(body.error);onState(body);setMessage("Saved tracker data refreshed. PW was not read.");}catch{setError("Could not refresh saved data.");}}}>Refresh saved data</button></div>
