@@ -4,6 +4,8 @@ export type PWTest = {
   name: string;
   subject: string;
   attempts: number;
+  startsAt?: string;
+  startDateLabel?: string;
   status: "completed" | "not-started" | "in-progress" | "upcoming" | "unknown";
 };
 export type PWSnapshot = {
@@ -26,9 +28,10 @@ export function testSummary(tests: PWTest[]) {
 // completed result cannot be downgraded by an older open browser tab.
 export function mergePWTests(oldTests: PWTest[], nextTests: PWTest[]) {
   const map = new Map(oldTests.map(t => [t.name.trim().toLowerCase(), t]));
-  for (const next of nextTests) {
+  for (let next of nextTests) {
     const key = next.name.trim().toLowerCase();
     const previous = map.get(key);
+    next = { ...next, startsAt: next.startsAt ?? previous?.startsAt, startDateLabel: next.startDateLabel ?? previous?.startDateLabel };
     map.set(key, previous?.status === "completed" && next.status !== "completed"
       ? { ...next, status: "completed", attempts: Math.max(previous.attempts, next.attempts) }
       : { ...next, attempts: Math.max(previous?.attempts ?? 0, next.attempts) });

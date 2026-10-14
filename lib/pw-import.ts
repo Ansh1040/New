@@ -10,7 +10,7 @@ export const pwSnapshotSchema = z.object({
   capturedAt: z.string().datetime(),
   subjects: z.array(z.object({ name: z.string().trim().min(1).max(160), progress: z.number().min(0).max(100).nullable() })).max(100),
   tests: z.array(z.object({ name: z.string().trim().min(1).max(240), subject: z.string().trim().min(1).max(160),
-    attempts: z.number().int().min(0).max(10000), status: z.enum(["completed", "not-started", "in-progress", "upcoming", "unknown"]) })).max(1000),
+    startsAt: z.string().datetime().optional(), startDateLabel: z.string().max(160).optional(), attempts: z.number().int().min(0).max(10000), status: z.enum(["completed", "not-started", "in-progress", "upcoming", "unknown"]) })).max(1000),
   dpp: dppSnapshotSchema.optional(),
 });
 
