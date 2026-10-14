@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-13T12:27:58.876Z",
-  "pwCapturedAt": "2026-10-13T12:27:56.813Z",
+  "updatedAt": "2026-10-14T05:48:01.991Z",
+  "pwCapturedAt": "2026-10-14T05:47:59.375Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -13,7 +13,7 @@
     },
     {
       "name": "Operating Systems",
-      "progress": 11
+      "progress": 10
     },
     {
       "name": "Compiler Design",
@@ -304,7 +304,7 @@
       },
       {
         "name": "Operating Systems",
-        "progress": 11
+        "progress": 10
       },
       {
         "name": "Compiler Design",
@@ -373,7 +373,7 @@
     ],
     "sessions": [],
     "tests": [],
-    "updatedAt": "2026-10-13T12:27:58.876Z",
+    "updatedAt": "2026-10-14T05:48:01.991Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
@@ -606,7 +606,7 @@
           "status": "not-started"
         }
       ],
-      "capturedAt": "2026-10-13T12:27:56.813Z",
+      "capturedAt": "2026-10-14T05:47:59.375Z",
       "dpp": {
         "batchId": "6a6db276dcb67d138689a93d",
         "capturedAt": "2026-10-13T12:27:56.813Z",
