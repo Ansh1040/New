@@ -1,0 +1,43 @@
+.day {
+  min-height: 4rem;
+  border: 1px solid var(--desk-border-soft);
+  border-radius: 0.65rem;
+  padding: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  color: var(--desk-foreground);
+}
+
+.day:not(:disabled):hover {
+  transform: translateY(-1px);
+  border-color: var(--desk-accent);
+  box-shadow: 0 4px 14px rgba(13, 76, 59, 0.1);
+}
+
+.selected {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 1px;
+}
+
+.outside { opacity: 0.42; }
+.future { opacity: 0.25; cursor: not-allowed; }
+.level0 { background: var(--desk-page); }
+.level1 { background: #dff2e8; color: #235d4c; }
+.level2 { background: #a9ddc4; color: #174b3c; }
+.level3 { background: #58bb91; color: #0b392c; }
+.level4 { background: #087b64; color: #fff; }
+
+:global(:root[data-theme="dark"]) .level1 { background: #244d3e; color: #d7f7e9; }
+:global(:root[data-theme="dark"]) .level2 { background: #286b52; color: #e5fff5; }
+:global(:root[data-theme="dark"]) .level3 { background: #228764; color: #fff; }
+:global(:root[data-theme="dark"]) .level4 { background: #42bc91; color: #09271e; }
+
+@media (max-width: 639px) {
+  .day {
+    min-height: 2.9rem;
+    padding: 0.35rem;
+    align-items: center;
+  }
+}

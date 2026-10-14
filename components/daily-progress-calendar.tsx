@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Clock3, Flame, Target } from "lucide-react";
 import type { StudySession, TestResult } from "@/lib/study-state";
+import styles from "./daily-progress-calendar.module.css";
 
 type DayActivity = {
   sessions: StudySession[];
@@ -33,30 +34,24 @@ function startOfCalendar(month: Date) {
 }
 
 function intensityClass(activity: DayActivity) {
-  if (!activity.minutes && !activity.tests.length) return "calendar-level-0";
-  if (activity.minutes <= 30) return "calendar-level-1";
-  if (activity.minutes <= 60) return "calendar-level-2";
-  if (activity.minutes <= 120) return "calendar-level-3";
-  return "calendar-level-4";
+  if (!activity.minutes && !activity.tests.length) return styles.level0;
+  if (activity.minutes <= 30) return styles.level1;
+  if (activity.minutes <= 60) return styles.level2;
+  if (activity.minutes <= 120) return styles.level3;
+  return styles.level4;
 }
 
 export function DailyProgressCalendar({
   sessions,
   tests,
-  selectedDate,
-  onSelectDate,
 }: {
   sessions: StudySession[];
   tests: TestResult[];
-  selectedDate: string;
-  onSelectDate: (date: string) => void;
 }) {
   const today = new Date();
   const todayKey = dateKey(today);
-  const [visibleMonth, setVisibleMonth] = useState(() => {
-    const selected = parseDateKey(selectedDate);
-    return new Date(selected.getFullYear(), selected.getMonth(), 1);
-  });
+  const [selectedDate, setSelectedDate] = useState(todayKey);
+  const [visibleMonth, setVisibleMonth] = useState(() => new Date(today.getFullYear(), today.getMonth(), 1));
 
   const activityByDate = useMemo(() => {
     const result = new Map<string, DayActivity>();
@@ -107,7 +102,7 @@ export function DailyProgressCalendar({
   function chooseDay(day: Date) {
     const key = dateKey(day);
     if (key > todayKey) return;
-    onSelectDate(key);
+    setSelectedDate(key);
     if (day.getMonth() !== visibleMonth.getMonth()) {
       setVisibleMonth(new Date(day.getFullYear(), day.getMonth(), 1));
     }
@@ -115,7 +110,7 @@ export function DailyProgressCalendar({
 
   function showToday() {
     setVisibleMonth(new Date(today.getFullYear(), today.getMonth(), 1));
-    onSelectDate(todayKey);
+    setSelectedDate(todayKey);
   }
 
   return (
@@ -143,7 +138,7 @@ export function DailyProgressCalendar({
 
           <div className="mb-3 flex items-center justify-between gap-3">
             <h3 className="font-bold">{visibleMonth.toLocaleDateString("en-IN", { month: "long", year: "numeric" })}</h3>
-            <div className="hidden items-center gap-1 text-[10px] text-[color:var(--desk-subtle)] sm:flex"><span>Less</span>{[0,1,2,3,4].map((level) => <span key={level} className={`h-3 w-3 rounded-sm calendar-level-${level}`}/>)}<span>More</span></div>
+            <div className="hidden items-center gap-1 text-[10px] text-[color:var(--desk-subtle)] sm:flex"><span>Less</span>{[styles.level0, styles.level1, styles.level2, styles.level3, styles.level4].map((levelClass) => <span key={levelClass} className={`h-3 w-3 rounded-sm ${levelClass}`}/>)}<span>More</span></div>
           </div>
 
           <div className="grid grid-cols-7 gap-1.5">
@@ -163,7 +158,7 @@ export function DailyProgressCalendar({
                   onClick={() => chooseDay(day)}
                   aria-label={label}
                   aria-pressed={isSelected}
-                  className={`calendar-day ${intensityClass(activity)} ${outsideMonth ? "calendar-day-outside" : ""} ${future ? "calendar-day-future" : ""} ${isSelected ? "calendar-day-selected" : ""}`}
+                  className={`${styles.day} ${intensityClass(activity)} ${outsideMonth ? styles.outside : ""} ${future ? styles.future : ""} ${isSelected ? styles.selected : ""}`}
                 >
                   <span className="text-xs font-bold tabular-nums sm:text-sm">{day.getDate()}</span>
                   <span className="mt-auto hidden text-[10px] font-semibold sm:block">{activity.minutes ? `${activity.minutes}m` : activity.tests.length ? `${activity.tests.length} test` : ""}</span>
@@ -185,7 +180,7 @@ export function DailyProgressCalendar({
           <div className="mt-5 space-y-4">
             {selectedActivity.sessions.length > 0 && <div><h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-[color:var(--desk-subtle)]">Sessions</h4><div className="space-y-2">{selectedActivity.sessions.map((session) => <div key={session.id} className="rounded-lg border border-[var(--desk-border-soft)] bg-[var(--desk-surface)] px-3 py-2.5 text-sm"><div className="flex justify-between gap-3"><span className="font-semibold">{session.subject}</span><span className="shrink-0 font-bold text-[color:var(--desk-accent)]">{session.minutes}m</span></div>{session.topic && <p className="mt-1 text-xs text-[color:var(--desk-muted)]">{session.topic}</p>}</div>)}</div></div>}
             {selectedActivity.tests.length > 0 && <div><h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-[color:var(--desk-subtle)]">Tests</h4><div className="space-y-2">{selectedActivity.tests.map((test) => <div key={test.id} className="flex items-center justify-between gap-3 rounded-lg border border-[var(--desk-border-soft)] bg-[var(--desk-surface)] px-3 py-2.5 text-sm"><span className="min-w-0 truncate font-semibold">{test.name}</span><span className="shrink-0 rounded-full bg-[var(--desk-amber-bg)] px-2 py-1 text-xs font-bold text-[color:var(--desk-amber)]">{test.score}/{test.outOf}</span></div>)}</div></div>}
-            {!selectedActivity.sessions.length && !selectedActivity.tests.length && <div className="rounded-xl border border-dashed border-[var(--desk-border-strong)] px-4 py-8 text-center"><p className="text-sm font-semibold">No activity recorded</p><p className="mt-1 text-xs leading-5 text-[color:var(--desk-muted)]">Use this date in the forms below to add a study session or test.</p></div>}
+            {!selectedActivity.sessions.length && !selectedActivity.tests.length && <div className="rounded-xl border border-dashed border-[var(--desk-border-strong)] px-4 py-8 text-center"><p className="text-sm font-semibold">No activity recorded</p><p className="mt-1 text-xs leading-5 text-[color:var(--desk-muted)]">No study sessions or tests were recorded for this date.</p></div>}
           </div>
         </aside>
       </div>

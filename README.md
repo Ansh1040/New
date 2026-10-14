@@ -2,8 +2,6 @@
 
 A private tracker for the CS–GATE PW course with subject progress, study time, scores, and test completion bars grouped by subject. The site exposes the same records through its private MCP plugin tools:
 
-The dashboard includes a monthly progress calendar that turns saved study sessions and test attempts into a daily activity view. It shows monthly focused time, active days, the current streak, and per-day details. Selecting a past date also prefills both logging forms for easy backfilling.
-
 - `get_study_progress`
 - `update_subject_progress`
 - `log_study_session`

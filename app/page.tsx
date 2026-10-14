@@ -8,7 +8,6 @@ import { StudyCountdowns } from "@/components/study-countdowns";
 import { useTaskNotifications } from "@/components/task-notifications";
 import { DPPProgress } from "@/components/dpp-progress";
 import { dppCatalog, dppCatalogSubjects, DPP_BATCH_ID } from "@/lib/dpp-catalog";
-import { DailyProgressCalendar } from "@/components/daily-progress-calendar";
 
 const blankState: StudyState = { subjects: [], sessions: [], tests: [], updatedAt: "" };
 
@@ -20,7 +19,6 @@ export default function Home() {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [newSubject, setNewSubject] = useState("");
-  const [entryDate, setEntryDate] = useState(() => new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }));
 
   useEffect(() => {
     fetch("/api/state")
@@ -102,7 +100,7 @@ export default function Home() {
     const form = new FormData(element);
     const session: StudySession = {
       id: crypto.randomUUID(), subject: String(form.get("subject")),
-      minutes: Number(form.get("minutes")), topic: String(form.get("topic") ?? ""), date: String(form.get("date") || today),
+      minutes: Number(form.get("minutes")), topic: String(form.get("topic") ?? ""), date: today,
     };
     if (await save({ ...state, sessions: [session, ...state.sessions].slice(0, 200) }, "Study session logged")) element.reset();
   }
@@ -113,7 +111,7 @@ export default function Home() {
     const form = new FormData(element);
     const test: TestResult = {
       id: crypto.randomUUID(), name: String(form.get("name")), score: Number(form.get("score")),
-      outOf: Number(form.get("outOf")), date: String(form.get("date") || today), subject: String(form.get("subject")),
+      outOf: Number(form.get("outOf")), date: today, subject: String(form.get("subject")),
     };
     if (test.score > test.outOf) {setError("Score cannot exceed maximum marks."); return;}
     if (state.tests.length >= 1000) {setError("The tracker supports 1,000 saved scores."); return;}
@@ -150,8 +148,6 @@ export default function Home() {
           <SummaryCard label="Total study time" value={`${Math.floor(studyMinutes / 60)}h ${studyMinutes % 60}m`} detail={`${state.sessions.length} sessions recorded`} accent="amber" />
           <SummaryCard label="Recorded test scores" value={String(state.tests.length)} detail={state.tests.length ? `Latest: ${state.tests[0].name}` : "Log your first score"} accent="violet" />
         </section>
-
-        {!loading && <DailyProgressCalendar sessions={state.sessions} tests={state.tests} selectedDate={entryDate} onSelectDate={setEntryDate} />}
 
         {!loading && <PWProgress state={state} onState={setState} busy={saving} />}
 
@@ -202,7 +198,6 @@ export default function Home() {
             <section className="rounded-2xl border border-[var(--desk-border)] bg-[var(--desk-surface)] p-5 shadow-sm">
               <div className="mb-4"><h2 className="text-lg font-bold">Log a study session</h2><p className="mt-1 text-sm text-[color:var(--desk-muted)]">Keep a simple record of focused time.</p></div>
               <form onSubmit={addSession} className="space-y-3">
-                <label className="block text-xs font-medium text-[color:var(--desk-muted)]">Study date<input name="date" type="date" max={today} value={entryDate} onChange={(event) => setEntryDate(event.target.value)} required className="mt-1 block w-full rounded-lg border border-[var(--desk-border)] px-3 py-2.5 text-sm" /></label>
                 <label className="block text-xs font-medium text-[color:var(--desk-muted)]">Subject<select name="subject" required className="mt-1 block w-full rounded-lg border border-[var(--desk-border)] bg-[var(--desk-surface)] px-3 py-2.5 text-sm text-[color:var(--desk-foreground)]">{state.subjects.map((subject) => <option key={subject.name}>{subject.name}</option>)}</select></label>
                 <div className="grid grid-cols-2 gap-3">
                   <label className="text-xs font-medium text-[color:var(--desk-muted)]">Minutes<input name="minutes" type="number" min="1" max="1440" required placeholder="45" className="mt-1 block w-full rounded-lg border border-[var(--desk-border)] px-3 py-2.5 text-sm" /></label>
@@ -216,7 +211,6 @@ export default function Home() {
             <section className="rounded-2xl border border-[var(--desk-border)] bg-[var(--desk-surface)] p-5 shadow-sm">
               <div className="mb-4"><h2 className="text-lg font-bold">Practice test scores</h2><p className="mt-1 text-sm text-[color:var(--desk-muted)]">Record marks and see your recent attempts.</p></div>
               <form onSubmit={addTest} className="space-y-3">
-                <label className="block text-xs font-medium text-[color:var(--desk-muted)]">Test date<input name="date" type="date" max={today} value={entryDate} onChange={(event) => setEntryDate(event.target.value)} required className="mt-1 block w-full rounded-lg border border-[var(--desk-border)] px-3 py-2.5 text-sm" /></label>
                 <label className="block text-xs font-medium text-[color:var(--desk-muted)]">Test subject<select name="subject" required className="mt-1 block w-full rounded-lg border border-[var(--desk-border)] bg-[var(--desk-surface)] px-3 py-2.5 text-sm text-[color:var(--desk-foreground)]"><option>Full syllabus mock</option>{state.subjects.map(subject=><option key={subject.name}>{subject.name}</option>)}</select></label>
                 <label className="block text-xs font-medium text-[color:var(--desk-muted)]">Test name<input name="name" required placeholder="Weekly test 01" className="mt-1 block w-full rounded-lg border border-[var(--desk-border)] px-3 py-2.5 text-sm" /></label>
                 <div className="grid grid-cols-2 gap-3">
