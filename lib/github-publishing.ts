@@ -43,6 +43,10 @@ export async function publishGithub(userId: string, state: StudyState) {
   if (current.encoding !== "base64" || !current.content || !current.sha) throw new Error("The GitHub snapshot file is unavailable.");
   const decoded = new TextDecoder().decode(Uint8Array.from(atob(current.content.replace(/\s/g,"")),c=>c.charCodeAt(0)));
   const previous = JSON.parse(decoded);
+  for (const test of snapshot.dashboard.pw?.tests ?? []) {
+    const old = previous.dashboard?.pw?.tests?.find((item: {name:string}) => item.name.trim().toLowerCase() === test.name.trim().toLowerCase());
+    if (!test.startsAt && old?.startsAt) { test.startsAt = old.startsAt; test.startDateLabel = old.startDateLabel; }
+  }
   if (Date.parse(previous.updatedAt) > Date.parse(state.updatedAt)) throw new Error("A newer snapshot is already shared. Refresh the tracker and try again.");
   if (JSON.stringify(previous) === JSON.stringify(snapshot)) return {url:pageURL,changed:false,updatedAt:state.updatedAt};
   const bytes = new TextEncoder().encode(JSON.stringify(snapshot,null,2)+"\n");

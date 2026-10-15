@@ -1,3 +1,4 @@
+import dateCatalog from "./pw-test-date-catalog.json";
 import { env } from "cloudflare:workers";
 import type { PWTest } from "./test-progress";
 import type { DPPSnapshot } from "./dpp-progress";
@@ -71,7 +72,16 @@ export async function getStudyState(userId: string): Promise<StudyState> {
     await saveStudyState(userId, state);
     return state;
   }
-  return JSON.parse(row.state) as StudyState;
+  const state = JSON.parse(row.state) as StudyState;
+  if (state.pw?.batchId === dateCatalog.batchId) {
+    let restored = false;
+    for (const test of state.pw.tests) {
+      const known = dateCatalog.tests.find(item => item.name.trim().toLowerCase() === test.name.trim().toLowerCase());
+      if (known && !test.startsAt) { test.startsAt = known.startsAt; test.startDateLabel = known.startDateLabel; restored = true; }
+    }
+    if (restored) return saveStudyState(userId, state);
+  }
+  return state;
 }
 
 export async function saveStudyState(userId: string, state: StudyState) {

@@ -19,7 +19,15 @@
     const status = /\bUpcoming\b|\bStarts on\b/i.test(text) ? "upcoming"
       : /\bResume\b|\bIn progress\b/i.test(text) ? "in-progress"
       : attempts > 0 ? "completed" : "not-started";
-    tests.push({name, subject:name.includes(":") ? name.split(":")[0].trim() : /^Mock Test\b/i.test(name) ? "Full syllabus mock" : "Unassigned", attempts, status});
+    const dateMatch = text.match(/\b(Started on|Starts on)\s+([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})\s+at\s+(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+    let dateFields = {};
+    if (dateMatch) {
+      const months = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+      const month = months.indexOf(dateMatch[2].slice(0,3).toLowerCase());
+      const hour = Number(dateMatch[5]) % 12 + (dateMatch[7].toUpperCase() === "PM" ? 12 : 0);
+      if (month >= 0) dateFields = { startsAt: new Date(Date.UTC(Number(dateMatch[4]), month, Number(dateMatch[3]), hour, Number(dateMatch[6])) - 330 * 60000).toISOString(), startDateLabel: dateMatch[0] };
+    }
+    tests.push({...dateFields, name, subject:name.includes(":") ? name.split(":")[0].trim() : /^Mock Test\b/i.test(name) ? "Full syllabus mock" : "Unassigned", attempts, status});
   }
   const subjects = [];
   // Avoid matching subject names inside test titles or lecture pages.

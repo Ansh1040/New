@@ -1,16 +1,27 @@
 {
   "manifest_version": 3,
   "name": "PW to GATE Companion",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Sync subject progress, tests and DPP cards loaded in your PW tabs to your private GATE Companion.",
-  "permissions": ["scripting"],
+  "permissions": [
+    "scripting"
+  ],
   "host_permissions": [
     "https://www.pw.live/*",
     "https://cs-gate-study-tracker.magicnova16.chatgpt.site/*"
   ],
-  "background": {"service_worker": "background.js"},
-  "content_scripts": [{
-    "matches": ["https://cs-gate-study-tracker.magicnova16.chatgpt.site/*"],
-    "js": ["bridge.js"], "run_at": "document_idle"
-  }]
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cs-gate-study-tracker.magicnova16.chatgpt.site/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
 }

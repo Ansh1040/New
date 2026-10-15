@@ -1,0 +1,195 @@
+{
+  "batchId": "6a6db276dcb67d138689a93d",
+  "tests": [
+    {
+      "name": "Mock Test 05",
+      "startDateLabel": "Started on Feb 28, 2024 at 10:00 AM",
+      "startsAt": "2024-02-28T04:30:00.000Z"
+    },
+    {
+      "name": "Mock Test 04",
+      "startDateLabel": "Started on Feb 28, 2024 at 10:00 AM",
+      "startsAt": "2024-02-28T04:30:00.000Z"
+    },
+    {
+      "name": "Mock Test 03",
+      "startDateLabel": "Started on Feb 28, 2024 at 10:00 AM",
+      "startsAt": "2024-02-28T04:30:00.000Z"
+    },
+    {
+      "name": "Mock Test 02",
+      "startDateLabel": "Started on Feb 28, 2024 at 10:00 AM",
+      "startsAt": "2024-02-28T04:30:00.000Z"
+    },
+    {
+      "name": "Mock Test 01",
+      "startDateLabel": "Started on Feb 28, 2024 at 10:00 AM",
+      "startsAt": "2024-02-28T04:30:00.000Z"
+    },
+    {
+      "name": "Digital Logic : Full Syllabus Test",
+      "startDateLabel": "Started on Jun 14, 2026 at 08:00 PM",
+      "startsAt": "2026-06-14T14:30:00.000Z"
+    },
+    {
+      "name": "Digital Logic : Weekly Test 03",
+      "startDateLabel": "Started on May 31, 2026 at 06:00 PM",
+      "startsAt": "2026-05-31T12:30:00.000Z"
+    },
+    {
+      "name": "Digital Logic : Weekly Test 02",
+      "startDateLabel": "Started on May 03, 2026 at 06:00 PM",
+      "startsAt": "2026-05-03T12:30:00.000Z"
+    },
+    {
+      "name": "Digital Logic : Weekly Test 01",
+      "startDateLabel": "Started on Apr 26, 2026 at 06:00 PM",
+      "startsAt": "2026-04-26T12:30:00.000Z"
+    },
+    {
+      "name": "Verbal Aptitude : Full Syllabus Test",
+      "startDateLabel": "Started on Feb 01, 2026 at 07:00 PM",
+      "startsAt": "2026-02-01T13:30:00.000Z"
+    },
+    {
+      "name": "Linear Algebra : Weekly Test 01",
+      "startDateLabel": "Started on Jun 07, 2026 at 07:00 PM",
+      "startsAt": "2026-06-07T13:30:00.000Z"
+    },
+    {
+      "name": "C Programming : Weekly Test 05",
+      "startDateLabel": "Started on Sep 21, 2025 at 07:00 PM",
+      "startsAt": "2025-09-21T13:30:00.000Z"
+    },
+    {
+      "name": "C Programming : Weekly Test 04",
+      "startDateLabel": "Started on Sep 14, 2025 at 07:00 PM",
+      "startsAt": "2025-09-14T13:30:00.000Z"
+    },
+    {
+      "name": "C Programming : Weekly Test 03",
+      "startDateLabel": "Started on Sep 07, 2025 at 07:00 PM",
+      "startsAt": "2025-09-07T13:30:00.000Z"
+    },
+    {
+      "name": "C Programming : Weekly Test 02",
+      "startDateLabel": "Started on Aug 31, 2025 at 07:00 PM",
+      "startsAt": "2025-08-31T13:30:00.000Z"
+    },
+    {
+      "name": "C Programming : Weekly Test 01",
+      "startDateLabel": "Started on Aug 24, 2025 at 07:00 PM",
+      "startsAt": "2025-08-24T13:30:00.000Z"
+    },
+    {
+      "name": "Database Management System : Weekly Test 01",
+      "startDateLabel": "Started on Sep 13, 2026 at 07:00 PM",
+      "startsAt": "2026-09-13T13:30:00.000Z"
+    },
+    {
+      "name": "Theory of Computation : Weekly Test 03",
+      "startDateLabel": "Started on Sep 27, 2026 at 07:00 PM",
+      "startsAt": "2026-09-27T13:30:00.000Z"
+    },
+    {
+      "name": "Theory of Computation : Weekly Test 02",
+      "startDateLabel": "Started on Sep 20, 2026 at 07:00 PM",
+      "startsAt": "2026-09-20T13:30:00.000Z"
+    },
+    {
+      "name": "Theory of Computation : Weekly Test 01",
+      "startDateLabel": "Started on Sep 13, 2026 at 07:00 PM",
+      "startsAt": "2026-09-13T13:30:00.000Z"
+    },
+    {
+      "name": "Computer Organization and Architecture : Weekly Test 07",
+      "startDateLabel": "Started on Sep 13, 2026 at 07:00 PM",
+      "startsAt": "2026-09-13T13:30:00.000Z"
+    },
+    {
+      "name": "Computer Organization and Architecture : Weekly Test 06",
+      "startDateLabel": "Started on Sep 06, 2026 at 07:00 PM",
+      "startsAt": "2026-09-06T13:30:00.000Z"
+    },
+    {
+      "name": "Computer Organization and Architecture : Weekly Test 05",
+      "startDateLabel": "Started on Aug 30, 2026 at 07:00 PM",
+      "startsAt": "2026-08-30T13:30:00.000Z"
+    },
+    {
+      "name": "Computer Organization and Architecture : Weekly Test 04",
+      "startDateLabel": "Started on Aug 23, 2026 at 04:00 PM",
+      "startsAt": "2026-08-23T10:30:00.000Z"
+    },
+    {
+      "name": "Computer Organization and Architecture : Weekly Test 03",
+      "startDateLabel": "Started on Aug 16, 2026 at 04:00 PM",
+      "startsAt": "2026-08-16T10:30:00.000Z"
+    },
+    {
+      "name": "Computer Organization and Architecture : Weekly Test 02",
+      "startDateLabel": "Started on Aug 09, 2026 at 04:00 PM",
+      "startsAt": "2026-08-09T10:30:00.000Z"
+    },
+    {
+      "name": "Computer Organization and Architecture : Weekly Test 01",
+      "startDateLabel": "Started on Aug 02, 2026 at 04:00 PM",
+      "startsAt": "2026-08-02T10:30:00.000Z"
+    },
+    {
+      "name": "Operating Systems : Weekly Test 01",
+      "startDateLabel": "Started on Sep 20, 2026 at 07:00 PM",
+      "startsAt": "2026-09-20T13:30:00.000Z"
+    },
+    {
+      "name": "General Aptitude : Weekly Test 01",
+      "startDateLabel": "Started on Sep 27, 2026 at 07:00 PM",
+      "startsAt": "2026-09-27T13:30:00.000Z"
+    },
+    {
+      "name": "General Aptitude : Weekly Test 02",
+      "startDateLabel": "Starts on Oct 15, 2026 at 04:00 PM",
+      "startsAt": "2026-10-15T10:30:00.000Z"
+    },
+    {
+      "name": "General Aptitude : Weekly Test 03",
+      "startDateLabel": "Starts on Oct 15, 2026 at 05:00 PM",
+      "startsAt": "2026-10-15T11:30:00.000Z"
+    },
+    {
+      "name": "Database Management System : Weekly Test 02",
+      "startDateLabel": "Started on Sep 27, 2026 at 07:00 PM",
+      "startsAt": "2026-09-27T13:30:00.000Z"
+    },
+    {
+      "name": "Database Management System : Weekly Test 03",
+      "startDateLabel": "Started on Oct 04, 2026 at 07:00 PM",
+      "startsAt": "2026-10-04T13:30:00.000Z"
+    },
+    {
+      "name": "Database Management System : Weekly Test 04",
+      "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM",
+      "startsAt": "2026-10-11T13:30:00.000Z"
+    },
+    {
+      "name": "Operating Systems : Weekly Test 02",
+      "startDateLabel": "Started on Sep 27, 2026 at 07:00 PM",
+      "startsAt": "2026-09-27T13:30:00.000Z"
+    },
+    {
+      "name": "Theory of Computation : Weekly Test 05",
+      "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM",
+      "startsAt": "2026-10-11T13:30:00.000Z"
+    },
+    {
+      "name": "Theory of Computation : Weekly Test 04",
+      "startDateLabel": "Started on Oct 04, 2026 at 07:00 PM",
+      "startsAt": "2026-10-04T13:30:00.000Z"
+    },
+    {
+      "name": "Operating Systems : Weekly Test 03",
+      "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM",
+      "startsAt": "2026-10-11T13:30:00.000Z"
+    }
+  ]
+}
