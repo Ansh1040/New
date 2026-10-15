@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-15T06:28:37.067Z",
-  "pwCapturedAt": "2026-10-15T06:28:36.240Z",
+  "updatedAt": "2026-10-15T06:29:11.138Z",
+  "pwCapturedAt": "2026-10-15T06:29:10.249Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -150,7 +150,7 @@
     ]
   },
   "dpp": {
-    "capturedAt": "2026-10-13T12:27:56.813Z",
+    "capturedAt": "2026-10-15T06:29:10.249Z",
     "completed": 1,
     "available": 66,
     "percent": 2,
@@ -373,7 +373,7 @@
     ],
     "sessions": [],
     "tests": [],
-    "updatedAt": "2026-10-15T06:28:37.067Z",
+    "updatedAt": "2026-10-15T06:29:11.138Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
@@ -682,10 +682,10 @@
           "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM"
         }
       ],
-      "capturedAt": "2026-10-15T06:28:36.240Z",
+      "capturedAt": "2026-10-15T06:29:10.249Z",
       "dpp": {
         "batchId": "6a6db276dcb67d138689a93d",
-        "capturedAt": "2026-10-13T12:27:56.813Z",
+        "capturedAt": "2026-10-15T06:29:10.249Z",
         "chapters": [
           {
             "id": "dpp-chapter:theory%20of%20computation:dfa",
@@ -754,7 +754,7 @@
             "id": "dpp-chapter:database%20management%20system:ch%2002%20%3A%20queries",
             "subject": "Database Management System",
             "name": "CH 02 : Queries",
-            "lectureCompleted": 0,
+            "lectureCompleted": 1,
             "lectureTotal": 13,
             "quizCompleted": 0,
             "quizTotal": 1
