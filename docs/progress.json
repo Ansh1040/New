@@ -1,6 +1,6 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-15T06:29:11.138Z",
+  "updatedAt": "2026-10-15T06:36:06.839Z",
   "pwCapturedAt": "2026-10-15T06:29:10.249Z",
   "subjects": [
     {
@@ -371,9 +371,17 @@
         "progress": 0
       }
     ],
-    "sessions": [],
+    "sessions": [
+      {
+        "id": "02ea1642-5bb7-4342-8eb1-11eb4514b4fb",
+        "subject": "Database Management System",
+        "minutes": 70,
+        "topic": "Queries",
+        "date": "2026-10-15"
+      }
+    ],
     "tests": [],
-    "updatedAt": "2026-10-15T06:29:11.138Z",
+    "updatedAt": "2026-10-15T06:36:06.839Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
