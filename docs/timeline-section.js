@@ -10,7 +10,7 @@
   heading.textContent = 'Your preparation timeline';
   const subtitle = document.createElement('p');
   subtitle.className = 'added-dashboard-toggle-note';
-  subtitle.textContent = '20 October – 31 December 2026 · All 19 subjects';
+  subtitle.textContent = 'Lecture-based plan · All 19 subjects · Sunday tests and catch-up';
   label.append(heading, subtitle);
   const chevron = document.createElement('span');
   chevron.className = 'added-dashboard-chevron';
@@ -27,7 +27,7 @@
   link.style.color = 'inherit';
   const note = document.createElement('p');
   note.className = 'added-dashboard-note';
-  note.textContent = 'Proposed targets based on 6–7 focused hours daily. Review and adjust each week.';
+  note.textContent = 'Based on observed PW lecture counts. Compare study paces with protected practice, revision and Sunday checkpoints.';
   const frame = document.createElement('iframe');
   frame.title = 'GATE CS preparation timeline tree';
   frame.style.cssText = 'display:block;width:100%;height:900px;border:0;margin-top:16px;border-radius:12px';
