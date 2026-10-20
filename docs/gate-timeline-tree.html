@@ -1883,6 +1883,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 
 
+
 #gate-roadmap{--page-ink:light-dark(#253047,#f2f2ff);--subtle-ink:light-dark(#56607a,#c6cbe2);--panel:light-dark(rgba(255,255,255,.86),rgba(22,26,49,.9));--edge:light-dark(rgba(79,88,134,.2),rgba(185,191,238,.2));--subject:#8265e5;position:relative;isolation:isolate;color:var(--page-ink);padding:28px 18px;font:14px/1.55 system-ui,sans-serif;overflow:hidden}
 #gate-roadmap *{box-sizing:border-box}
 #gate-roadmap .abstract-art{position:absolute;inset:0;z-index:-1;overflow:hidden;background:light-dark(#f3f3fc,#101529);border-radius:24px;pointer-events:none}
@@ -1946,6 +1947,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 @media(max-width:600px){#gate-roadmap{padding:22px 12px}#gate-roadmap .month-tree{grid-template-columns:1fr;gap:18px}#gate-roadmap .month-tree:before{display:none}#gate-roadmap .month-node{padding-top:0}#gate-roadmap .month-node:before{display:none}#gate-roadmap .subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#gate-roadmap .subject-focus{padding:17px}#gate-roadmap .focus-top{align-items:flex-start;flex-direction:column;gap:5px}#gate-roadmap .focus-dates{gap:7px}#gate-roadmap .focus-dates strong{font-size:13px}#gate-roadmap .flag{font-size:23px}}
 @media(max-width:370px){#gate-roadmap .subject-grid,#gate-roadmap .always-branch .subject-grid{grid-template-columns:1fr}#gate-roadmap .focus-dates{flex-wrap:wrap}#gate-roadmap .date-connector{max-width:20px}#gate-roadmap .focus-dates strong{font-size:12px}}
 @media(prefers-reduced-motion:reduce){#gate-roadmap *{transition:none!important;scroll-behavior:auto!important}}
+
 
 
 
@@ -2138,7 +2140,7 @@ function buildLecturePlan(subjects, pace = &#x27;6&#x27;, futureAllowances = {dm
     for(const grid of Object.values(groups))if(!grid.children.length)grid.append(element(&#x27;p&#x27;,&#x27;Continue earlier subjects; no new core subject starts in this scenario.&#x27;,&#x27;routine&#x27;));
     selectSubject(selected,false);renderWeeks();
   }
-  root.querySelector(&#x27;#lecture-pace&#x27;).addEventListener(&#x27;change&#x27;,render);for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;])root.querySelector(&#x27;#reserve-&#x27;+id).addEventListener(&#x27;change&#x27;,render);render();
+  root.querySelector(&#x27;#lecture-pace&#x27;).addEventListener(&#x27;change&#x27;,render);for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;]){const field=root.querySelector(&#x27;#reserve-&#x27;+id);field.addEventListener(&#x27;input&#x27;,render);field.addEventListener(&#x27;change&#x27;,render);}render();
 })();
 
 &lt;/script&gt;
