@@ -27,7 +27,7 @@
   link.style.color = 'inherit';
   const note = document.createElement('p');
   note.className = 'added-dashboard-note';
-  note.textContent = 'Based on observed PW lecture counts. Compare study paces with protected practice, revision and Sunday checkpoints.';
+  note.textContent = 'Lectures through 31 December; January reserved for full revision and tests. Compare daily paces and check red deadline alerts.';
   const frame = document.createElement('iframe');
   frame.title = 'GATE CS preparation timeline tree';
   frame.style.cssText = 'display:block;width:100%;height:900px;border:0;margin-top:16px;border-radius:12px';
