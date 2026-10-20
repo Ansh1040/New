@@ -1862,8 +1862,9 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;section class=&quot;plan-controls&quot; aria-label=&quot;Planning pace&quot;&gt;
     &lt;label for=&quot;lecture-pace&quot;&gt;Lecture pace, Monday–Saturday&lt;/label&gt;
     &lt;select id=&quot;lecture-pace&quot;&gt;&lt;option value=&quot;3&quot;&gt;3 lectures every study day&lt;/option&gt;&lt;option value=&quot;4&quot;&gt;4 lectures every study day&lt;/option&gt;&lt;option value=&quot;5&quot;&gt;5 lectures every study day&lt;/option&gt;&lt;option value=&quot;6&quot; selected&gt;6 lectures every study day · target pace&lt;/option&gt;&lt;option value=&quot;ramp4&quot;&gt;Scenario · 3 now → 4 from 1 November&lt;/option&gt;&lt;option value=&quot;ramp5&quot;&gt;Scenario · 3 now → 5 from 1 November&lt;/option&gt;&lt;/select&gt;
-    &lt;p&gt;Choose a pace to recalculate dates. Red subjects have known lectures that do not fit by 31 December. Changing this preview does not change your saved PW progress.&lt;/p&gt;
+    &lt;p&gt;Choose a pace to recalculate dates and future reserves. Red subjects have lecture targets or reserve allowances that do not fit by 31 December. Changing this preview does not change your saved PW progress.&lt;/p&gt;
   &lt;/section&gt;
+  &lt;section class=&quot;future-buffer&quot; aria-labelledby=&quot;future-buffer-title&quot;&gt;&lt;p class=&quot;overline&quot;&gt;PROTECTED FUTURE WORKLOAD&lt;/p&gt;&lt;h2 id=&quot;future-buffer-title&quot;&gt;Reserve space before new lectures arrive.&lt;/h2&gt;&lt;p&gt;Editable planning allowances—not PW lecture counts or predicted exam marks. Replace them with observed counts when lectures are released. Reserves are held across the study window; they are not release-date predictions.&lt;/p&gt;&lt;div class=&quot;future-buffer-grid&quot;&gt;&lt;label for=&quot;reserve-dm&quot;&gt;Discrete Mathematics&lt;input id=&quot;reserve-dm&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;200&quot; step=&quot;1&quot; value=&quot;40&quot; inputmode=&quot;numeric&quot;&gt;&lt;span&gt;lecture slots&lt;/span&gt;&lt;/label&gt;&lt;label for=&quot;reserve-algo&quot;&gt;Algorithms&lt;input id=&quot;reserve-algo&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;200&quot; step=&quot;1&quot; value=&quot;40&quot; inputmode=&quot;numeric&quot;&gt;&lt;span&gt;lecture slots&lt;/span&gt;&lt;/label&gt;&lt;label for=&quot;reserve-prob&quot;&gt;Probability &amp;amp; Statistics&lt;input id=&quot;reserve-prob&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;200&quot; step=&quot;1&quot; value=&quot;30&quot; inputmode=&quot;numeric&quot;&gt;&lt;span&gt;lecture slots&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;p id=&quot;reserve-validation&quot; role=&quot;alert&quot;&gt;&lt;/p&gt;&lt;/section&gt;
   &lt;div id=&quot;workload-summary&quot; class=&quot;workload-summary&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
   &lt;section class=&quot;weekly-rhythm&quot; aria-labelledby=&quot;rhythm-title&quot;&gt;&lt;p class=&quot;overline&quot;&gt;YOUR FIXED STUDY PHASES&lt;/p&gt;&lt;h2 id=&quot;rhythm-title&quot;&gt;December for lectures. January for mastery.&lt;/h2&gt;&lt;div class=&quot;rhythm-grid&quot;&gt;&lt;div&gt;&lt;strong&gt;Lectures · through 31 December&lt;/strong&gt;&lt;span&gt;Monday–Saturday, including 28–31 December. Rotate TOC, DBMS and OS; start Networks early. Mathematics: Mon/Wed/Fri; Aptitude: Tue/Thu/Sat.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Brief daily &amp;amp; unit revision&lt;/strong&gt;&lt;span&gt;Recall key points daily and review notes when each unit finishes. No daily DPP/PYQ requirement. Extra capacity can support revision and new releases.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Sundays · test and catch-up&lt;/strong&gt;&lt;span&gt;Weekly test, error analysis, unfinished units and cumulative recall. Sundays stay outside the new-lecture target.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;1–31 January · protected&lt;/strong&gt;&lt;span&gt;Full subject revision, subject tests, DPPs/PYQs and full mocks. No scheduled lecture carry-over into January.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;p class=&quot;routine&quot;&gt;Red means the selected pace misses your December lecture deadline; January is not used to hide the backlog.&lt;/p&gt;&lt;/section&gt;
   &lt;section class=&quot;subject-focus&quot; aria-labelledby=&quot;focus-title&quot; aria-live=&quot;polite&quot;&gt;&lt;div class=&quot;focus-top&quot;&gt;&lt;div&gt;&lt;p class=&quot;overline&quot;&gt;SELECTED SUBJECT&lt;/p&gt;&lt;h2 id=&quot;focus-title&quot;&gt;&lt;/h2&gt;&lt;/div&gt;&lt;span id=&quot;focus-duration&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;p id=&quot;focus-inventory&quot;&gt;&lt;/p&gt;&lt;div class=&quot;focus-dates&quot;&gt;&lt;div&gt;&lt;span class=&quot;flag&quot; aria-hidden=&quot;true&quot;&gt;⚑&lt;/span&gt;&lt;span&gt;Remaining study starts&lt;strong id=&quot;focus-start&quot;&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;date-connector&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;span class=&quot;flag finish-flag&quot; aria-hidden=&quot;true&quot;&gt;⚑&lt;/span&gt;&lt;span&gt;Observed lecture target&lt;strong id=&quot;focus-end&quot;&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;time-axis&quot;&gt;&lt;div class=&quot;axis-months&quot;&gt;&lt;span&gt;OCTOBER&lt;/span&gt;&lt;span&gt;NOVEMBER&lt;/span&gt;&lt;span&gt;DECEMBER&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;axis-track&quot;&gt;&lt;span class=&quot;month-line november&quot;&gt;&lt;/span&gt;&lt;span class=&quot;month-line december&quot;&gt;&lt;/span&gt;&lt;div id=&quot;focus-window&quot;&gt;&lt;span class=&quot;window-flag start&quot;&gt;⚑&lt;/span&gt;&lt;span class=&quot;window-flag finish&quot;&gt;⚑&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;axis-ends&quot;&gt;&lt;span&gt;20 Oct&lt;/span&gt;&lt;span&gt;31 Dec&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;p id=&quot;focus-note&quot;&gt;&lt;/p&gt;&lt;div id=&quot;focus-chapters&quot;&gt;&lt;/div&gt;&lt;/section&gt;
@@ -1877,6 +1878,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;/div&gt;
 
 &lt;style&gt;
+
 
 
 
@@ -1947,10 +1949,20 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 
 
+
 #gate-roadmap .plan-controls{padding:18px;border:1px solid var(--edge);background:var(--panel);border-radius:15px;margin-bottom:16px}
 #gate-roadmap .plan-controls label{font-weight:650;display:block;margin-bottom:9px}
 #gate-roadmap select{font:inherit;font-size:16px;color:var(--page-ink);background:light-dark(#f4f4ff,#242b46);border:1px solid var(--edge);border-radius:9px;padding:10px;width:100%;min-width:0}
 #gate-roadmap .plan-controls p,#gate-roadmap .extra-group&gt;p{font-size:12px;color:var(--subtle-ink);margin-bottom:0}
+#gate-roadmap .future-buffer{background:var(--panel);border:1px solid var(--edge);border-radius:15px;padding:18px;margin-bottom:16px}
+#gate-roadmap .future-buffer h2{font-size:19px}
+#gate-roadmap .future-buffer&gt;p:not(.overline){font-size:12px;color:var(--subtle-ink)}
+#gate-roadmap .future-buffer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+#gate-roadmap .future-buffer-grid label{font-size:12px;min-width:0;font-weight:650}
+#gate-roadmap .future-buffer-grid input{display:block;box-sizing:border-box;min-width:0;width:100%;font:inherit;font-size:18px;color:var(--page-ink);background:light-dark(#f4f4ff,#242b46);border:1px solid var(--edge);border-radius:8px;padding:9px;margin:8px 0 3px}
+#gate-roadmap .future-buffer-grid span{font-size:11px;color:var(--subtle-ink);font-weight:400}
+#gate-roadmap #reserve-validation{color:light-dark(#be123c,#fda4af)!important;min-height:0}
+@media(max-width:480px){#gate-roadmap .future-buffer-grid{grid-template-columns:1fr}}
 #gate-roadmap .workload-summary{margin:16px 0;padding:18px;border-radius:14px;background:light-dark(#fff0d8,#3b3027);border:1px solid light-dark(#d8b678,#8c754b);font-size:13px}
 #gate-roadmap .workload-summary strong{font-size:18px}#gate-roadmap .workload-summary p{margin:9px 0 0}
 #gate-roadmap .capacity-warning{font-weight:650}
@@ -1983,19 +1995,30 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 &lt;/style&gt;
 &lt;script&gt;
-function buildLecturePlan(subjects, pace = &#x27;6&#x27;) {
+function buildLecturePlan(subjects, pace = &#x27;6&#x27;, futureAllowances = {dm:40,algo:40,prob:30}) {
   const start = Date.UTC(2026, 9, 20), end = Date.UTC(2026, 11, 31), day = 86400000;
   const groups = {
-    continuation: [&#x27;toc&#x27;, &#x27;dbms&#x27;, &#x27;os&#x27;, &#x27;c&#x27;, &#x27;ds&#x27;, &#x27;compiler&#x27;],
+    continuation: [&#x27;toc&#x27;, &#x27;dbms&#x27;, &#x27;os&#x27;, &#x27;c&#x27;, &#x27;ds&#x27;, &#x27;algo&#x27;, &#x27;compiler&#x27;],
     large: [&#x27;cn&#x27;, &#x27;dl&#x27;, &#x27;coa&#x27;],
-    math: [&#x27;la&#x27;, &#x27;calc&#x27;], aptitude: [&#x27;ga&#x27;, &#x27;va&#x27;]
+    math: [&#x27;dm&#x27;, &#x27;la&#x27;, &#x27;calc&#x27;, &#x27;prob&#x27;], aptitude: [&#x27;ga&#x27;, &#x27;va&#x27;]
   };
   const scheduled = Object.fromEntries(subjects.map(s =&gt; [s.id, []]));
-  const remaining = Object.fromEntries(subjects.map(s =&gt; [s.id, Math.max(0, (s.total ?? 0) - s.done)]));
+  const reserveIds=[&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;];
+  const reserves=Object.fromEntries(reserveIds.map(id=&gt;{
+    const amount=futureAllowances[id]??0;
+    if(!Number.isInteger(amount)||amount&lt;0||amount&gt;200)throw new RangeError(&#x27;Future allowances must be whole numbers from 0 to 200&#x27;);
+    return [id,subjects.find(s=&gt;s.id===id)?.total===null?amount:0];
+  }));
+  const futureReserved=Object.values(reserves).reduce((a,b)=&gt;a+b,0);
+  const remaining = Object.fromEntries(subjects.map(s =&gt; [s.id, s.total===null?(reserves[s.id]??0):Math.max(0,s.total-s.done)]));
   const dates = [], sundays = [];
-  let capacity = 0, bufferSlots = 0, studyDays = 0, extraIndex = 0, continuationIndex = 0;
+  let capacity = 0, bufferSlots = 0, studyDays = 0, extraIndex = 0, continuationIndex = 0, reserveIndex=0, processedSlots=0;
+  const targetFor=iso=&gt;[&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;].includes(pace)?Number(pace):iso&lt;&#x27;2026-11-01&#x27;?3:pace===&#x27;ramp5&#x27;?5:4;
+  let totalCapacity=0;
+  for(let t=start;t&lt;=end;t+=day){const d=new Date(t);if(d.getUTCDay()!==0)totalCapacity+=targetFor(d.toISOString().slice(0,10));}
+  const protectedReserve=Math.min(totalCapacity,futureReserved);
   function take(queue) {
-    const id = queue.find(id =&gt; remaining[id] &gt; 0);
+    const id = queue.find(id =&gt; remaining[id] &gt; 0&amp;&amp;subjects.find(s=&gt;s.id===id)?.total!==null);
     if (!id) return null;
     remaining[id]--;
     return id;
@@ -2014,17 +2037,25 @@ function buildLecturePlan(subjects, pace = &#x27;6&#x27;) {
     const d = new Date(time), iso = d.toISOString().slice(0, 10), weekday = d.getUTCDay();
     if (weekday === 0) { sundays.push(iso); dates.push({date: iso, kind: &#x27;sunday&#x27;, slots: []}); continue; }
     studyDays++;
-    const target = [&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;].includes(pace) ? Number(pace) : iso &lt; &#x27;2026-11-01&#x27; ? 3 : pace === &#x27;ramp5&#x27; ? 5 : 4;
+    const target = targetFor(iso);
     capacity += target;
     const slots = [];
     // Two recurring core lanes and one recurring Maths/Aptitude lane.
+    let knownLane=0;
     for (let n = 0; n &lt; target; n++) {
       let id;
-      if (n === 0) id = takeContinuation();
-      else if (n === 1) id = take(groups.large);
-      else if (n === 2) id = take(weekday % 2 === 1 ? groups.math : groups.aptitude) || take(weekday % 2 === 1 ? groups.aptitude : groups.math);
+      const isReserve=Math.floor((processedSlots+1)*protectedReserve/totalCapacity)&gt;Math.floor(processedSlots*protectedReserve/totalCapacity);
+      processedSlots++;
+      if(isReserve){
+        for(let j=0;j&lt;reserveIds.length;j++){const next=reserveIds[reserveIndex++%reserveIds.length];if(remaining[next]&gt;0){id=next;remaining[next]--;break;}}
+      } else {
+      const lane=knownLane++;
+      if (lane === 0) id = takeContinuation();
+      else if (lane === 1) id = take(groups.large);
+      else if (lane === 2) id = take(weekday % 2 === 1 ? groups.math : groups.aptitude) || take(weekday % 2 === 1 ? groups.aptitude : groups.math);
       else { id = extraIndex++ % 2 === 0 ? takeContinuation() : take(groups.large); }
       if (!id) id = take([...groups.math, ...groups.aptitude, ...groups.continuation, ...groups.large]);
+      }
       slots.push(id || &#x27;revision-release-buffer&#x27;);
       if(!id) bufferSlots++;
       if (id) scheduled[id].push(iso);
@@ -2034,7 +2065,10 @@ function buildLecturePlan(subjects, pace = &#x27;6&#x27;) {
   const main = subjects.filter(s =&gt; !s.foundation);
   const knownRemaining = main.reduce((n,s) =&gt; n + Math.max(0,(s.total ?? 0)-s.done),0);
   const allocated = Object.values(scheduled).reduce((n,days)=&gt;n+days.length,0);
-  return {pace, dates, sundays, scheduled, remaining, capacity, bufferSlots, studyDays, allocated, knownRemaining, carryover: knownRemaining-allocated};
+  const reservedAllocated=reserveIds.filter(id=&gt;subjects.find(s=&gt;s.id===id)?.total===null).reduce((n,id)=&gt;n+scheduled[id].length,0);
+  const knownAllocated=allocated-reservedAllocated;
+  const required=knownRemaining+futureReserved;
+  return {pace, dates, sundays, scheduled, remaining, capacity, bufferSlots, studyDays, allocated, knownRemaining, reserves, futureReserved, reservedAllocated, knownAllocated, required, knownCarryover:knownRemaining-knownAllocated, reserveShortfall:futureReserved-reservedAllocated,carryover:required-allocated};
 }
 
 (() =&gt; {
@@ -2046,23 +2080,23 @@ function buildLecturePlan(subjects, pace = &#x27;6&#x27;) {
   const pretty = iso =&gt; new Date(iso+&#x27;T12:00:00Z&#x27;).toLocaleDateString(&#x27;en-IN&#x27;,{day:&#x27;numeric&#x27;,month:&#x27;short&#x27;,timeZone:&#x27;UTC&#x27;});
   function element(tag,text,cls){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;}
   function status(s){
-    const slots=plan.scheduled[s.id], need=Math.max(0,(s.total??0)-s.done);
-    return {slots,need,start:slots[0],last:slots[slots.length-1],covered:need&gt;0&amp;&amp;slots.length===need,overdue:!s.foundation&amp;&amp;s.total!==null&amp;&amp;slots.length&lt;need,shortfall:Math.max(0,need-slots.length)};
+    const slots=plan.scheduled[s.id], future=s.total===null,need=future?(plan.reserves[s.id]??0):Math.max(0,s.total-s.done);
+    return {slots,need,future,start:slots[0],last:slots[slots.length-1],covered:need&gt;0&amp;&amp;slots.length===need,overdue:!s.foundation&amp;&amp;slots.length&lt;need,shortfall:Math.max(0,need-slots.length)};
   }
   function selectSubject(id,scroll){
     selected=id;const s=byId[id], st=status(s), focus=root.querySelector(&#x27;.subject-focus&#x27;);
     focus.classList.toggle(&#x27;is-carryover&#x27;,st.overdue);
     focus.style.setProperty(&#x27;--subject&#x27;,st.overdue?&#x27;#f87171&#x27;:s.color);
     root.querySelector(&#x27;#focus-title&#x27;).textContent=s.name;
-    root.querySelector(&#x27;#focus-duration&#x27;).textContent=st.overdue?&#x27;⚠ RED ALERT · &#x27;+st.shortfall+&#x27; lectures past deadline&#x27;:s.foundation?&#x27;As-needed support&#x27;:s.total===null?&#x27;Count unknown&#x27;:st.slots.length+&#x27; / &#x27;+st.need+&#x27; remaining lectures allocated&#x27;;
-    root.querySelector(&#x27;#focus-inventory&#x27;).textContent=s.total===null?&#x27;PW shows “Content on the Way” — lecture count unavailable.&#x27;:s.done+&#x27; completed / &#x27;+s.total+&#x27; observed lectures · &#x27;+st.need+&#x27; remaining&#x27;+(s.missing?&#x27; · &#x27;+s.missing+&#x27; chapter(s) without a displayed count&#x27;:&#x27;&#x27;);
-    root.querySelector(&#x27;#focus-start&#x27;).textContent=st.start?pretty(st.start):s.foundation?&#x27;When needed&#x27;:s.total===null?&#x27;When released&#x27;:&#x27;Not yet allocated&#x27;;
-    root.querySelector(&#x27;#focus-end&#x27;).textContent=st.overdue?&#x27;Misses 31 December&#x27;:st.covered?pretty(st.last):s.foundation?&#x27;Flexible&#x27;:&#x27;To be confirmed&#x27;;
-    const bar=root.querySelector(&#x27;#focus-window&#x27;);bar.hidden=!st.start;
+    root.querySelector(&#x27;#focus-duration&#x27;).textContent=st.overdue?&#x27;⚠ RED ALERT · &#x27;+st.shortfall+(st.future?&#x27; reserve slots do not fit&#x27;:&#x27; lectures past deadline&#x27;):s.foundation?&#x27;As-needed support&#x27;:st.future?st.slots.length+&#x27; / &#x27;+st.need+&#x27; allowance slots protected&#x27;:st.slots.length+&#x27; / &#x27;+st.need+&#x27; remaining lectures allocated&#x27;;
+    root.querySelector(&#x27;#focus-inventory&#x27;).textContent=st.future?&#x27;PW lecture count is unavailable. &#x27;+st.need+&#x27; slots are an editable planning allowance, not an observed count.&#x27;:s.done+&#x27; completed / &#x27;+s.total+&#x27; observed lectures · &#x27;+st.need+&#x27; remaining&#x27;+(s.missing?&#x27; · &#x27;+s.missing+&#x27; chapter(s) without a displayed count&#x27;:&#x27;&#x27;);
+    root.querySelector(&#x27;#focus-start&#x27;).textContent=st.future?&#x27;After PW release&#x27;:st.start?pretty(st.start):s.foundation?&#x27;When needed&#x27;:&#x27;Not yet allocated&#x27;;
+    root.querySelector(&#x27;#focus-end&#x27;).textContent=st.future?(st.overdue?&#x27;Reserve exceeds capacity&#x27;:&#x27;Release-dependent&#x27;):st.overdue?&#x27;Misses 31 December&#x27;:st.covered?pretty(st.last):s.foundation?&#x27;Flexible&#x27;:&#x27;To be confirmed&#x27;;
+    const bar=root.querySelector(&#x27;#focus-window&#x27;);bar.hidden=!st.start||st.future;
     if(st.start){const offset=(Date.parse(st.start+&#x27;T00:00:00Z&#x27;)-Date.UTC(2026,9,20))/86400000;const span=(Date.parse(st.last+&#x27;T00:00:00Z&#x27;)-Date.parse(st.start+&#x27;T00:00:00Z&#x27;))/86400000+1;bar.style.left=offset/73*100+&#x27;%&#x27;;bar.style.width=span/73*100+&#x27;%&#x27;;}
     bar.querySelector(&#x27;.finish&#x27;).textContent=st.covered?&#x27;⚑&#x27;:&#x27;…&#x27;;
-    root.querySelector(&#x27;.time-axis&#x27;).setAttribute(&#x27;aria-label&#x27;,st.start?s.name+&#x27;: &#x27;+st.slots.length+&#x27; lectures allocated between &#x27;+pretty(st.start)+&#x27; and &#x27;+pretty(st.last)+(st.covered?&#x27;. Observed lecture target covered.&#x27;:&#x27;. More lectures remain unscheduled.&#x27;):&#x27;No lecture window confirmed&#x27;);
-    root.querySelector(&#x27;#focus-note&#x27;).textContent=s.foundation?&#x27;Optional prerequisite support; use extra available capacity when needed. These lectures are additional to the main-course workload.&#x27;:s.total===null?&#x27;This empty PW folder has an unknown workload. Use spare capacity for newly released lectures and recheck counts regularly; a December finish cannot yet be confirmed.&#x27;:(st.overdue?&#x27;Only &#x27;+st.slots.length+&#x27; of &#x27;+st.need+&#x27; known remaining lectures fit. Increase the pace or rebalance the December allocation; January remains protected for revision and tests. &#x27;:&#x27;All currently counted remaining lectures fit this scenario. This is not a full-syllabus completion guarantee. &#x27;)+(s.missing?&#x27;Some chapter counts are missing; the true workload may be higher. &#x27;:&#x27;&#x27;)+&#x27;Use brief daily recall and end-of-unit revision. Full subject revision, DPPs/PYQs and subject tests are reserved for 1–31 January.&#x27;;
+    root.querySelector(&#x27;.time-axis&#x27;).setAttribute(&#x27;aria-label&#x27;,st.future?&#x27;Release date unknown. &#x27;+st.slots.length+&#x27; of &#x27;+st.need+&#x27; planning allowance slots are protected; no lecture dates are confirmed.&#x27;:st.start?s.name+&#x27;: &#x27;+st.slots.length+&#x27; lectures allocated between &#x27;+pretty(st.start)+&#x27; and &#x27;+pretty(st.last)+(st.covered?&#x27;. Observed lecture target covered.&#x27;:&#x27;. More lectures remain unscheduled.&#x27;):&#x27;No lecture window confirmed&#x27;);
+    root.querySelector(&#x27;#focus-note&#x27;).textContent=s.foundation?&#x27;Optional prerequisite support; use extra available capacity when needed. These lectures are additional to the main-course workload.&#x27;:st.future?&#x27;The planner protects &#x27;+st.slots.length+&#x27; of your &#x27;+st.need+&#x27; allowance slots before allocating existing courses. These are capacity reservations, not study dates or PW release predictions. Replace this allowance with an observed lecture count when available. January remains protected for revision and tests.&#x27;:(st.overdue?&#x27;Only &#x27;+st.slots.length+&#x27; of &#x27;+st.need+&#x27; known remaining lectures fit after protecting future-subject reserves. Increase the pace or rebalance the December allocation; January remains protected for revision and tests. &#x27;:&#x27;All currently counted remaining lectures fit after protecting future-subject reserves. This is not a full-syllabus completion guarantee. &#x27;)+(s.missing?&#x27;Some chapter counts are missing; the true workload may be higher. &#x27;:&#x27;&#x27;)+&#x27;Use brief daily recall and end-of-unit revision. Full subject revision, DPPs/PYQs and subject tests are reserved for 1–31 January.&#x27;;
     const chapterBox=root.querySelector(&#x27;#focus-chapters&#x27;);chapterBox.replaceChildren();
     if(s.chapters.length){const details=element(&#x27;details&#x27;);details.append(element(&#x27;summary&#x27;,&#x27;Chapter lecture breakdown&#x27;));const list=element(&#x27;ul&#x27;);s.chapters.forEach(c=&gt;list.append(element(&#x27;li&#x27;,c.name+&#x27; — &#x27;+(c.total===null?&#x27;Count not displayed&#x27;:c.done+&#x27;/&#x27;+c.total+&#x27; completed&#x27;))));details.append(list);chapterBox.append(details);}
     buttons.forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.subject===id)));
@@ -2071,15 +2105,16 @@ function buildLecturePlan(subjects, pace = &#x27;6&#x27;) {
   function addSubject(s,target){
     const st=status(s),b=element(&#x27;button&#x27;,undefined,&#x27;subject-button&#x27;+(st.overdue?&#x27; is-carryover&#x27;:&#x27;&#x27;));b.type=&#x27;button&#x27;;b.dataset.subject=s.id;b.style.setProperty(&#x27;--subject&#x27;,st.overdue?&#x27;#f87171&#x27;:s.color);b.setAttribute(&#x27;aria-pressed&#x27;,&#x27;false&#x27;);
     const name=element(&#x27;span&#x27;,undefined,&#x27;subject-name&#x27;),dot=element(&#x27;span&#x27;,undefined,&#x27;subject-dot&#x27;);dot.setAttribute(&#x27;aria-hidden&#x27;,&#x27;true&#x27;);name.append(dot,element(&#x27;span&#x27;,s.name));
-    const count=element(&#x27;span&#x27;,s.total===null?&#x27;Count not released&#x27;:s.done+&#x27;/&#x27;+s.total+&#x27; observed lectures completed&#x27;+(s.missing?&#x27; · partial count&#x27;:&#x27;&#x27;),&#x27;support-label&#x27;);
-    const flags=element(&#x27;span&#x27;,undefined,&#x27;subject-flags&#x27;);flags.append(element(&#x27;span&#x27;,&#x27;⚑ &#x27;+(st.start?pretty(st.start):s.foundation?&#x27;As needed&#x27;:&#x27;Start TBD&#x27;)),element(&#x27;span&#x27;,st.overdue?&#x27;⚠ Misses 31 Dec&#x27;:(st.covered?&#x27;⚑ &#x27;:&#x27;↗ &#x27;)+(st.covered?pretty(st.last):s.foundation?&#x27;Flexible&#x27;:&#x27;Release TBD&#x27;)));
-    b.append(name,count,flags);if(st.overdue)b.append(element(&#x27;span&#x27;,&#x27;RED ALERT · &#x27;+st.shortfall+&#x27; lectures do not fit&#x27;,&#x27;carryover-alert&#x27;));b.addEventListener(&#x27;click&#x27;,()=&gt;selectSubject(s.id,true));target.append(b);buttons.push(b);
+    const count=element(&#x27;span&#x27;,st.future?&#x27;PW count unknown · &#x27;+st.need+&#x27;-slot planning allowance&#x27;:s.done+&#x27;/&#x27;+s.total+&#x27; observed lectures completed&#x27;+(s.missing?&#x27; · partial count&#x27;:&#x27;&#x27;),&#x27;support-label&#x27;);
+    const flags=element(&#x27;span&#x27;,undefined,&#x27;subject-flags&#x27;);flags.append(element(&#x27;span&#x27;,&#x27;⚑ &#x27;+(st.future?&#x27;After release&#x27;:st.start?pretty(st.start):s.foundation?&#x27;As needed&#x27;:&#x27;Start TBD&#x27;)),element(&#x27;span&#x27;,st.overdue?&#x27;⚠ &#x27;+(st.future?&#x27;Reserve shortfall&#x27;:&#x27;Misses 31 Dec&#x27;):st.future?st.slots.length+&#x27; slots protected&#x27;:(st.covered?&#x27;⚑ &#x27;:&#x27;↗ &#x27;)+(st.covered?pretty(st.last):s.foundation?&#x27;Flexible&#x27;:&#x27;Release TBD&#x27;)));
+    b.append(name,count,flags);if(st.overdue)b.append(element(&#x27;span&#x27;,&#x27;RED ALERT · &#x27;+st.shortfall+(st.future?&#x27; reserve slots do not fit&#x27;:&#x27; lectures do not fit&#x27;),&#x27;carryover-alert&#x27;));b.addEventListener(&#x27;click&#x27;,()=&gt;selectSubject(s.id,true));target.append(b);buttons.push(b);
   }
   function renderWeeks(){
     const list=root.querySelector(&#x27;#week-list&#x27;);list.replaceChildren();let week=[];
     function addWeek(days){if(!days.length)return;const counts={};let buffers=0;for(const d of days)for(const id of d.slots){if(byId[id])counts[id]=(counts[id]||0)+1;else buffers++;}
-      const sunday=days.find(d=&gt;d.kind===&#x27;sunday&#x27;),item=element(&#x27;details&#x27;,undefined,&#x27;week-item&#x27;);item.append(element(&#x27;summary&#x27;,pretty(days[0].date)+&#x27; – &#x27;+pretty(days[days.length-1].date)+&#x27; · &#x27;+Object.values(counts).reduce((a,b)=&gt;a+b,0)+&#x27; lecture targets&#x27;+(sunday?&#x27; · Sunday &#x27;+pretty(sunday.date):&#x27;&#x27;)));
-      const lines=element(&#x27;ul&#x27;);Object.entries(counts).forEach(([id,n])=&gt;{const st=status(byId[id]),li=element(&#x27;li&#x27;,byId[id].name+&#x27; · &#x27;+n+&#x27; lecture&#x27;+(n===1?&#x27;&#x27;:&#x27;s&#x27;)+(st.overdue?&#x27; · ⚠ subject misses December deadline&#x27;:&#x27;&#x27;));li.style.borderLeft=&#x27;3px solid &#x27;+(st.overdue?&#x27;#f87171&#x27;:byId[id].color);if(st.overdue)li.className=&#x27;is-carryover&#x27;;lines.append(li);});
+      const known=Object.entries(counts).filter(([id])=&gt;byId[id].total!==null).reduce((n,[,v])=&gt;n+v,0),reserved=Object.entries(counts).filter(([id])=&gt;byId[id].total===null).reduce((n,[,v])=&gt;n+v,0);
+      const sunday=days.find(d=&gt;d.kind===&#x27;sunday&#x27;),item=element(&#x27;details&#x27;,undefined,&#x27;week-item&#x27;);item.append(element(&#x27;summary&#x27;,pretty(days[0].date)+&#x27; – &#x27;+pretty(days[days.length-1].date)+&#x27; · &#x27;+known+&#x27; lectures + &#x27;+reserved+&#x27; future reserves&#x27;+(sunday?&#x27; · Sunday &#x27;+pretty(sunday.date):&#x27;&#x27;)));
+      const lines=element(&#x27;ul&#x27;);Object.entries(counts).forEach(([id,n])=&gt;{const st=status(byId[id]),li=element(&#x27;li&#x27;,byId[id].name+&#x27; · &#x27;+n+(st.future?&#x27; capacity reservation(s), release-dependent&#x27;:&#x27; lecture&#x27;+(n===1?&#x27;&#x27;:&#x27;s&#x27;))+(st.overdue?&#x27; · ⚠ subject misses December budget&#x27;:&#x27;&#x27;));li.style.borderLeft=&#x27;3px solid &#x27;+(st.overdue?&#x27;#f87171&#x27;:byId[id].color);if(st.overdue)li.className=&#x27;is-carryover&#x27;;lines.append(li);});
       if(buffers)lines.append(element(&#x27;li&#x27;,buffers+&#x27; spare slot(s) · new releases, prerequisite gaps or unit revision&#x27;));
       if(sunday)lines.append(element(&#x27;li&#x27;,&#x27;Sunday: weekly test, error analysis, unit catch-up and cumulative revision. No new-lecture target.&#x27;));
       item.append(lines);list.append(item);
@@ -2087,21 +2122,23 @@ function buildLecturePlan(subjects, pace = &#x27;6&#x27;) {
     for(const d of plan.dates){week.push(d);if(d.kind===&#x27;sunday&#x27;){addWeek(week);week=[];}}addWeek(week);
   }
   function render(){
-    plan=buildLecturePlan(subjects,root.querySelector(&#x27;#lecture-pace&#x27;).value);
+    const reserves={};for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;]){const input=root.querySelector(&#x27;#reserve-&#x27;+id),v=Number(input.value);if(input.value.trim()===&#x27;&#x27;||!Number.isInteger(v)||v&lt;0||v&gt;200){root.querySelector(&#x27;#reserve-validation&#x27;).textContent=&#x27;Enter a whole number from 0 to 200 for each allowance.&#x27;;return;}reserves[id]=v;}root.querySelector(&#x27;#reserve-validation&#x27;).textContent=&#x27;&#x27;;
+    plan=buildLecturePlan(subjects,root.querySelector(&#x27;#lecture-pace&#x27;).value,reserves);
     const summary=root.querySelector(&#x27;#workload-summary&#x27;);summary.replaceChildren();
-    summary.append(element(&#x27;strong&#x27;,plan.knownRemaining+&#x27; known main-course lectures remain&#x27;));
+    summary.append(element(&#x27;strong&#x27;,plan.knownRemaining+&#x27; known + &#x27;+plan.futureReserved+&#x27; future allowance = &#x27;+plan.required+&#x27; planned slots&#x27;));
     summary.classList.toggle(&#x27;has-carryover&#x27;,plan.carryover&gt;0);
     summary.append(element(&#x27;p&#x27;,plan.studyDays+&#x27; lecture-study days through 31 December · 10 protected Sundays · &#x27;+plan.capacity+&#x27; lecture slots in this scenario&#x27;));
-    summary.append(element(&#x27;p&#x27;,plan.allocated+&#x27; known lectures allocated · &#x27;+plan.bufferSlots+&#x27; spare slots · &#x27;+plan.carryover+&#x27; known lectures do not fit by 31 December.&#x27;));
-    summary.append(element(&#x27;p&#x27;,plan.carryover&gt;0?&#x27;⚠ RED ALERT: &#x27;+subjects.filter(s=&gt;status(s).overdue).length+&#x27; subject(s) miss your December deadline at this pace. January remains reserved for full revision and tests.&#x27;:&#x27;Known main-course lectures fit. Unreleased subjects, missing chapter counts and optional foundations still need capacity; this is not a full-syllabus guarantee.&#x27;,&#x27;capacity-warning&#x27;));
+    summary.append(element(&#x27;p&#x27;,plan.reservedAllocated+&#x27; future allowance slots protected · &#x27;+plan.knownAllocated+&#x27; known lectures allocated · &#x27;+plan.bufferSlots+&#x27; uncommitted slots.&#x27;));
+    summary.append(element(&#x27;p&#x27;,plan.knownCarryover+&#x27; known lectures and &#x27;+plan.reserveShortfall+&#x27; allowance slots do not fit by 31 December. Allowances are estimates, not actual PW counts.&#x27;));
+    summary.append(element(&#x27;p&#x27;,plan.carryover&gt;0?&#x27;⚠ RED ALERT: total planning budget exceeds capacity by &#x27;+plan.carryover+&#x27; slots. January remains reserved for full revision and tests.&#x27;:&#x27;Known lectures and the selected future allowances fit this budget. Actual releases, missing chapter counts and optional foundations can increase the workload.&#x27;,&#x27;capacity-warning&#x27;));
     const tree=root.querySelector(&#x27;#month-tree&#x27;);tree.replaceChildren();buttons=[];
     const groups={};[&#x27;October&#x27;,&#x27;November&#x27;,&#x27;December&#x27;].forEach((month,i)=&gt;{const group=element(&#x27;details&#x27;,undefined,&#x27;month-node&#x27;);group.open=true;group.append(element(&#x27;summary&#x27;,month+&#x27; · core lecture starts&#x27;));const grid=element(&#x27;div&#x27;,undefined,&#x27;subject-grid&#x27;);group.append(grid);tree.append(group);groups[i+10]=grid;});
     const side=root.querySelector(&#x27;#daily-subjects&#x27;),pending=root.querySelector(&#x27;#pending-subjects&#x27;),foundation=root.querySelector(&#x27;#foundation-subjects&#x27;);side.replaceChildren();pending.replaceChildren();foundation.replaceChildren();
-    subjects.forEach(s=&gt;{const st=status(s);addSubject(s,s.foundation?foundation:sideIds.includes(s.id)?side:st.start?groups[Number(st.start.slice(5,7))]:pending);});
+    subjects.forEach(s=&gt;{const st=status(s);addSubject(s,s.foundation?foundation:sideIds.includes(s.id)?side:s.total===null?pending:st.start?groups[Number(st.start.slice(5,7))]:pending);});
     for(const grid of Object.values(groups))if(!grid.children.length)grid.append(element(&#x27;p&#x27;,&#x27;Continue earlier subjects; no new core subject starts in this scenario.&#x27;,&#x27;routine&#x27;));
     selectSubject(selected,false);renderWeeks();
   }
-  root.querySelector(&#x27;#lecture-pace&#x27;).addEventListener(&#x27;change&#x27;,render);render();
+  root.querySelector(&#x27;#lecture-pace&#x27;).addEventListener(&#x27;change&#x27;,render);for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;])root.querySelector(&#x27;#reserve-&#x27;+id).addEventListener(&#x27;change&#x27;,render);render();
 })();
 
 &lt;/script&gt;
