@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'"><title>Published lecture counts</title></head><body><script>
+// Read only the public feed. No account credentials or private tracker data are requested.
+(async()=>{
+  try{
+    const response=await fetch('./progress.json',{cache:'no-store',credentials:'omit'});
+    if(!response.ok)return;
+    const feed=await response.json();
+    const catalog=feed.dashboard?.pw?.dpp;
+    if(!catalog||!Array.isArray(catalog.chapters)||catalog.chapters.length>3000)return;
+    const counts=new Map();
+    for(const chapter of catalog.chapters){
+      if(typeof chapter.subject!=='string'||chapter.subject.length>200||!Number.isInteger(chapter.lectureCompleted)||chapter.lectureCompleted<0||chapter.lectureCompleted>10000)continue;
+      counts.set(chapter.subject,(counts.get(chapter.subject)||0)+chapter.lectureCompleted);
+    }
+    parent.postMessage({type:'gate-published-counts',capturedAt:catalog.capturedAt,counts:[...counts].map(([subject,completed])=>({subject,completed}))},location.origin);
+  }catch{/* Timeline retains its dated baseline if the public feed is unavailable. */}
+})();
+</script></body></html>
