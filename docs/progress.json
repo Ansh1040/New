@@ -1,11 +1,11 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-20T17:01:40.017Z",
+  "updatedAt": "2026-10-21T04:51:45.878Z",
   "pwCapturedAt": "2026-10-20T17:01:40.011Z",
   "subjects": [
     {
       "name": "Theory of Computation",
-      "progress": 36
+      "progress": 100
     },
     {
       "name": "Database Management System",
@@ -296,7 +296,7 @@
     "subjects": [
       {
         "name": "Theory of Computation",
-        "progress": 36
+        "progress": 100
       },
       {
         "name": "Database Management System",
@@ -381,7 +381,7 @@
       }
     ],
     "tests": [],
-    "updatedAt": "2026-10-20T17:01:40.017Z",
+    "updatedAt": "2026-10-21T04:51:45.878Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
