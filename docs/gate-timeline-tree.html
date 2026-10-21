@@ -1899,6 +1899,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 
 
+
 #gate-roadmap{--page-ink:light-dark(#253047,#f2f2ff);--subtle-ink:light-dark(#56607a,#c6cbe2);--panel:light-dark(rgba(255,255,255,.86),rgba(22,26,49,.9));--edge:light-dark(rgba(79,88,134,.2),rgba(185,191,238,.2));--subject:#8265e5;position:relative;isolation:isolate;color:var(--page-ink);padding:28px 18px;font:14px/1.55 system-ui,sans-serif;overflow:hidden}
 #gate-roadmap *{box-sizing:border-box}
 #gate-roadmap .abstract-art{position:absolute;inset:0;z-index:-1;overflow:hidden;background:light-dark(#f3f3fc,#101529);border-radius:24px;pointer-events:none}
@@ -1962,6 +1963,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 @media(max-width:600px){#gate-roadmap{padding:22px 12px}#gate-roadmap .month-tree{grid-template-columns:1fr;gap:18px}#gate-roadmap .month-tree:before{display:none}#gate-roadmap .month-node{padding-top:0}#gate-roadmap .month-node:before{display:none}#gate-roadmap .subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#gate-roadmap .subject-focus{padding:17px}#gate-roadmap .focus-top{align-items:flex-start;flex-direction:column;gap:5px}#gate-roadmap .focus-dates{gap:7px}#gate-roadmap .focus-dates strong{font-size:13px}#gate-roadmap .flag{font-size:23px}}
 @media(max-width:370px){#gate-roadmap .subject-grid,#gate-roadmap .always-branch .subject-grid{grid-template-columns:1fr}#gate-roadmap .focus-dates{flex-wrap:wrap}#gate-roadmap .date-connector{max-width:20px}#gate-roadmap .focus-dates strong{font-size:12px}}
 @media(prefers-reduced-motion:reduce){#gate-roadmap *{transition:none!important;scroll-behavior:auto!important}}
+
 
 
 
@@ -2056,6 +2058,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 #gate-roadmap .subject-focus.is-completed{--subject:#22c55e!important;--page-ink:light-dark(#14532d,#dcfce7);--subtle-ink:light-dark(#166534,#bbf7d0);--edge:light-dark(#86efac,#287d50);background:light-dark(#e6faed,#123a2b);border-color:light-dark(#15803d,#4ade80)}#gate-roadmap .is-completed #focus-duration,#gate-roadmap .completion-flag{color:light-dark(#15803d,#86efac);font-weight:800}
 #gate-roadmap .revision-reminders{padding:22px;margin:24px 0;border:1px solid light-dark(#86efac,#287d50);border-radius:18px;background:light-dark(#ecfdf5,#142f2a)}#gate-roadmap .revision-reminders&gt;p{font-size:12px;line-height:1.7}
 #gate-roadmap #revision-reminder-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin-top:15px}#gate-roadmap .revision-reminder{border:1px solid var(--edge);border-radius:12px;padding:16px;font-size:12px;line-height:1.6}#gate-roadmap .revision-due{border-color:#d6a245;background:light-dark(#fffbeb,#3d301c)}#gate-roadmap .revision-reminder button{min-height:44px;padding:9px 13px;border-radius:8px;border:1px solid light-dark(#15803d,#4ade80);background:light-dark(#dcfce7,#14532d);color:light-dark(#14532d,#dcfce7);font:inherit;cursor:pointer}#gate-roadmap .revision-reminder button:disabled{opacity:.7;cursor:default}#gate-roadmap #revision-reminder-feedback{font-size:12px}
+#gate-roadmap .week-item.week-completed{padding:14px;border:1px solid light-dark(#15803d,#4ade80);border-radius:12px;background:light-dark(#ecfdf5,#123a2b);color:light-dark(#14532d,#dcfce7)}#gate-roadmap .week-completed progress{accent-color:#22c55e}#gate-roadmap .week-completion-badge{display:inline-block;margin-left:10px;padding:3px 9px;border-radius:999px;background:light-dark(#bbf7d0,#14532d);color:light-dark(#166534,#86efac);font-size:12px;font-weight:800}
 
 &lt;/style&gt;
 &lt;script&gt;
@@ -2142,7 +2145,8 @@ function buildWeeklyCountReview(subjects,plan,actualCounts,today){
       rows.push({id:s.id,assigned:n,expected,actual,ranges,missing:Math.max(0,expected-actual),completed:Math.max(0,Math.min(n,actual-s.done-previous))});
     }
     const end=days.at(-1).date,missing=rows.reduce((n,r)=&gt;n+r.missing,0);
-    weeks.push({start:days[0].date,end,closed:end&lt;today,flagged:end&lt;today&amp;&amp;missing&gt;0,missing,reserved,rows,sunday:days.find(d=&gt;d.kind===&#x27;sunday&#x27;)?.date||null,revision:days.find(d=&gt;d.kind===&#x27;sunday&#x27;)?.revision||[],assigned:rows.reduce((n,r)=&gt;n+r.assigned,0),completed:rows.reduce((n,r)=&gt;n+r.completed,0)});days=[];
+    const assignedTotal=rows.reduce((n,r)=&gt;n+r.assigned,0),completedTotal=rows.reduce((n,r)=&gt;n+r.completed,0);
+    weeks.push({start:days[0].date,end,closed:end&lt;today,flagged:end&lt;today&amp;&amp;missing&gt;0,targetComplete:assignedTotal&gt;0&amp;&amp;completedTotal===assignedTotal&amp;&amp;missing===0,missing,reserved,rows,sunday:days.find(d=&gt;d.kind===&#x27;sunday&#x27;)?.date||null,revision:days.find(d=&gt;d.kind===&#x27;sunday&#x27;)?.revision||[],assigned:assignedTotal,completed:completedTotal});days=[];
   }
   for(const d of plan.dates){days.push(d);if(d.kind===&#x27;sunday&#x27;)addWeek();}addWeek();return weeks;
 }
@@ -2244,8 +2248,9 @@ function weeklyRevisionReminder(today,lastRevised,capturedDate){
     const today=new Intl.DateTimeFormat(&#x27;en-CA&#x27;,{timeZone:&#x27;Asia/Kolkata&#x27;,year:&#x27;numeric&#x27;,month:&#x27;2-digit&#x27;,day:&#x27;2-digit&#x27;}).format(new Date());
     root.querySelector(&#x27;#weekly-save-status&#x27;).textContent=&#x27;Counts captured &#x27;+pretty(countCapture.slice(0,10))+&#x27;. Refresh this page after syncing and publishing PW progress to load newer counts.&#x27;;
     for(const week of buildWeeklyCountReview(subjects,plan,actualCounts,today)){
-      const item=element(&#x27;details&#x27;,undefined,&#x27;week-item&#x27;+(week.flagged?&#x27; week-missed&#x27;:&#x27;&#x27;));
-      const summary=element(&#x27;summary&#x27;,pretty(week.start)+&#x27; – &#x27;+pretty(week.end)+&#x27; · &#x27;+week.completed+&#x27; / &#x27;+week.assigned+&#x27; lectures&#x27;+(week.flagged?&#x27; · ⚑ &#x27;+week.missing+&#x27; behind cumulative target&#x27;:week.assigned&amp;&amp;week.completed===week.assigned?&#x27; · ✓ Target met&#x27;:week.start&gt;today?&#x27; · Upcoming&#x27;:&#x27; · In progress&#x27;));
+      const item=element(&#x27;details&#x27;,undefined,&#x27;week-item&#x27;+(week.targetComplete?&#x27; week-completed&#x27;:week.flagged?&#x27; week-missed&#x27;:&#x27;&#x27;));
+      const summary=element(&#x27;summary&#x27;,pretty(week.start)+&#x27; – &#x27;+pretty(week.end)+&#x27; · &#x27;+week.completed+&#x27; / &#x27;+week.assigned+&#x27; lectures&#x27;+(week.targetComplete?&#x27;&#x27;:week.flagged?&#x27; · ⚑ &#x27;+week.missing+&#x27; behind cumulative target&#x27;:week.start&gt;today?&#x27; · Upcoming&#x27;:&#x27; · In progress&#x27;));
+      if(week.targetComplete)summary.append(element(&#x27;span&#x27;,&#x27;✓ Completed&#x27;,&#x27;week-completion-badge&#x27;));
       const progress=element(&#x27;progress&#x27;);progress.max=Math.max(1,week.assigned);progress.value=week.completed;progress.setAttribute(&#x27;aria-label&#x27;,&#x27;Weekly lecture count against target&#x27;);summary.append(progress);item.append(summary);
       item.append(element(&#x27;p&#x27;,week.reserved+&#x27; release-dependent reserve slots · Sunday: test, revision and catch-up.&#x27;,&#x27;routine&#x27;));
       item.append(element(&#x27;p&#x27;,&#x27;Expected and captured values below are cumulative subject totals, including lectures completed before this plan.&#x27;,&#x27;routine&#x27;));
