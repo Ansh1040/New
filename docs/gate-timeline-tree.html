@@ -1863,12 +1863,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;label for=&quot;lecture-pace&quot;&gt;Lecture pace, Monday–Saturday&lt;/label&gt;
     &lt;select id=&quot;lecture-pace&quot;&gt;&lt;option value=&quot;3&quot;&gt;3 lectures every study day&lt;/option&gt;&lt;option value=&quot;4&quot;&gt;4 lectures every study day&lt;/option&gt;&lt;option value=&quot;5&quot;&gt;5 lectures every study day&lt;/option&gt;&lt;option value=&quot;6&quot; selected&gt;6 lectures every study day · target pace&lt;/option&gt;&lt;option value=&quot;ramp4&quot;&gt;Scenario · 3 now → 4 from 1 November&lt;/option&gt;&lt;option value=&quot;ramp5&quot;&gt;Scenario · 3 now → 5 from 1 November&lt;/option&gt;&lt;/select&gt;
     &lt;p&gt;Choose a pace to recalculate dates and future reserves. Red subjects have lecture targets or reserve allowances that do not fit by 31 December. Changing this preview does not change your saved PW progress.&lt;/p&gt;
-    &lt;label class=&quot;coa-start-label&quot; for=&quot;coa-start&quot;&gt;COA start within the regular core lane&lt;/label&gt;&lt;select id=&quot;coa-start&quot;&gt;&lt;option value=&quot;2026-10-28&quot; selected&gt;28 October · 7 days from 21 October&lt;/option&gt;&lt;option value=&quot;2026-10-31&quot;&gt;31 October · 10 days from 21 October&lt;/option&gt;&lt;option value=&quot;after-major&quot;&gt;After the first major-subject lecture target finishes&lt;/option&gt;&lt;/select&gt;&lt;p id=&quot;coa-schedule-status&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;&lt;p&gt;COA shares the core study rotation with Networks and Digital Logic. The completion trigger uses currently observed TOC, DBMS and OS lecture targets.&lt;/p&gt;
+    &lt;label for=&quot;active-limit&quot;&gt;Subjects active at one time&lt;/label&gt;&lt;select id=&quot;active-limit&quot;&gt;&lt;option value=&quot;3&quot;&gt;3 subjects · finish one before adding another&lt;/option&gt;&lt;option value=&quot;4&quot; selected&gt;Up to 4 subjects · TOC, DBMS, OS, then COA&lt;/option&gt;&lt;/select&gt;&lt;p&gt;Start with your three ongoing subjects. COA joins when its start rule and the subject limit allow it. Later replacements are chosen by estimated marks, prerequisites and your start choices; lecture count is the last tie-breaker. Replacements begin on the next study day.&lt;/p&gt;&lt;label class=&quot;coa-start-label&quot; for=&quot;coa-start&quot;&gt;COA start within the regular core lane&lt;/label&gt;&lt;select id=&quot;coa-start&quot;&gt;&lt;option value=&quot;2026-10-28&quot; selected&gt;28 October · 7 days from 21 October&lt;/option&gt;&lt;option value=&quot;2026-10-31&quot;&gt;31 October · 10 days from 21 October&lt;/option&gt;&lt;option value=&quot;after-major&quot;&gt;After the first major-subject lecture target finishes&lt;/option&gt;&lt;/select&gt;&lt;p id=&quot;coa-schedule-status&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;&lt;p&gt;The selected COA date is its earliest allowed start. With 3 active subjects, COA waits for a free place. The completion trigger uses the observed TOC, DBMS and OS targets.&lt;/p&gt;
   &lt;/section&gt;
   &lt;section class=&quot;future-buffer&quot; aria-labelledby=&quot;future-buffer-title&quot;&gt;&lt;p class=&quot;overline&quot;&gt;PROTECTED FUTURE WORKLOAD&lt;/p&gt;&lt;h2 id=&quot;future-buffer-title&quot;&gt;Reserve space before new lectures arrive.&lt;/h2&gt;&lt;p&gt;Editable planning allowances—not PW lecture counts or predicted exam marks. Replace them with observed counts when lectures are released. Reserves are held across the study window; they are not release-date predictions.&lt;/p&gt;&lt;div class=&quot;future-buffer-grid&quot;&gt;&lt;label for=&quot;reserve-dm&quot;&gt;Discrete Mathematics&lt;input id=&quot;reserve-dm&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;200&quot; step=&quot;1&quot; value=&quot;40&quot; inputmode=&quot;numeric&quot;&gt;&lt;span&gt;lecture slots&lt;/span&gt;&lt;/label&gt;&lt;label for=&quot;reserve-algo&quot;&gt;Algorithms&lt;input id=&quot;reserve-algo&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;200&quot; step=&quot;1&quot; value=&quot;40&quot; inputmode=&quot;numeric&quot;&gt;&lt;span&gt;lecture slots&lt;/span&gt;&lt;/label&gt;&lt;label for=&quot;reserve-prob&quot;&gt;Probability &amp;amp; Statistics&lt;input id=&quot;reserve-prob&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;200&quot; step=&quot;1&quot; value=&quot;30&quot; inputmode=&quot;numeric&quot;&gt;&lt;span&gt;lecture slots&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;p id=&quot;reserve-validation&quot; role=&quot;alert&quot;&gt;&lt;/p&gt;&lt;/section&gt;
-  &lt;section class=&quot;weight-policy&quot;&gt;&lt;h2&gt;Marks first. Prerequisites respected.&lt;/h2&gt;&lt;p&gt;Higher estimated marks receive a larger share within each study lane. Your started subjects, C → Data Structures → Algorithms, TOC → Compiler, and your COA start rule remain protected. Lecture count is the final tie-breaker, not the main priority. Maths and Aptitude retain regular slots; future release allowances remain reserved.&lt;/p&gt;&lt;p&gt;This is a marks-weighted rotation, not a prediction of marks earned or an hours-based optimum. Lecture lengths and your topic accuracy are unknown. Maths uses an equal internal planning split; Aptitude and C/DS also share their group weights without double counting.&lt;/p&gt;&lt;p&gt;Official totals: Aptitude 15 · Engineering Maths 13 · CS core 72. Individual core ranges are historical estimates, not guaranteed 2027 allocations. Sources: &lt;a href=&quot;https://gate2027.iitm.ac.in/question_paper_pattern&quot;&gt;GATE 2027 pattern&lt;/a&gt; · &lt;a href=&quot;https://store.pw.live/blogs/gate-exams/gate-cse-subject-wise-weightage&quot;&gt;PW weightage analysis&lt;/a&gt;.&lt;/p&gt;&lt;/section&gt;
+  &lt;section class=&quot;weight-policy&quot;&gt;&lt;h2&gt;Marks first. Prerequisites respected.&lt;/h2&gt;&lt;p&gt;Only 3–4 subjects stay active. Complete a subject’s observed lecture target before bringing in a replacement; higher estimated marks guide replacement order and allocation. Your started subjects, C → Data Structures → Algorithms, TOC → Compiler, and your COA start rule remain protected. Lecture count is the final tie-breaker, not the main priority. Maths and Aptitude join the same limited active group rather than adding daily side subjects. Future capacity stays reserved; unknown releases are not extra active courses, and require replanning when available.&lt;/p&gt;&lt;p&gt;This is a marks-weighted rotation, not a prediction of marks earned or an hours-based optimum. Lecture lengths and your topic accuracy are unknown. Maths uses an equal internal planning split; Aptitude and C/DS also share their group weights without double counting.&lt;/p&gt;&lt;p&gt;Official totals: Aptitude 15 · Engineering Maths 13 · CS core 72. Individual core ranges are historical estimates, not guaranteed 2027 allocations. Sources: &lt;a href=&quot;https://gate2027.iitm.ac.in/question_paper_pattern&quot;&gt;GATE 2027 pattern&lt;/a&gt; · &lt;a href=&quot;https://store.pw.live/blogs/gate-exams/gate-cse-subject-wise-weightage&quot;&gt;PW weightage analysis&lt;/a&gt;.&lt;/p&gt;&lt;/section&gt;
   &lt;div id=&quot;workload-summary&quot; class=&quot;workload-summary&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
-  &lt;section class=&quot;weekly-rhythm&quot; aria-labelledby=&quot;rhythm-title&quot;&gt;&lt;p class=&quot;overline&quot;&gt;YOUR FIXED STUDY PHASES&lt;/p&gt;&lt;h2 id=&quot;rhythm-title&quot;&gt;December for lectures. January for mastery.&lt;/h2&gt;&lt;div class=&quot;rhythm-grid&quot;&gt;&lt;div&gt;&lt;strong&gt;Lectures · through 31 December&lt;/strong&gt;&lt;span&gt;Monday–Saturday, including 28–31 December. Rotate TOC, DBMS and OS; start Networks early. Mathematics: Mon/Wed/Fri; Aptitude: Tue/Thu/Sat.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Brief daily &amp;amp; unit revision&lt;/strong&gt;&lt;span&gt;Recall key points daily and review notes when each unit finishes. No daily DPP/PYQ requirement. Extra capacity can support revision and new releases.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Sundays · test and catch-up&lt;/strong&gt;&lt;span&gt;Weekly test, error analysis, unfinished units and cumulative recall. Sundays stay outside the new-lecture target.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;1–31 January · protected&lt;/strong&gt;&lt;span&gt;Full subject revision, subject tests, DPPs/PYQs and full mocks. No scheduled lecture carry-over into January.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;p class=&quot;routine&quot;&gt;Red means the selected pace misses your December lecture deadline; January is not used to hide the backlog.&lt;/p&gt;&lt;/section&gt;
+  &lt;section class=&quot;weekly-rhythm&quot; aria-labelledby=&quot;rhythm-title&quot;&gt;&lt;p class=&quot;overline&quot;&gt;YOUR FIXED STUDY PHASES&lt;/p&gt;&lt;h2 id=&quot;rhythm-title&quot;&gt;December for lectures. January for mastery.&lt;/h2&gt;&lt;div class=&quot;rhythm-grid&quot;&gt;&lt;div&gt;&lt;strong&gt;Lectures · through 31 December&lt;/strong&gt;&lt;span&gt;Monday–Saturday, including 28–31 December. Continue TOC, DBMS and OS; add COA when eligible. Keep at most 3–4 subjects active. A completed target frees a place for the next subject, including Maths and Aptitude.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Brief daily &amp;amp; unit revision&lt;/strong&gt;&lt;span&gt;Recall key points daily and review notes when each unit finishes. No daily DPP/PYQ requirement. Extra capacity can support revision and new releases.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Sundays · test and catch-up&lt;/strong&gt;&lt;span&gt;Weekly test, error analysis and catch-up. Revisit every completed subject with brief recall and a deeper review of weak units, separate from new-lecture targets. Sundays stay outside the new-lecture target.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;1–31 January · protected&lt;/strong&gt;&lt;span&gt;Full subject revision, subject tests, DPPs/PYQs and full mocks. No scheduled lecture carry-over into January.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;p class=&quot;routine&quot;&gt;Red means the selected pace misses your December lecture deadline; January is not used to hide the backlog.&lt;/p&gt;&lt;/section&gt;
   &lt;section class=&quot;subject-focus&quot; aria-labelledby=&quot;focus-title&quot; aria-live=&quot;polite&quot;&gt;&lt;div class=&quot;focus-top&quot;&gt;&lt;div&gt;&lt;p class=&quot;overline&quot;&gt;SELECTED SUBJECT&lt;/p&gt;&lt;h2 id=&quot;focus-title&quot;&gt;&lt;/h2&gt;&lt;/div&gt;&lt;span id=&quot;focus-duration&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;p id=&quot;focus-marks&quot; class=&quot;marks-label&quot;&gt;&lt;/p&gt;&lt;p id=&quot;focus-inventory&quot;&gt;&lt;/p&gt;&lt;div class=&quot;focus-dates&quot;&gt;&lt;div&gt;&lt;span class=&quot;flag&quot; aria-hidden=&quot;true&quot;&gt;⚑&lt;/span&gt;&lt;span&gt;Remaining study starts&lt;strong id=&quot;focus-start&quot;&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;date-connector&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;span class=&quot;flag finish-flag&quot; aria-hidden=&quot;true&quot;&gt;⚑&lt;/span&gt;&lt;span&gt;Observed lecture target&lt;strong id=&quot;focus-end&quot;&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;time-axis&quot;&gt;&lt;div class=&quot;axis-months&quot;&gt;&lt;span&gt;OCTOBER&lt;/span&gt;&lt;span&gt;NOVEMBER&lt;/span&gt;&lt;span&gt;DECEMBER&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;axis-track&quot;&gt;&lt;span class=&quot;month-line november&quot;&gt;&lt;/span&gt;&lt;span class=&quot;month-line december&quot;&gt;&lt;/span&gt;&lt;div id=&quot;focus-window&quot;&gt;&lt;span class=&quot;window-flag start&quot;&gt;⚑&lt;/span&gt;&lt;span class=&quot;window-flag finish&quot;&gt;⚑&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;axis-ends&quot;&gt;&lt;span&gt;20 Oct&lt;/span&gt;&lt;span&gt;31 Dec&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;p id=&quot;focus-note&quot;&gt;&lt;/p&gt;&lt;div id=&quot;focus-chapters&quot;&gt;&lt;/div&gt;&lt;/section&gt;
   &lt;div class=&quot;tree-root&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;✦&lt;/span&gt; Click a subject for its count, dates and chapter breakdown&lt;/div&gt;
   &lt;div class=&quot;mobile-month-nav&quot; role=&quot;group&quot; aria-label=&quot;Timeline months&quot;&gt;&lt;button type=&quot;button&quot; data-month=&quot;10&quot; aria-pressed=&quot;true&quot;&gt;October&lt;/button&gt;&lt;button type=&quot;button&quot; data-month=&quot;11&quot; aria-pressed=&quot;false&quot;&gt;November&lt;/button&gt;&lt;button type=&quot;button&quot; data-month=&quot;12&quot; aria-pressed=&quot;false&quot;&gt;December&lt;/button&gt;&lt;/div&gt;
@@ -1877,11 +1877,12 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;section class=&quot;always-branch&quot;&gt;&lt;h2&gt;Engineering Mathematics &amp;amp; General Aptitude&lt;/h2&gt;&lt;p class=&quot;routine&quot;&gt;Mathematics: Discrete Mathematics, Linear Algebra, Calculus and Probability. Aptitude: Quantitative, Analytical, Spatial and Verbal.&lt;/p&gt;&lt;div class=&quot;subject-grid&quot; id=&quot;daily-subjects&quot;&gt;&lt;/div&gt;&lt;/section&gt;
   &lt;details class=&quot;extra-group&quot; open&gt;&lt;summary&gt;Awaiting release or allocation&lt;/summary&gt;&lt;p&gt;Red cards are known deadline risks. Empty folders have unknown workloads; their finish dates cannot yet be confirmed.&lt;/p&gt;&lt;div class=&quot;subject-grid&quot; id=&quot;pending-subjects&quot;&gt;&lt;/div&gt;&lt;/details&gt;
   &lt;details class=&quot;extra-group&quot;&gt;&lt;summary&gt;Foundation support · 55 observed lectures&lt;/summary&gt;&lt;p&gt;Use these for prerequisite gaps. They overlap the main courses and are excluded from the main-course workload; completing all 55 is additional work.&lt;/p&gt;&lt;div class=&quot;subject-grid&quot; id=&quot;foundation-subjects&quot;&gt;&lt;/div&gt;&lt;/details&gt;
-  &lt;section class=&quot;always-branch&quot;&gt;&lt;h2&gt;Weekly targets &amp;amp; Sunday checkpoints&lt;/h2&gt;&lt;p class=&quot;routine&quot;&gt;Lectures run through 31 December. Daily recall, unit reviews and Sunday checkpoints remain part of the routine.&lt;/p&gt;&lt;p class=&quot;routine&quot;&gt;Automatic count comparison · each subject’s captured completed lectures versus its cumulative weekly target. A closed week turns red when a subject is behind; expand it for expected, captured and missing counts. Catching up clears the flag. Extra lectures in one subject cannot hide a shortfall in another. This compares current totals, not historical completion dates. Future release reserves are excluded until actual lectures are available.&lt;/p&gt;&lt;p id=&quot;weekly-save-status&quot; role=&quot;status&quot;&gt;&lt;/p&gt;&lt;div id=&quot;week-list&quot;&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;section class=&quot;always-branch&quot;&gt;&lt;h2&gt;Weekly targets &amp;amp; Sunday checkpoints&lt;/h2&gt;&lt;p class=&quot;routine&quot;&gt;Lectures run through 31 December. Daily recall, unit reviews and Sunday checkpoints remain part of the routine.&lt;/p&gt;&lt;p class=&quot;routine&quot;&gt;Automatic count comparison · each subject’s captured completed lectures versus its cumulative weekly target. A closed week turns red when a subject is behind; expand it for expected, captured and missing counts. Catching up clears the flag. Extra lectures in one subject cannot hide a shortfall in another. Each subject row includes its assigned units and remaining lecture ranges. Ranges follow chapter order and identify planning slots, not exact PW video titles. Updated unit counters appear when a newer published capture supplies them. This compares current totals, not historical completion dates. Future release reserves are excluded until actual lectures are available.&lt;/p&gt;&lt;p id=&quot;weekly-save-status&quot; role=&quot;status&quot;&gt;&lt;/p&gt;&lt;div id=&quot;week-list&quot;&gt;&lt;/div&gt;&lt;/section&gt;
   &lt;p class=&quot;plan-footnote&quot;&gt;Counts cover lectures currently displayed in this PW batch, not a guaranteed final syllabus inventory. DPP solution videos are excluded. New lectures and DPPs may be released; no subject is marked fully complete solely because its currently visible lectures are scheduled. Completion counts were observed on 20 October 2026.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;style&gt;
+
 
 
 
@@ -1968,6 +1969,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 
 
+
 #gate-roadmap .plan-controls{padding:18px;border:1px solid var(--edge);background:var(--panel);border-radius:15px;margin-bottom:16px}
 #gate-roadmap .plan-controls label{font-weight:650;display:block;margin-bottom:9px}
 #gate-roadmap select{font:inherit;font-size:16px;color:var(--page-ink);background:light-dark(#f4f4ff,#242b46);border:1px solid var(--edge);border-radius:9px;padding:10px;width:100%;min-width:0}
@@ -2041,96 +2043,77 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 #gate-roadmap .weekly-count-scroll{overflow:auto}#gate-roadmap .weekly-count-table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}#gate-roadmap .weekly-count-table th,#gate-roadmap .weekly-count-table td{padding:12px 10px;border-bottom:1px solid var(--edge);min-width:65px}#gate-roadmap .weekly-count-table th:first-child{min-width:150px}#gate-roadmap .weekly-count-table .task-missed{background:light-dark(#ffe4e6,#571b2b)}
 
+#gate-roadmap .assigned-unit-list{margin:9px 0 0;padding-left:14px;font-size:11px;line-height:1.65;color:var(--subtle-ink);min-width:235px}#gate-roadmap .assigned-unit-list li{margin-bottom:7px}#gate-roadmap .weekly-count-table td{vertical-align:top}#gate-roadmap .unit-note{display:block;margin-top:6px;color:var(--subtle-ink)}#gate-roadmap .weekly-revision{padding:15px;margin-top:16px;border:1px solid #8c81ba;border-radius:12px;background:light-dark(#eeeafa,#28213f);font-size:12px;line-height:1.7}
+
 &lt;/style&gt;
 &lt;script&gt;
-function buildLecturePlan(subjects, pace = &#x27;6&#x27;, futureAllowances = {dm:40,algo:40,prob:30}, coaStart = &#x27;2026-10-28&#x27;) {
+function buildLecturePlan(subjects, pace = &#x27;6&#x27;, futureAllowances = {dm:40,algo:40,prob:30}, coaStart = &#x27;2026-10-28&#x27;, activeLimit = 4) {
   if(![&#x27;2026-10-28&#x27;,&#x27;2026-10-31&#x27;,&#x27;after-major&#x27;].includes(coaStart))throw new RangeError(&#x27;Choose a supported COA start rule&#x27;);
-  const start = Date.UTC(2026, 9, 20), end = Date.UTC(2026, 11, 31), day = 86400000;
-  const groups = {
-    continuation: [&#x27;toc&#x27;, &#x27;dbms&#x27;, &#x27;os&#x27;, &#x27;c&#x27;, &#x27;ds&#x27;, &#x27;algo&#x27;, &#x27;compiler&#x27;],
-    large: [&#x27;cn&#x27;, &#x27;coa&#x27;, &#x27;dl&#x27;],
-    math: [&#x27;dm&#x27;, &#x27;la&#x27;, &#x27;calc&#x27;, &#x27;prob&#x27;], aptitude: [&#x27;ga&#x27;, &#x27;va&#x27;]
-  };
-  const scheduled = Object.fromEntries(subjects.map(s =&gt; [s.id, []]));
+  if(![3,4].includes(activeLimit))throw new RangeError(&#x27;Choose 3 or 4 active subjects&#x27;);
+  if(![&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;ramp4&#x27;,&#x27;ramp5&#x27;].includes(pace))throw new RangeError(&#x27;Choose a supported lecture pace&#x27;);
+  const start=Date.UTC(2026,9,20),end=Date.UTC(2026,11,31),day=86400000;
+  const byId=Object.fromEntries(subjects.map(s=&gt;[s.id,s]));
+  const scheduled=Object.fromEntries(subjects.map(s=&gt;[s.id,[]]));
   const reserveIds=[&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;];
-  const reserves=Object.fromEntries(reserveIds.map(id=&gt;{
-    const amount=futureAllowances[id]??0;
-    if(!Number.isInteger(amount)||amount&lt;0||amount&gt;200)throw new RangeError(&#x27;Future allowances must be whole numbers from 0 to 200&#x27;);
-    return [id,subjects.find(s=&gt;s.id===id)?.total===null?amount:0];
-  }));
+  const reserves=Object.fromEntries(reserveIds.map(id=&gt;{const amount=futureAllowances[id]??0;if(!Number.isInteger(amount)||amount&lt;0||amount&gt;200)throw new RangeError(&#x27;Future allowances must be whole numbers from 0 to 200&#x27;);return[id,byId[id]?.total===null?amount:0];}));
   const futureReserved=Object.values(reserves).reduce((a,b)=&gt;a+b,0);
-  const remaining = Object.fromEntries(subjects.map(s =&gt; [s.id, s.total===null?(reserves[s.id]??0):Math.max(0,s.total-s.done)]));
-  const dates = [], sundays = [];
-  let capacity = 0, bufferSlots = 0, studyDays = 0, extraIndex = 0, continuationIndex = 0, reserveIndex=0, processedSlots=0, systemsIndex=0;
+  const remaining=Object.fromEntries(subjects.map(s=&gt;[s.id,s.total===null?(reserves[s.id]??0):Math.max(0,s.total-s.done)]));
   const targetFor=iso=&gt;[&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;].includes(pace)?Number(pace):iso&lt;&#x27;2026-11-01&#x27;?3:pace===&#x27;ramp5&#x27;?5:4;
-  let totalCapacity=0;
-  for(let t=start;t&lt;=end;t+=day){const d=new Date(t);if(d.getUTCDay()!==0)totalCapacity+=targetFor(d.toISOString().slice(0,10));}
+  let totalCapacity=0;for(let t=start;t&lt;=end;t+=day){const d=new Date(t);if(d.getUTCDay()!==0)totalCapacity+=targetFor(d.toISOString().slice(0,10));}
   const protectedReserve=Math.min(totalCapacity,futureReserved);
   const weights={toc:9,dbms:8,os:9,c:5.5,ds:5.5,algo:9,compiler:5,cn:8,coa:9,dl:4.5,dm:3.25,la:3.25,calc:3.25,prob:3.25,ga:7.5,va:7.5};
-  const served={};
-  function take(queue) {
-    const eligible=queue.filter(id=&gt;remaining[id]&gt;0&amp;&amp;subjects.find(s=&gt;s.id===id)?.total!==null);
-    eligible.sort((a,b)=&gt;((served[a]||0)/weights[a])-((served[b]||0)/weights[b])||weights[b]-weights[a]||remaining[a]-remaining[b]);
-    const id = eligible[0];
-    if (!id) return null;
-    remaining[id]--;
-    served[id]=(served[id]||0)+1;
-    return id;
-  }
-  function takeContinuation() {
-    const started = [&#x27;toc&#x27;,&#x27;dbms&#x27;,&#x27;os&#x27;];
-    if (started.some(id=&gt;remaining[id]&gt;0)) {
-      return take(started);
+  const prerequisites={ds:[&#x27;c&#x27;],algo:[&#x27;c&#x27;,&#x27;ds&#x27;],compiler:[&#x27;toc&#x27;]};
+  const served={},admitted=new Set(),finished={},active=[];
+  const dates=[],sundays=[];let capacity=0,bufferSlots=0,studyDays=0,processedSlots=0,reserveIndex=0;
+  const known=s=&gt;s&amp;&amp;!s.foundation&amp;&amp;s.total!==null;
+  const eligible=(id,iso)=&gt;known(byId[id])&amp;&amp;remaining[id]&gt;0&amp;&amp;(id!==&#x27;coa&#x27;||(coaStart===&#x27;after-major&#x27;?[&#x27;toc&#x27;,&#x27;dbms&#x27;,&#x27;os&#x27;].some(p=&gt;finished[p]):iso&gt;=coaStart))&amp;&amp;(prerequisites[id]||[]).every(p=&gt;known(byId[p])&amp;&amp;remaining[p]===0);
+  const admit=id=&gt;{active.push(id);admitted.add(id);served[id]=0;};
+  [&#x27;toc&#x27;,&#x27;dbms&#x27;,&#x27;os&#x27;].filter(id=&gt;remaining[id]&gt;0).forEach(admit);
+  function fillActive(iso){
+    for(let i=active.length-1;i&gt;=0;i--)if(remaining[active[i]]===0)active.splice(i,1);
+    // A free place is held for the requested COA start; the three started courses stay active.
+    if(!admitted.has(&#x27;coa&#x27;)&amp;&amp;remaining.coa&gt;0&amp;&amp;active.length&lt;activeLimit&amp;&amp;eligible(&#x27;coa&#x27;,iso))admit(&#x27;coa&#x27;);
+    while(active.length&lt;activeLimit){
+      const waitingCoa=!admitted.has(&#x27;coa&#x27;)&amp;&amp;remaining.coa&gt;0;
+      if(waitingCoa&amp;&amp;active.length===activeLimit-1)break;
+      const candidates=subjects.filter(s=&gt;!admitted.has(s.id)&amp;&amp;eligible(s.id,iso));
+      candidates.sort((a,b)=&gt;weights[b.id]-weights[a.id]||remaining[a.id]-remaining[b.id]);
+      if(!candidates.length)break;admit(candidates[0].id);
     }
-    // C before Data Structures/Algorithms; TOC before Compiler. Unknown releases never satisfy prerequisites.
-    const prerequisites={ds:[&#x27;c&#x27;],algo:[&#x27;c&#x27;,&#x27;ds&#x27;],compiler:[&#x27;toc&#x27;]};
-    return take(groups.continuation.filter(id=&gt;(prerequisites[id]||[]).every(p=&gt;subjects.find(s=&gt;s.id===p)?.total!==null&amp;&amp;remaining[p]===0)));
   }
-  function takeSystems(coaEligible){
-    if(coaEligible&amp;&amp;scheduled.coa.length===0&amp;&amp;remaining.coa&gt;0)return take([&#x27;coa&#x27;]);
-    return take(groups.large.filter(id=&gt;id!==&#x27;coa&#x27;||coaEligible));
-  }
-  for (let time = start; time &lt;= end; time += day) {
-    const d = new Date(time), iso = d.toISOString().slice(0, 10), weekday = d.getUTCDay();
-    if (weekday === 0) { sundays.push(iso); dates.push({date: iso, kind: &#x27;sunday&#x27;, slots: []}); continue; }
-    studyDays++;
-    const target = targetFor(iso);
-    capacity += target;
-    const slots = [];
-    const coaEligible=coaStart===&#x27;after-major&#x27;?[&#x27;toc&#x27;,&#x27;dbms&#x27;,&#x27;os&#x27;].some(id=&gt;remaining[id]===0):iso&gt;=coaStart;
-    // Two recurring core lanes and one recurring Maths/Aptitude lane.
-    let knownLane=0;
-    for (let n = 0; n &lt; target; n++) {
-      let id;
-      const isReserve=Math.floor((processedSlots+1)*protectedReserve/totalCapacity)&gt;Math.floor(processedSlots*protectedReserve/totalCapacity);
-      processedSlots++;
-      if(isReserve){
-        for(let j=0;j&lt;reserveIds.length;j++){const next=reserveIds[reserveIndex++%reserveIds.length];if(remaining[next]&gt;0){id=next;remaining[next]--;break;}}
-      } else {
-      const lane=knownLane++;
-      if (lane === 0) id = takeContinuation();
-      else if (lane === 1) id = takeSystems(coaEligible);
-      else if (lane === 2) id = take(weekday % 2 === 1 ? groups.math : groups.aptitude) || take(weekday % 2 === 1 ? groups.aptitude : groups.math);
-      else { id = extraIndex++ % 2 === 0 ? takeContinuation() : takeSystems(coaEligible); }
-      if (!id) id = take([...groups.math, ...groups.aptitude])||takeContinuation()||takeSystems(coaEligible);
+  for(let time=start;time&lt;=end;time+=day){
+    const d=new Date(time),iso=d.toISOString().slice(0,10);
+    if(d.getUTCDay()===0){sundays.push(iso);dates.push({date:iso,kind:&#x27;sunday&#x27;,slots:[],revision:subjects.filter(s=&gt;finished[s.id]&amp;&amp;finished[s.id]&lt;iso).map(s=&gt;s.id)});continue;}
+    studyDays++;const target=targetFor(iso);capacity+=target;fillActive(iso);
+    const activeToday=[...active],slots=[],dailyServed={};
+    for(let n=0;n&lt;target;n++){
+      let id;const isReserve=Math.floor((processedSlots+1)*protectedReserve/totalCapacity)&gt;Math.floor(processedSlots*protectedReserve/totalCapacity);processedSlots++;
+      if(isReserve){for(let j=0;j&lt;reserveIds.length;j++){const next=reserveIds[reserveIndex++%reserveIds.length];if(remaining[next]&gt;0){id=next;remaining[next]--;break;}}}
+      else{
+        const candidates=active.filter(id=&gt;remaining[id]&gt;0);
+        // Keep the small active group balanced each day; marks break ties before lecture count.
+        candidates.sort((a,b)=&gt;(dailyServed[a]||0)-(dailyServed[b]||0)||((served[a]||0)/weights[a])-((served[b]||0)/weights[b])||weights[b]-weights[a]||remaining[a]-remaining[b]);
+        id=candidates[0];if(id){remaining[id]--;served[id]++;dailyServed[id]=(dailyServed[id]||0)+1;if(remaining[id]===0)finished[id]=iso;}
       }
-      slots.push(id || &#x27;revision-release-buffer&#x27;);
-      if(!id) bufferSlots++;
-      if (id) scheduled[id].push(iso);
+      slots.push(id||&#x27;revision-release-buffer&#x27;);if(id)scheduled[id].push(iso);else bufferSlots++;
     }
-    dates.push({date: iso, kind: &#x27;study&#x27;, slots});
+    // Replacements begin on the next study day, keeping each day&#x27;s subject count within the limit.
+    dates.push({date:iso,kind:&#x27;study&#x27;,slots,active:activeToday});
   }
-  const main = subjects.filter(s =&gt; !s.foundation);
-  const knownRemaining = main.reduce((n,s) =&gt; n + Math.max(0,(s.total ?? 0)-s.done),0);
-  const allocated = Object.values(scheduled).reduce((n,days)=&gt;n+days.length,0);
-  const reservedAllocated=reserveIds.filter(id=&gt;subjects.find(s=&gt;s.id===id)?.total===null).reduce((n,id)=&gt;n+scheduled[id].length,0);
-  const knownAllocated=allocated-reservedAllocated;
-  const required=knownRemaining+futureReserved;
-  return {pace, dates, sundays, scheduled, remaining, capacity, bufferSlots, studyDays, allocated, knownRemaining, reserves, futureReserved, reservedAllocated, knownAllocated, required,coaStart, knownCarryover:knownRemaining-knownAllocated, reserveShortfall:futureReserved-reservedAllocated,carryover:required-allocated};
+  const main=subjects.filter(s=&gt;!s.foundation),knownRemaining=main.reduce((n,s)=&gt;n+Math.max(0,(s.total??0)-s.done),0);
+  const allocated=Object.values(scheduled).reduce((n,days)=&gt;n+days.length,0),reservedAllocated=reserveIds.filter(id=&gt;byId[id]?.total===null).reduce((n,id)=&gt;n+scheduled[id].length,0),knownAllocated=allocated-reservedAllocated,required=knownRemaining+futureReserved;
+  return{pace,dates,sundays,scheduled,remaining,capacity,bufferSlots,studyDays,allocated,knownRemaining,reserves,futureReserved,reservedAllocated,knownAllocated,required,coaStart,activeLimit,finished,knownCarryover:knownRemaining-knownAllocated,reserveShortfall:futureReserved-reservedAllocated,carryover:required-allocated};
+}
+
+function buildLectureAssignments(subjects,plan){
+  const queues=Object.fromEntries(subjects.map(s=&gt;[s.id,s.chapters.flatMap((c,ci)=&gt;Array.from({length:Math.max(0,(c.total??0)-(c.done??0))},(_,i)=&gt;({chapter:ci,name:c.name,position:i+1,remaining:Math.max(0,(c.total??0)-(c.done??0)),captured:c.done,total:c.total})))]));
+  const offsets={},assignments=[];
+  for(const d of plan.dates)for(const id of d.slots){if(!queues[id])continue;const i=offsets[id]||0,lecture=queues[id][i];offsets[id]=i+1;if(lecture)assignments.push({...lecture,id,date:d.date});}
+  return assignments;
 }
 
 function buildWeeklyCountReview(subjects,plan,actualCounts,today){
-  const cumulative={},weeks=[];let days=[];
+  const cumulative={},weeks=[],assignments=buildLectureAssignments(subjects,plan);let days=[];
   function addWeek(){
     if(!days.length)return;
     const assigned={};let reserved=0;
@@ -2140,10 +2123,14 @@ function buildWeeklyCountReview(subjects,plan,actualCounts,today){
       const previous=cumulative[s.id]||0,n=assigned[s.id]||0;cumulative[s.id]=previous+n;
       if(!cumulative[s.id])continue;
       const actual=Math.max(s.done,Number.isInteger(actualCounts[s.id])?actualCounts[s.id]:s.done),expected=s.done+cumulative[s.id];
-      rows.push({id:s.id,assigned:n,expected,actual,missing:Math.max(0,expected-actual),completed:Math.max(0,Math.min(n,actual-s.done-previous))});
+      const ranges=[];
+      for(const lecture of assignments.filter(a=&gt;a.id===s.id&amp;&amp;a.date&gt;=days[0].date&amp;&amp;a.date&lt;=days.at(-1).date)){
+        const last=ranges.at(-1);if(last&amp;&amp;last.chapter===lecture.chapter&amp;&amp;last.to+1===lecture.position){last.to=lecture.position;last.count++;}else ranges.push({...lecture,from:lecture.position,to:lecture.position,count:1});
+      }
+      rows.push({id:s.id,assigned:n,expected,actual,ranges,missing:Math.max(0,expected-actual),completed:Math.max(0,Math.min(n,actual-s.done-previous))});
     }
     const end=days.at(-1).date,missing=rows.reduce((n,r)=&gt;n+r.missing,0);
-    weeks.push({start:days[0].date,end,closed:end&lt;today,flagged:end&lt;today&amp;&amp;missing&gt;0,missing,reserved,rows,assigned:rows.reduce((n,r)=&gt;n+r.assigned,0),completed:rows.reduce((n,r)=&gt;n+r.completed,0)});days=[];
+    weeks.push({start:days[0].date,end,closed:end&lt;today,flagged:end&lt;today&amp;&amp;missing&gt;0,missing,reserved,rows,revision:days.find(d=&gt;d.kind===&#x27;sunday&#x27;)?.revision||[],assigned:rows.reduce((n,r)=&gt;n+r.assigned,0),completed:rows.reduce((n,r)=&gt;n+r.completed,0)});days=[];
   }
   for(const d of plan.dates){days.push(d);if(d.kind===&#x27;sunday&#x27;)addWeek();}addWeek();return weeks;
 }
@@ -2157,14 +2144,15 @@ function buildWeeklyCountReview(subjects,plan,actualCounts,today){
   const saved=globalThis.openai?.widgetState?.privateContent;
   let actualCounts=Object.fromEntries(subjects.map(s=&gt;[s.id,s.done]));
   let countCapture=&#x27;2026-10-20&#x27;;
-  async function persist(){try{await globalThis.openai.setWidgetState({privateContent:{baseline,pace:root.querySelector(&#x27;#lecture-pace&#x27;).value,coaStart:root.querySelector(&#x27;#coa-start&#x27;).value,reserves:Object.fromEntries([&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;].map(id=&gt;[id,Number(root.querySelector(&#x27;#reserve-&#x27;+id).value)]))}});}catch{}}
+  let capturedChapters=[];
+  async function persist(){try{await globalThis.openai.setWidgetState({privateContent:{baseline,pace:root.querySelector(&#x27;#lecture-pace&#x27;).value,coaStart:root.querySelector(&#x27;#coa-start&#x27;).value,activeLimit:Number(root.querySelector(&#x27;#active-limit&#x27;).value),reserves:Object.fromEntries([&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;].map(id=&gt;[id,Number(root.querySelector(&#x27;#reserve-&#x27;+id).value)]))}});}catch{}}
   addEventListener(&#x27;message&#x27;,event=&gt;{
     if(event.source!==parent||event.data?.type!==&#x27;gate-lecture-counts&#x27;)return;
     const data=event.data;
     if(!Array.isArray(data.counts)||data.counts.length&gt;100||!/^\d{4}-\d{2}-\d{2}T/.test(data.capturedAt)||!Number.isFinite(Date.parse(data.capturedAt))||Date.parse(data.capturedAt)&lt;Date.parse(&#x27;2026-10-20T00:00:00Z&#x27;))return;
     const next={...actualCounts};
     for(const row of data.counts){const subject=subjects.find(s=&gt;s.name===row.subject);if(subject&amp;&amp;Number.isInteger(row.completed)&amp;&amp;row.completed&gt;=subject.done&amp;&amp;row.completed&lt;=10000)next[subject.id]=row.completed;}
-    actualCounts=next;countCapture=data.capturedAt;renderWeeks();
+    actualCounts=next;countCapture=data.capturedAt;if(Array.isArray(data.chapters))capturedChapters=data.chapters.filter(c=&gt;typeof c.subject===&#x27;string&#x27;&amp;&amp;typeof c.name===&#x27;string&#x27;&amp;&amp;Number.isInteger(c.done)&amp;&amp;c.done&gt;=0&amp;&amp;Number.isInteger(c.total)&amp;&amp;c.total&gt;=c.done&amp;&amp;c.total&lt;=10000).slice(0,3000);renderWeeks();
   });
   parent.postMessage({type:&#x27;gate-counts-ready&#x27;},&#x27;*&#x27;);
   let plan, selected = &#x27;toc&#x27;, buttons = [];
@@ -2189,7 +2177,7 @@ function buildWeeklyCountReview(subjects,plan,actualCounts,today){
     bar.querySelector(&#x27;.finish&#x27;).textContent=st.covered?&#x27;⚑&#x27;:&#x27;…&#x27;;
     root.querySelector(&#x27;.time-axis&#x27;).setAttribute(&#x27;aria-label&#x27;,st.future?&#x27;Release date unknown. &#x27;+st.slots.length+&#x27; of &#x27;+st.need+&#x27; planning allowance slots are protected; no lecture dates are confirmed.&#x27;:st.start?s.name+&#x27;: &#x27;+st.slots.length+&#x27; lectures allocated between &#x27;+pretty(st.start)+&#x27; and &#x27;+pretty(st.last)+(st.covered?&#x27;. Observed lecture target covered.&#x27;:&#x27;. More lectures remain unscheduled.&#x27;):&#x27;No lecture window confirmed&#x27;);
     root.querySelector(&#x27;#focus-note&#x27;).textContent=s.foundation?&#x27;Optional prerequisite support; use extra available capacity when needed. These lectures are additional to the main-course workload.&#x27;:st.future?&#x27;The planner protects &#x27;+st.slots.length+&#x27; of your &#x27;+st.need+&#x27; allowance slots before allocating existing courses. These are capacity reservations, not study dates or PW release predictions. Replace this allowance with an observed lecture count when available. January remains protected for revision and tests.&#x27;:(st.overdue?&#x27;Only &#x27;+st.slots.length+&#x27; of &#x27;+st.need+&#x27; known remaining lectures fit after protecting future-subject reserves. Increase the pace or rebalance the December allocation; January remains protected for revision and tests. &#x27;:&#x27;All currently counted remaining lectures fit after protecting future-subject reserves. This is not a full-syllabus completion guarantee. &#x27;)+(s.missing?&#x27;Some chapter counts are missing; the true workload may be higher. &#x27;:&#x27;&#x27;)+&#x27;Use brief daily recall and end-of-unit revision. Full subject revision, DPPs/PYQs and subject tests are reserved for 1–31 January.&#x27;;
-    if(id===&#x27;coa&#x27;)root.querySelector(&#x27;#focus-note&#x27;).textContent=&#x27;COA runs in the regular core rotation alongside Networks and Digital Logic after the selected start rule. &#x27;+root.querySelector(&#x27;#focus-note&#x27;).textContent;
+    if(id===&#x27;coa&#x27;)root.querySelector(&#x27;#focus-note&#x27;).textContent=&#x27;COA joins the small active group when its start rule and a free place allow it. &#x27;+root.querySelector(&#x27;#focus-note&#x27;).textContent;
     const chapterBox=root.querySelector(&#x27;#focus-chapters&#x27;);chapterBox.replaceChildren();
     if(s.chapters.length){const details=element(&#x27;details&#x27;);details.append(element(&#x27;summary&#x27;,&#x27;Chapter lecture breakdown&#x27;));const list=element(&#x27;ul&#x27;);s.chapters.forEach(c=&gt;list.append(element(&#x27;li&#x27;,c.name+&#x27; — &#x27;+(c.total===null?&#x27;Count not displayed&#x27;:c.done+&#x27;/&#x27;+c.total+&#x27; completed&#x27;))));details.append(list);chapterBox.append(details);}
     buttons.forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.subject===id)));
@@ -2213,18 +2201,20 @@ function buildWeeklyCountReview(subjects,plan,actualCounts,today){
       item.append(element(&#x27;p&#x27;,week.reserved+&#x27; release-dependent reserve slots · Sunday: test, revision and catch-up.&#x27;,&#x27;routine&#x27;));
       item.append(element(&#x27;p&#x27;,&#x27;Expected and captured values below are cumulative subject totals, including lectures completed before this plan.&#x27;,&#x27;routine&#x27;));
       const table=element(&#x27;table&#x27;,undefined,&#x27;weekly-count-table&#x27;),head=element(&#x27;thead&#x27;),hr=element(&#x27;tr&#x27;);[&#x27;Subject&#x27;,&#x27;This week&#x27;,&#x27;Expected total&#x27;,&#x27;Captured total&#x27;,&#x27;Behind&#x27;].forEach(t=&gt;hr.append(element(&#x27;th&#x27;,t)));head.append(hr);table.append(head);const body=element(&#x27;tbody&#x27;);
-      for(const row of week.rows){const tr=element(&#x27;tr&#x27;,undefined,week.flagged&amp;&amp;row.missing?&#x27;task-missed&#x27;:&#x27;&#x27;);[byId[row.id].name,row.assigned,row.expected,row.actual,row.missing?(week.closed?&#x27;⚑ &#x27;:&#x27;&#x27;)+row.missing:&#x27;✓&#x27;].forEach(t=&gt;tr.append(element(&#x27;td&#x27;,String(t))));body.append(tr);}table.append(body);const wrap=element(&#x27;div&#x27;,undefined,&#x27;weekly-count-scroll&#x27;);wrap.append(table);item.append(wrap);
+      for(const row of week.rows){const tr=element(&#x27;tr&#x27;,undefined,week.flagged&amp;&amp;row.missing?&#x27;task-missed&#x27;:&#x27;&#x27;);const subjectCell=element(&#x27;td&#x27;);subjectCell.append(element(&#x27;strong&#x27;,byId[row.id].name));if(row.ranges.length){const units=element(&#x27;ul&#x27;,undefined,&#x27;assigned-unit-list&#x27;);for(const r of row.ranges){const current=capturedChapters.find(c=&gt;c.subject===byId[row.id].name&amp;&amp;c.name===r.name);units.append(element(&#x27;li&#x27;,r.name+&#x27; · remaining lecture &#x27;+(r.from===r.to?r.from:r.from+&#x27;–&#x27;+r.to)+&#x27; of &#x27;+r.remaining+&#x27; · unit captured &#x27;+(current?current.done+&#x27;/&#x27;+current.total:r.captured+&#x27;/&#x27;+r.total)));}subjectCell.append(units);}else subjectCell.append(element(&#x27;small&#x27;,&#x27;No new lectures assigned this week.&#x27;,&#x27;unit-note&#x27;));tr.append(subjectCell);[row.assigned,row.expected,row.actual,row.missing?(week.closed?&#x27;⚑ &#x27;:&#x27;&#x27;)+row.missing:&#x27;✓&#x27;].forEach(t=&gt;tr.append(element(&#x27;td&#x27;,String(t))));body.append(tr);}table.append(body);const wrap=element(&#x27;div&#x27;,undefined,&#x27;weekly-count-scroll&#x27;);wrap.append(table);item.append(wrap);
+      if(week.revision.length){const revision=element(&#x27;div&#x27;,undefined,&#x27;weekly-revision&#x27;);revision.append(element(&#x27;strong&#x27;,&#x27;Sunday · completed-subject revision&#x27;));const ul=element(&#x27;ul&#x27;);for(const id of week.revision){const subject=byId[id],confirmed=actualCounts[id]&gt;=subject.total;ul.append(element(&#x27;li&#x27;,subject.name+&#x27; · &#x27;+(confirmed?&#x27;captured lecture target met: brief recall + weak-unit review&#x27;:&#x27;planned lecture target finished: revise if complete; otherwise catch up&#x27;)));}revision.append(ul);item.append(revision);}else item.append(element(&#x27;p&#x27;,&#x27;Sunday: revise the units studied so far, take your weekly test and catch up. Completed subjects join this revision list as their lecture targets finish.&#x27;,&#x27;routine&#x27;));
       if(countCapture.slice(0,10)&lt;week.end&amp;&amp;week.closed)item.append(element(&#x27;p&#x27;,&#x27;Capture predates this week’s deadline. Refresh PW counts before treating the shortfall as confirmed.&#x27;,&#x27;routine&#x27;));
       list.append(item);
     }
   }
   function render(){
     const reserves={};for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;]){const input=root.querySelector(&#x27;#reserve-&#x27;+id),v=Number(input.value);if(input.value.trim()===&#x27;&#x27;||!Number.isInteger(v)||v&lt;0||v&gt;200){root.querySelector(&#x27;#reserve-validation&#x27;).textContent=&#x27;Enter a whole number from 0 to 200 for each allowance.&#x27;;return;}reserves[id]=v;}root.querySelector(&#x27;#reserve-validation&#x27;).textContent=&#x27;&#x27;;
-    plan=buildLecturePlan(subjects,root.querySelector(&#x27;#lecture-pace&#x27;).value,reserves,root.querySelector(&#x27;#coa-start&#x27;).value);
-    const coa=status(byId.coa);root.querySelector(&#x27;#coa-schedule-status&#x27;).textContent=coa.start?&#x27;COA: &#x27;+pretty(coa.start)+&#x27; → &#x27;+(coa.covered?pretty(coa.last):&#x27;deadline risk&#x27;)+&#x27; · &#x27;+coa.slots.length+&#x27; / &#x27;+coa.need+&#x27; remaining lectures allocated in the regular lane.&#x27;:&#x27;No COA lecture slots fit under this combination. Rebalance the allowance, start rule or daily pace.&#x27;;
+    plan=buildLecturePlan(subjects,root.querySelector(&#x27;#lecture-pace&#x27;).value,reserves,root.querySelector(&#x27;#coa-start&#x27;).value,Number(root.querySelector(&#x27;#active-limit&#x27;).value));
+    const coa=status(byId.coa);root.querySelector(&#x27;#coa-schedule-status&#x27;).textContent=coa.start?&#x27;COA: &#x27;+pretty(coa.start)+&#x27; → &#x27;+(coa.covered?pretty(coa.last):&#x27;deadline risk&#x27;)+&#x27; · &#x27;+coa.slots.length+&#x27; / &#x27;+coa.need+&#x27; remaining lectures allocated within the &#x27;+plan.activeLimit+&#x27;-subject limit.&#x27;:&#x27;No COA lecture slots fit under this combination. Rebalance the allowance, start rule or daily pace.&#x27;;
     const summary=root.querySelector(&#x27;#workload-summary&#x27;);summary.replaceChildren();
     summary.append(element(&#x27;strong&#x27;,plan.knownRemaining+&#x27; known + &#x27;+plan.futureReserved+&#x27; future allowance = &#x27;+plan.required+&#x27; planned slots&#x27;));
     summary.classList.toggle(&#x27;has-carryover&#x27;,plan.carryover&gt;0);
+    summary.append(element(&#x27;p&#x27;,&#x27;At most &#x27;+plan.activeLimit+&#x27; active subjects. Finish an observed lecture target before a replacement joins. Sundays revisit completed subjects.&#x27;));
     summary.append(element(&#x27;p&#x27;,plan.studyDays+&#x27; lecture-study days through 31 December · 10 protected Sundays · &#x27;+plan.capacity+&#x27; lecture slots in this scenario&#x27;));
     summary.append(element(&#x27;p&#x27;,plan.reservedAllocated+&#x27; future allowance slots protected · &#x27;+plan.knownAllocated+&#x27; known lectures allocated · &#x27;+plan.bufferSlots+&#x27; uncommitted slots.&#x27;));
     summary.append(element(&#x27;p&#x27;,plan.knownCarryover+&#x27; known lectures and &#x27;+plan.reserveShortfall+&#x27; allowance slots do not fit by 31 December. Allowances are estimates, not actual PW counts.&#x27;));
@@ -2239,7 +2229,7 @@ function buildWeeklyCountReview(subjects,plan,actualCounts,today){
   function updateMonthNavigation(){const board=root.querySelector(&#x27;#month-tree&#x27;),left=board.getBoundingClientRect().left;const columns=[...board.querySelectorAll(&#x27;.month-node&#x27;)];const closest=columns.reduce((best,col)=&gt;!best||Math.abs(col.getBoundingClientRect().left-left)&lt;Math.abs(best.getBoundingClientRect().left-left)?col:best,null);root.querySelectorAll(&#x27;.mobile-month-nav button&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.month===closest?.dataset.month)));}
   root.querySelectorAll(&#x27;.mobile-month-nav button&#x27;).forEach(button=&gt;button.addEventListener(&#x27;click&#x27;,()=&gt;{const board=root.querySelector(&#x27;#month-tree&#x27;),column=board.querySelector(&#x27;.month-node[data-month=&quot;&#x27;+button.dataset.month+&#x27;&quot;]&#x27;);if(!column)return;board.scrollTo({left:board.scrollLeft+column.getBoundingClientRect().left-board.getBoundingClientRect().left,behavior:matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches?&#x27;instant&#x27;:&#x27;smooth&#x27;});}));
   root.querySelector(&#x27;#month-tree&#x27;).addEventListener(&#x27;scroll&#x27;,updateMonthNavigation,{passive:true});
-  if(saved?.baseline===baseline){if([&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;ramp4&#x27;,&#x27;ramp5&#x27;].includes(saved.pace))root.querySelector(&#x27;#lecture-pace&#x27;).value=saved.pace;if([&#x27;2026-10-28&#x27;,&#x27;2026-10-31&#x27;,&#x27;after-major&#x27;].includes(saved.coaStart))root.querySelector(&#x27;#coa-start&#x27;).value=saved.coaStart;for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;])if(Number.isInteger(saved.reserves?.[id])&amp;&amp;saved.reserves[id]&gt;=0&amp;&amp;saved.reserves[id]&lt;=200)root.querySelector(&#x27;#reserve-&#x27;+id).value=saved.reserves[id];} root.querySelector(&#x27;#lecture-pace&#x27;).addEventListener(&#x27;change&#x27;,()=&gt;{render();persist();});root.querySelector(&#x27;#coa-start&#x27;).addEventListener(&#x27;change&#x27;,()=&gt;{render();persist();});for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;]){const field=root.querySelector(&#x27;#reserve-&#x27;+id);field.addEventListener(&#x27;input&#x27;,render);field.addEventListener(&#x27;change&#x27;,()=&gt;{render();persist();});}render();
+  if(saved?.baseline===baseline){if([3,4].includes(saved.activeLimit))root.querySelector(&#x27;#active-limit&#x27;).value=String(saved.activeLimit);if([&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;ramp4&#x27;,&#x27;ramp5&#x27;].includes(saved.pace))root.querySelector(&#x27;#lecture-pace&#x27;).value=saved.pace;if([&#x27;2026-10-28&#x27;,&#x27;2026-10-31&#x27;,&#x27;after-major&#x27;].includes(saved.coaStart))root.querySelector(&#x27;#coa-start&#x27;).value=saved.coaStart;for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;])if(Number.isInteger(saved.reserves?.[id])&amp;&amp;saved.reserves[id]&gt;=0&amp;&amp;saved.reserves[id]&lt;=200)root.querySelector(&#x27;#reserve-&#x27;+id).value=saved.reserves[id];} root.querySelector(&#x27;#active-limit&#x27;).addEventListener(&#x27;change&#x27;,()=&gt;{render();persist();});root.querySelector(&#x27;#lecture-pace&#x27;).addEventListener(&#x27;change&#x27;,()=&gt;{render();persist();});root.querySelector(&#x27;#coa-start&#x27;).addEventListener(&#x27;change&#x27;,()=&gt;{render();persist();});for(const id of [&#x27;dm&#x27;,&#x27;algo&#x27;,&#x27;prob&#x27;]){const field=root.querySelector(&#x27;#reserve-&#x27;+id);field.addEventListener(&#x27;input&#x27;,render);field.addEventListener(&#x27;change&#x27;,()=&gt;{render();persist();});}render();
 })();
 
 &lt;/script&gt;
@@ -3125,7 +3115,8 @@ function buildWeeklyCountReview(subjects,plan,actualCounts,today){
     const data=event.data;
     if(typeof data.capturedAt!=='string'||data.capturedAt.length>40||!Array.isArray(data.counts)||data.counts.length>100)return;
     if(!data.counts.every(row=>typeof row.subject==='string'&&row.subject.length<=200&&Number.isInteger(row.completed)&&row.completed>=0&&row.completed<=10000))return;
-    latest={capturedAt:data.capturedAt,counts:data.counts};send();
+    const chapters=Array.isArray(data.chapters)?data.chapters.filter(c=>typeof c.subject==='string'&&c.subject.length<=200&&typeof c.name==='string'&&c.name.length<=500&&Number.isInteger(c.done)&&c.done>=0&&Number.isInteger(c.total)&&c.total>=c.done&&c.total<=10000).slice(0,3000):[];
+    latest={capturedAt:data.capturedAt,counts:data.counts,chapters};send();
   });
   visualization.addEventListener('load',send);document.body.append(bridge);
 })();

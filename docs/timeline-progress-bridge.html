@@ -13,7 +13,8 @@
       if(typeof chapter.subject!=='string'||chapter.subject.length>200||!Number.isInteger(chapter.lectureCompleted)||chapter.lectureCompleted<0||chapter.lectureCompleted>10000)continue;
       counts.set(chapter.subject,(counts.get(chapter.subject)||0)+chapter.lectureCompleted);
     }
-    parent.postMessage({type:'gate-published-counts',capturedAt:catalog.capturedAt,counts:[...counts].map(([subject,completed])=>({subject,completed}))},location.origin);
+    const chapters=catalog.chapters.filter(c=>typeof c.subject==='string'&&c.subject.length<=200&&typeof c.name==='string'&&c.name.length<=500&&Number.isInteger(c.lectureCompleted)&&c.lectureCompleted>=0&&Number.isInteger(c.lectureTotal)&&c.lectureTotal>=c.lectureCompleted&&c.lectureTotal<=10000).map(c=>({subject:c.subject,name:c.name,done:c.lectureCompleted,total:c.lectureTotal}));
+    parent.postMessage({type:'gate-published-counts',capturedAt:catalog.capturedAt,counts:[...counts].map(([subject,completed])=>({subject,completed})),chapters},location.origin);
   }catch{/* Timeline retains its dated baseline if the public feed is unavailable. */}
 })();
 </script></body></html>
