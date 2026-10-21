@@ -19,23 +19,35 @@
   summary.append(label, chevron);
   const content = document.createElement('div');
   content.className = 'added-dashboard-content';
+  content.style.padding = '0 0 20px';
   const link = document.createElement('a');
   link.href = './gate-timeline-tree.html';
   link.textContent = 'Open full timeline ↗';
   link.target = '_blank';
   link.rel = 'noopener';
   link.style.color = 'inherit';
+  link.style.marginLeft = '20px';
   const note = document.createElement('p');
   note.className = 'added-dashboard-note';
+  note.style.margin = '0 20px 14px';
   note.textContent = 'Lectures through 31 December; January reserved for full revision and tests. Compare daily paces and check red deadline alerts.';
   const frame = document.createElement('iframe');
   frame.title = 'GATE CS preparation timeline tree';
-  frame.style.cssText = 'display:block;width:100%;height:900px;border:0;margin-top:16px;border-radius:12px';
+  frame.style.cssText = 'display:block;width:100%;height:900px;border:0;margin-top:16px;border-radius:0;background:transparent';
   let observer;
   frame.addEventListener('load', () => {
     observer?.disconnect();
     const body = frame.contentDocument?.body;
     if (!body) return;
+    // Flatten the visual export wrapper inside the dropdown; retain its sandboxed visualization.
+    frame.contentDocument.documentElement.style.background = 'transparent';
+    body.style.padding = '0';
+    body.style.background = 'transparent';
+    const visualization = frame.contentDocument.getElementById('codex-visualization');
+    if (visualization) {
+      visualization.style.maxWidth = 'none';
+      visualization.style.margin = '0';
+    }
     const resize = () => {
       if (!section.open) return;
       const height = Math.ceil(body.getBoundingClientRect().height);
