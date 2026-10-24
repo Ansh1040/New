@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-24T16:22:28.885Z",
-  "pwCapturedAt": "2026-10-24T16:22:27.134Z",
+  "updatedAt": "2026-10-24T20:42:46.556Z",
+  "pwCapturedAt": "2026-10-24T20:42:42.083Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -381,7 +381,7 @@
       }
     ],
     "tests": [],
-    "updatedAt": "2026-10-24T16:22:28.885Z",
+    "updatedAt": "2026-10-24T20:42:46.556Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
@@ -690,7 +690,7 @@
           "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM"
         }
       ],
-      "capturedAt": "2026-10-24T16:22:27.134Z",
+      "capturedAt": "2026-10-24T20:42:42.083Z",
       "dpp": {
         "batchId": "6a6db276dcb67d138689a93d",
         "capturedAt": "2026-10-15T06:29:10.249Z",
