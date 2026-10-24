@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-24T20:42:46.556Z",
-  "pwCapturedAt": "2026-10-24T20:42:42.083Z",
+  "updatedAt": "2026-10-24T20:52:47.335Z",
+  "pwCapturedAt": "2026-10-24T20:52:45.320Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -150,7 +150,7 @@
     ]
   },
   "dpp": {
-    "capturedAt": "2026-10-15T06:29:10.249Z",
+    "capturedAt": "2026-10-24T20:52:45.320Z",
     "completed": 1,
     "available": 66,
     "percent": 2,
@@ -381,7 +381,7 @@
       }
     ],
     "tests": [],
-    "updatedAt": "2026-10-24T20:42:46.556Z",
+    "updatedAt": "2026-10-24T20:52:47.335Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
@@ -690,10 +690,10 @@
           "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM"
         }
       ],
-      "capturedAt": "2026-10-24T20:42:42.083Z",
+      "capturedAt": "2026-10-24T20:52:45.320Z",
       "dpp": {
         "batchId": "6a6db276dcb67d138689a93d",
-        "capturedAt": "2026-10-15T06:29:10.249Z",
+        "capturedAt": "2026-10-24T20:52:45.320Z",
         "chapters": [
           {
             "id": "dpp-chapter:theory%20of%20computation:dfa",
@@ -753,7 +753,7 @@
             "id": "dpp-chapter:database%20management%20system:ch%2001%20%3A%20relational%20model%20and%20normal%20forms",
             "subject": "Database Management System",
             "name": "CH 01 : Relational model and Normal forms",
-            "lectureCompleted": 8,
+            "lectureCompleted": 10,
             "lectureTotal": 10,
             "quizCompleted": 0,
             "quizTotal": 1
@@ -1349,6 +1349,15 @@
             "name": "CH 07 : Integration",
             "lectureCompleted": 0,
             "lectureTotal": 2,
+            "quizCompleted": null,
+            "quizTotal": null
+          },
+          {
+            "id": "dpp-chapter:database%20management%20system:ch%2004%20%3A%20indexing",
+            "subject": "Database Management System",
+            "name": "CH 04 : Indexing",
+            "lectureCompleted": 0,
+            "lectureTotal": 3,
             "quizCompleted": null,
             "quizTotal": null
           }
