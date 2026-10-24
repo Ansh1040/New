@@ -2905,9 +2905,13 @@ function capturedUnitStatus(done,total){
   let sizeWriteTimeout;
   let lastSize = null;
   let pendingSize = null;
+  // Release cache keys must not separate existing local settings or revision check-ins.
+  const stateSearchParams = new URLSearchParams(globalThis.location.search);
+  stateSearchParams.delete('timeline_rev');
+  const stateSearch = stateSearchParams.toString();
   const storageKey = `codex:visualization-widget-state-v2:${JSON.stringify([
     globalThis.location.pathname,
-    globalThis.location.search,
+    stateSearch ? '?' + stateSearch : '',
   ])}`;
   const sizeStorageKey = `${storageKey}:share-size-v1`;
   const parseState = (serializedState) => {

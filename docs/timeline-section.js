@@ -1,5 +1,7 @@
 // The published visualization retains its own sandboxed iframe and CSP unchanged.
 (() => {
+  const timelineRevision = '9089acd8108a';
+  const timelineURL = './gate-timeline-tree.html?timeline_rev=' + encodeURIComponent(timelineRevision);
   const section = document.createElement('details');
   section.className = 'added-dashboard';
   section.id = 'preparation-timeline';
@@ -21,7 +23,7 @@
   content.className = 'added-dashboard-content';
   content.style.padding = '0 0 20px';
   const link = document.createElement('a');
-  link.href = './gate-timeline-tree.html';
+  link.href = timelineURL;
   link.textContent = 'Open full timeline ↗';
   link.target = '_blank';
   link.rel = 'noopener';
@@ -58,7 +60,7 @@
     resize();
   });
   section.addEventListener('toggle', () => {
-    if (section.open && !frame.getAttribute('src')) frame.src = './gate-timeline-tree.html';
+    if (section.open && !frame.getAttribute('src')) frame.src = timelineURL;
   });
   content.append(note, link, frame);
   section.append(summary, content);
