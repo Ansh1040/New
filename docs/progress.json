@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-21T05:01:54.298Z",
-  "pwCapturedAt": "2026-10-21T05:01:52.999Z",
+  "updatedAt": "2026-10-24T06:13:14.178Z",
+  "pwCapturedAt": "2026-10-24T06:13:13.224Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -9,11 +9,11 @@
     },
     {
       "name": "Database Management System",
-      "progress": 30
+      "progress": 27
     },
     {
       "name": "Operating Systems",
-      "progress": 7
+      "progress": 5
     },
     {
       "name": "Compiler Design",
@@ -300,11 +300,11 @@
       },
       {
         "name": "Database Management System",
-        "progress": 30
+        "progress": 27
       },
       {
         "name": "Operating Systems",
-        "progress": 7
+        "progress": 5
       },
       {
         "name": "Compiler Design",
@@ -381,7 +381,7 @@
       }
     ],
     "tests": [],
-    "updatedAt": "2026-10-21T05:01:54.298Z",
+    "updatedAt": "2026-10-24T06:13:14.178Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
@@ -690,7 +690,7 @@
           "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM"
         }
       ],
-      "capturedAt": "2026-10-21T05:01:52.999Z",
+      "capturedAt": "2026-10-24T06:13:13.224Z",
       "dpp": {
         "batchId": "6a6db276dcb67d138689a93d",
         "capturedAt": "2026-10-15T06:29:10.249Z",
