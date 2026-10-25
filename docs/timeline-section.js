@@ -1,6 +1,6 @@
 // The published visualization retains its own sandboxed iframe and CSP unchanged.
 (() => {
-  const timelineRevision = 'f78679015f8b';
+  const timelineRevision = 'ecedd3f08a38';
   const timelineURL = './gate-timeline-tree.html?timeline_rev=' + encodeURIComponent(timelineRevision);
   const section = document.createElement('details');
   section.className = 'added-dashboard';

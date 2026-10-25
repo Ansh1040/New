@@ -21,20 +21,20 @@ for(const limit of [3,4])for(const pace of ['3','4','5','6','ramp4','ramp5'])for
   for(let done=0;done<=r.total;done++){
    const view=api.weeklyUnitLectureRange(r,{done,total:r.total});checks++;
    assert.equal(view.state.count,done+'/'+r.total);
-   if(done>=end)assert.ok(view.label.startsWith('This week’s assigned lectures completed'));
-   else{const next=Math.max(start,done+1);assert.equal(view.label,'Remaining '+next+(next===end?'':'–'+end)+' of '+r.total+' this week');}
+   if(done>=end)assert.ok(view.label.startsWith('Weekly target met'));
+   else{const next=Math.max(start,done+1),count=end-next+1;assert.equal(view.label,(count===1?'Lecture ':'Lectures ')+next+(count===1?'':'–'+end)+' due this week · '+count+' lecture'+(count===1?'':'s'));assert.equal(view.pendingCount,count);assert.equal(view.unitTotal,r.total);}
   }
   const subject=subjects.find(s=>s.id===row.id),live=chapters.find(c=>c.subject===subject.name&&c.name===r.name);
   if(live&&Number.isInteger(live.lectureCompleted)&&Number.isInteger(live.lectureTotal)){
    const view=api.weeklyUnitLectureRange(r,{done:live.lectureCompleted,total:live.lectureTotal});liveChecks++;
    assert.equal(view.state.count,live.lectureCompleted+'/'+live.lectureTotal);
-   if(view.label.startsWith('Remaining ')){const m=view.label.match(/^Remaining (\d+)(?:–(\d+))? of (\d+) this week$/);assert.ok(m);assert.ok(Number(m[1])>live.lectureCompleted);assert.equal(Number(m[3]),live.lectureTotal);}
+   if(view.pendingCount>0){assert.ok(view.from>live.lectureCompleted);assert.equal(view.unitTotal,live.lectureTotal);assert.equal(view.pendingCount,view.to-view.from+1);}
   }
  }
 }
 const query={captured:1,total:13,from:1,to:6};
-assert.equal(api.weeklyUnitLectureRange(query,{done:3,total:13}).label,'Remaining 4–7 of 13 this week');
-assert.equal(api.weeklyUnitLectureRange(query,{done:2,total:13}).label,'Remaining 3–7 of 13 this week');
-assert.equal(api.weeklyUnitLectureRange(query,{done:3,total:15}).label,'Remaining 4–7 of 15 this week');
+assert.equal(api.weeklyUnitLectureRange(query,{done:3,total:13}).label,'Lectures 4–7 due this week · 4 lectures');
+assert.equal(api.weeklyUnitLectureRange(query,{done:2,total:13}).label,'Lectures 3–7 due this week · 5 lectures');
+assert.equal(api.weeklyUnitLectureRange(query,{done:3,total:15}).label,'Lectures 4–7 due this week · 4 lectures');
 assert.equal(api.weeklyUnitLectureRange(query,{done:null,total:13}).label,'Weekly lecture range unavailable');
 console.log(`Passed ${checks} range/completion checks and ${liveChecks} published-unit checks across all weeks and 24 planning scenarios.`);
