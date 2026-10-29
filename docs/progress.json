@@ -1,7 +1,7 @@
 {
   "title": "Ansh’s CS GATE progress",
-  "updatedAt": "2026-10-29T16:28:49.449Z",
-  "pwCapturedAt": "2026-10-29T16:28:48.850Z",
+  "updatedAt": "2026-10-29T16:34:39.275Z",
+  "pwCapturedAt": "2026-10-29T16:34:38.518Z",
   "subjects": [
     {
       "name": "Theory of Computation",
@@ -150,7 +150,7 @@
     ]
   },
   "dpp": {
-    "capturedAt": "2026-10-29T05:46:04.607Z",
+    "capturedAt": "2026-10-29T16:34:38.518Z",
     "completed": 1,
     "available": 66,
     "percent": 2,
@@ -381,7 +381,7 @@
       }
     ],
     "tests": [],
-    "updatedAt": "2026-10-29T16:28:49.449Z",
+    "updatedAt": "2026-10-29T16:34:39.275Z",
     "pw": {
       "batchId": "6a6db276dcb67d138689a93d",
       "tests": [
@@ -690,10 +690,10 @@
           "startDateLabel": "Started on Oct 11, 2026 at 07:00 PM"
         }
       ],
-      "capturedAt": "2026-10-29T16:28:48.850Z",
+      "capturedAt": "2026-10-29T16:34:38.518Z",
       "dpp": {
         "batchId": "6a6db276dcb67d138689a93d",
-        "capturedAt": "2026-10-29T05:46:04.607Z",
+        "capturedAt": "2026-10-29T16:34:38.518Z",
         "chapters": [
           {
             "id": "dpp-chapter:theory%20of%20computation:dfa",
@@ -708,7 +708,7 @@
             "id": "dpp-chapter:theory%20of%20computation:regular%20expression",
             "subject": "Theory of Computation",
             "name": "Regular Expression",
-            "lectureCompleted": 4,
+            "lectureCompleted": 5,
             "lectureTotal": 5,
             "quizCompleted": null,
             "quizTotal": null
